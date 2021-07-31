@@ -14,6 +14,6 @@ E.g:-
     *Fahim is going to use only Flutter branch.
     *Iftekhar and Mehbah will use only restapi branch.
     *Nahid, Elma & Nahid will use only database branch.
-    *main is is going to be the final output of our website
+    *main is going to be the final output of our website
     
 Let's first get familiar with branches. Complete Tasks, them help others to complete their task.
