@@ -6,4 +6,6 @@ class MyColor {
   static const White80 = const Color(0xfff7f7f7);
   static const lightGreyBorder = const Color(0xffCECECE);
   static const lightAmberBorderBackGround = const Color(0xffFFFFF7);
+  static const orange = const Color(0xffFBB03B);
+  static const lightOrange = const Color(0xffFFF3DF);
 }

@@ -6,14 +6,14 @@ import '../MyColors.dart';
 import '../MyGlobalVariables.dart';
 import 'Product.dart';
 
-class ProductViewPanel extends StatefulWidget {
-  const ProductViewPanel({Key? key}) : super(key: key);
+class ProductsInToday extends StatefulWidget {
+  const ProductsInToday({Key? key}) : super(key: key);
 
   @override
-  _ProductViewPanelState createState() => _ProductViewPanelState();
+  _ProductsInTodayState createState() => _ProductsInTodayState();
 }
 
-class _ProductViewPanelState extends State<ProductViewPanel> {
+class _ProductsInTodayState extends State<ProductsInToday> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -32,48 +32,15 @@ class _ProductViewPanelState extends State<ProductViewPanel> {
                       margin: EdgeInsets.only(
                           left: borderMargin,
                           right: borderMargin,
-                          top: 65,
-                          bottom: 80),
+                          top: 50,
+                          bottom: 74),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            children: [
-                              Text(
-                                "Selected just for you",
-                                style: GoogleFonts.poppins(
-                                    color: MyColor.Black,
-                                    fontSize: 21,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                              Spacer(),
-                              ElevatedButton(
-                                child: Text(
-                                  "SHOW MORE",
-                                  style: GoogleFonts.poppins(
-                                      color: MyColor.Black,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                style: ButtonStyle(
-                                    shadowColor: MaterialStateProperty.all<Color>(
-                                        MyColor.White.withOpacity(0)),
-                                    backgroundColor:
-                                        MaterialStateProperty.all<Color>(
-                                            Colors.white),
-                                    padding: MaterialStateProperty.all<EdgeInsets>(
-                                        EdgeInsets.only(
-                                            left: 25,
-                                            right: 25,
-                                            top: 15,
-                                            bottom: 15)),
-                                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                        RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(18.0),
-                                            side: BorderSide(color: MyColor.lightGreyBorder, width: 1.5)))),
-                                onPressed: () {},
-                              ),
-                            ],
+                          Text(
+                            "Products In Today",
+                            style: GoogleFonts.poppins(
+                                fontSize: 34, fontWeight: FontWeight.w300),
                           ),
                           Row(
                             children: [

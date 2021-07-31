@@ -43,7 +43,7 @@ class CollectionBannerPanel extends StatelessWidget {
                         buttonTitle: 'SHOW COLLECTIONS',
                         imagePath:
                             'images/collection_banners/collection_banner_1.jpg',
-                        boxfit: BoxFit.fitWidth))),
+                        boxfit: BoxFit.fitHeight))),
                 SizedBox(width: 20),
                 Expanded(
                     child: CollectionBanner(CollectionBannerDataHolder(

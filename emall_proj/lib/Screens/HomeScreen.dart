@@ -1,10 +1,13 @@
 import 'dart:developer';
 
 import 'package:emall_proj/Components/CollectionBanners/CollectionBanner.dart';
+import 'package:emall_proj/Components/Footer/Footer.dart';
 import 'package:emall_proj/Components/MyColors.dart';
 import 'package:emall_proj/Components/MyGlobalVariables.dart';
 import 'package:emall_proj/Components/Navbar/Navbar.dart';
+import 'package:emall_proj/Components/Product/ProductInToday.dart';
 import 'package:emall_proj/Components/Product/ProductViewPanel.dart';
+import 'package:emall_proj/Components/WhyChooseUs/WhyChoseUs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -66,6 +69,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             CollectionBannerPanel(),
             ProductViewPanel(),
+            WhyChoseUsPanel(),
+            ProductsInToday(),
+            FooterPanel()
           ],
         ),
       ),
