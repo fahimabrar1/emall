@@ -15,4 +15,4 @@ E.g:-
     *Iftekhar and Mehbah will sue only restapi branch.
     *Nahid, Elma & Nahid will use only database branch.
     
-Let's first get familiar with branches. Complete Tasks, them help others to complete their task/
+Let's first get familiar with branches. Complete Tasks, them help others to complete their task.
