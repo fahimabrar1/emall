@@ -9,7 +9,8 @@ import '../MyColors.dart';
 
 class NavBarButtons extends StatefulWidget {
   String title;
-  NavBarButtons(String this.title, {Key? key}) : super(key: key);
+  Widget screen;
+  NavBarButtons(String this.title, this.screen, {Key? key}) : super(key: key);
 
   @override
   _NavBarButtonsState createState() => _NavBarButtonsState();
@@ -19,7 +20,10 @@ class _NavBarButtonsState extends State<NavBarButtons> {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => widget.screen));
+      },
       child: Container(
         margin: EdgeInsets.only(left: 25, right: 25),
         child: Column(

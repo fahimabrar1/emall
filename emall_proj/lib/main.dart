@@ -1,7 +1,7 @@
-import 'dart:developer';
-
 import 'package:emall_proj/Screens/HomeScreen.dart';
 import 'package:flutter/material.dart';
+
+import 'Screens/ShopScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -43,6 +43,7 @@ class MyeMall extends StatefulWidget {
 class _MyeMallState extends State<MyeMall> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: HomeScreen());
+    //return ShopScreen();
+    return HomeScreen();
   }
 }
