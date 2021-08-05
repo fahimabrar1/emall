@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:html';
 
+import 'package:emall_proj/Components/CallBacks/Callbacks.dart';
 import 'package:emall_proj/Components/MyColors.dart';
 import 'package:emall_proj/Components/MyGlobalVariables.dart';
 import 'package:emall_proj/Components/Navbar/NavBarButtons.dart';
@@ -13,7 +14,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TransparentNavBar extends StatefulWidget {
-  const TransparentNavBar({Key? key}) : super(key: key);
+  MyDrawerCallback? drawerCallback;
+  TransparentNavBar({
+    Key? key,
+    this.drawerCallback,
+  }) : super(key: key);
 
   @override
   _TransparentNavBarState createState() => _TransparentNavBarState();
@@ -72,6 +77,8 @@ class _TransparentNavBarState extends State<TransparentNavBar> {
     log("onExit");
   }
 
+  bool toggleDrawer = false;
+
   @override
   Widget build(BuildContext context) {
     final List<Widget> Screens = [HomeScreen(), ShopScreen()];
@@ -112,33 +119,36 @@ class _TransparentNavBarState extends State<TransparentNavBar> {
                 child:
                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      widget.drawerCallback!();
+                    },
                     child: Container(
                       margin: EdgeInsets.only(left: 25, right: 25),
-                      child: MouseRegion(
-                        key: _key,
-                        onEnter: (PointerEnterEvent) =>
-                            _getOffset(PointerEnterEvent, context, _key),
-
-                        // onEnter: (PointerEvent) => log("OnEnter"),
-                        // onHover: (PointerEvent) => log("OnHover"),
-                        // onExit: (PointerEvent) => log("OnExit"),
-                        child: Container(
-                          //color: Colors.blue,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text(
-                                'Category',
-                                style: GoogleFonts.poppins(
-                                    color: MyColor.White,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                            ],
-                          ),
-                        ),
+                      child: Text(
+                        'Category',
+                        style: GoogleFonts.poppins(
+                            color: MyColor.White,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500),
                       ),
+                      // child: MouseRegion(
+                      //   key: _key,
+                      //   onEnter: (PointerEnterEvent) =>
+                      //       _getOffset(PointerEnterEvent, context, _key),
+
+                      //   // onEnter: (PointerEvent) => log("OnEnter"),
+                      //   // onHover: (PointerEvent) => log("OnHover"),
+                      //   // onExit: (PointerEvent) => log("OnExit"),
+                      //   child: Container(
+                      //     //color: Colors.blue,
+                      //     child: Column(
+                      //       mainAxisAlignment: MainAxisAlignment.center,
+                      //       children: <Widget>[
+
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
                     ),
                   ),
                   NavBarButtons(
@@ -184,7 +194,9 @@ class _TransparentNavBarState extends State<TransparentNavBar> {
 }
 
 class NavBar extends StatefulWidget {
-  const NavBar({Key? key}) : super(key: key);
+  MyDrawerCallback? drawerCallback;
+
+  NavBar({Key? key, this.drawerCallback}) : super(key: key);
 
   @override
   _NavBarState createState() => _NavBarState();
@@ -269,28 +281,42 @@ class _NavBarState extends State<NavBar> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              widget.drawerCallback!();
+                            },
                             child: Container(
                               margin: EdgeInsets.only(left: 25, right: 25),
-                              child: MouseRegion(
-                                onEnter: (Event) => _updateLocation,
-                                onHover: (Event) => showMenus(context),
-                                child: Container(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Text(
-                                        'Category',
-                                        style: GoogleFonts.poppins(
-                                            color: MyColor.White,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                              child: Text(
+                                'Category',
+                                style: GoogleFonts.poppins(
+                                    color: MyColor.White,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500),
                               ),
                             ),
+
+                            //   child: Container(
+                            //     margin: EdgeInsets.only(left: 25, right: 25),
+                            //     child: MouseRegion(
+                            //       onEnter: (Event) => _updateLocation,
+                            //       onHover: (Event) => showMenus(context),
+                            //       child: Container(
+                            //         child: Column(
+                            //           mainAxisAlignment: MainAxisAlignment.center,
+                            //           children: <Widget>[
+                            //             Text(
+                            //               'Category',
+                            //               style: GoogleFonts.poppins(
+                            //                   color: MyColor.White,
+                            //                   fontSize: 18,
+                            //                   fontWeight: FontWeight.w500),
+                            //             ),
+                            //           ],
+                            //         ),
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
                           ),
                           NavBarButtons(
                             "Home",

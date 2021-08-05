@@ -1,3 +1,4 @@
+import 'package:emall_proj/Components/Drawer/Drawer.dart';
 import 'package:emall_proj/Components/Footer/Footer.dart';
 import 'package:emall_proj/Components/Navbar/Navbars.dart';
 import 'package:emall_proj/Components/Shops/ShopItem.dart';
@@ -82,83 +83,87 @@ class _ShopPanelState extends State<ShopPanel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: <Widget>[
-          SliverToBoxAdapter(
-            child: NavBar(),
-          ),
-          SliverPadding(
-            padding: EdgeInsets.only(
-                left: borderMargin,
-                right: borderMargin,
-                top: borderMargin / 2,
-                bottom: borderMargin / 2),
-            sliver: SliverGrid(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 5,
-                  childAspectRatio: 1,
-                  mainAxisSpacing: 10.0,
-                  crossAxisSpacing: 10.0),
-              delegate: SliverChildBuilderDelegate(
-                (context, index) {
-                  ShopItemDataHolder sdh;
-                  try {
-                    sdh = ShopItemDataHolder(
-                        title: shopitemdataholder[index].title,
-                        imgPath: shopitemdataholder[index].imgPath);
-                  } catch (Exception) {
-                    sdh = ShopItemDataHolder(
-                        title: "No Shop",
-                        imgPath: "images/products/product_1.jpg");
-                  }
+      drawer: MyDrawer(),
+      body: Builder(
+        builder: (context) => CustomScrollView(
+          slivers: <Widget>[
+            SliverToBoxAdapter(
+              child: NavBar(drawerCallback: () {
+                setState(() {
+                  Scaffold.of(context).openDrawer();
+                });
+              }),
+            ),
+            SliverPadding(
+              padding: EdgeInsets.only(
+                  left: borderMargin,
+                  right: borderMargin,
+                  top: borderMargin / 2,
+                  bottom: borderMargin / 2),
+              sliver: SliverGrid(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 5,
+                    childAspectRatio: 1,
+                    mainAxisSpacing: 10.0,
+                    crossAxisSpacing: 10.0),
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    ShopItemDataHolder sdh;
+                    try {
+                      sdh = ShopItemDataHolder(
+                          title: shopitemdataholder[index].title,
+                          imgPath: shopitemdataholder[index].imgPath);
+                    } catch (Exception) {
+                      sdh = ShopItemDataHolder(
+                          title: "No Shop",
+                          imgPath: "images/products/product_1.jpg");
+                    }
 
-                  return ShopItem(shopItemDataHolder: sdh);
-                },
-                childCount: counter,
+                    return ShopItem(shopItemDataHolder: sdh);
+                  },
+                  childCount: counter,
+                ),
               ),
             ),
-          ),
-          SliverToBoxAdapter(
-            child: (counter == shopitemdataholder.length)
-                ? Container()
-                : Container(
-                    margin: EdgeInsets.only(bottom: borderMargin / 2),
-                    //color: Colors.blue,
-                    child: Center(
-                      child: ElevatedButton(
-                          style: ButtonStyle(
-                              shadowColor: MaterialStateProperty.all<Color>(
-                                  MyColor.White.withOpacity(0)),
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  Colors.white),
-                              padding: MaterialStateProperty.all<EdgeInsets>(
-                                  EdgeInsets.only(
-                                      left: 35,
-                                      right: 35,
-                                      top: 25,
-                                      bottom: 25)),
-                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(50.0),
-                                      side: BorderSide(
-                                          color: MyColor.lightGreyBorder,
-                                          width: 1.5)))),
-                          onPressed: _increaseChildCount,
-                          child: Text(
-                            "Load More",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.poppins(
-                                color: MyColor.Black,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500),
-                          )),
+            SliverToBoxAdapter(
+              child: (counter == shopitemdataholder.length)
+                  ? Container()
+                  : Container(
+                      margin: EdgeInsets.only(bottom: borderMargin / 2),
+                      //color: Colors.blue,
+                      child: Center(
+                        child: ElevatedButton(
+                            style: ButtonStyle(
+                                shadowColor: MaterialStateProperty.all<Color>(
+                                    MyColor.White.withOpacity(0)),
+                                backgroundColor: MaterialStateProperty.all<Color>(
+                                    Colors.white),
+                                padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.only(
+                                    left: 35, right: 35, top: 25, bottom: 25)),
+                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(50.0),
+                                        side: BorderSide(
+                                            color: MyColor.lightGreyBorder,
+                                            width: 1.5)))),
+                            onPressed: _increaseChildCount,
+                            child: Text(
+                              "Load More",
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.poppins(
+                                  color: MyColor.Black,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500),
+                            )),
+                      ),
                     ),
-                  ),
-          ),
-          SliverToBoxAdapter(
-            child: FooterPanel(),
-          ),
-        ],
+            ),
+            SliverToBoxAdapter(
+              child: FooterPanel(),
+            ),
+          ],
+        ),
       ),
     );
   }
