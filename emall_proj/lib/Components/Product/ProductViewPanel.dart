@@ -55,22 +55,28 @@ class _ProductViewPanelState extends State<ProductViewPanel> {
                                       fontWeight: FontWeight.w500),
                                 ),
                                 style: ButtonStyle(
-                                    shadowColor: MaterialStateProperty.all<Color>(
-                                        MyColor.White.withOpacity(0)),
-                                    backgroundColor:
-                                        MaterialStateProperty.all<Color>(
-                                            Colors.white),
-                                    padding: MaterialStateProperty.all<EdgeInsets>(
-                                        EdgeInsets.only(
-                                            left: 25,
-                                            right: 25,
-                                            top: 15,
-                                            bottom: 15)),
-                                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                        RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(18.0),
-                                            side: BorderSide(color: MyColor.lightGreyBorder, width: 1.5)))),
+                                  shadowColor: MaterialStateProperty.all<Color>(
+                                      MyColor.White.withOpacity(0)),
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.white),
+                                  padding:
+                                      MaterialStateProperty.all<EdgeInsets>(
+                                          EdgeInsets.only(
+                                              left: 25,
+                                              right: 25,
+                                              top: 15,
+                                              bottom: 15)),
+                                  shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(18.0),
+                                      side: BorderSide(
+                                          color: MyColor.lightGreyBorder,
+                                          width: 1.5),
+                                    ),
+                                  ),
+                                ),
                                 onPressed: () {},
                               ),
                             ],

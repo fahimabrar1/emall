@@ -18,6 +18,8 @@ class _NavBarIconState extends State<NavBarIcon> {
   @override
   Widget build(BuildContext context) {
     return IconButton(
+        hoverColor: Colors.transparent,
+        splashColor: Colors.transparent,
         onPressed: () => log("Pressed Icon"),
         icon: Icon(
           widget.icon,
