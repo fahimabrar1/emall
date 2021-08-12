@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 12, 2021 at 07:49 AM
+-- Generation Time: Aug 12, 2021 at 08:46 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -29,15 +29,12 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admin` (
   `email` varchar(30) NOT NULL,
+  `first_name` varchar(30) NOT NULL,
+  `last_name` varchar(30) NOT NULL,
   `dob` date NOT NULL,
   `address` varchar(100) NOT NULL,
-  `NID` int(16) NOT NULL,
-  `first_name` varchar(15) NOT NULL,
-  `last_name` varchar(15) NOT NULL,
-  `number` int(11) NOT NULL,
-  `password` varchar(16) NOT NULL,
-  `type` varchar(10) NOT NULL,
-  `shop_id_fk` varchar(10) NOT NULL
+  `phone` int(11) NOT NULL,
+  `password` varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -163,6 +160,25 @@ CREATE TABLE `shop` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `shop_parent`
+--
+
+CREATE TABLE `shop_parent` (
+  `email` varchar(30) NOT NULL,
+  `dob` date NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `NID` int(16) NOT NULL,
+  `first_name` varchar(15) NOT NULL,
+  `last_name` varchar(15) NOT NULL,
+  `number` int(11) NOT NULL,
+  `password` varchar(16) NOT NULL,
+  `type` varchar(10) NOT NULL,
+  `shop_id_fk` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `size`
 --
 
@@ -206,8 +222,7 @@ CREATE TABLE `user` (
 -- Indexes for table `admin`
 --
 ALTER TABLE `admin`
-  ADD PRIMARY KEY (`email`),
-  ADD KEY `shop_id_fk` (`shop_id_fk`);
+  ADD PRIMARY KEY (`email`);
 
 --
 -- Indexes for table `cart`
@@ -275,6 +290,13 @@ ALTER TABLE `shop`
   ADD KEY `category_id_fk` (`category_id_fk`);
 
 --
+-- Indexes for table `shop_parent`
+--
+ALTER TABLE `shop_parent`
+  ADD PRIMARY KEY (`email`),
+  ADD KEY `shop_id_fk` (`shop_id_fk`);
+
+--
 -- Indexes for table `size`
 --
 ALTER TABLE `size`
@@ -296,12 +318,6 @@ ALTER TABLE `user`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `admin`
---
-ALTER TABLE `admin`
-  ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`shop_id_fk`) REFERENCES `shop` (`shop_id`);
 
 --
 -- Constraints for table `cart`
@@ -350,6 +366,12 @@ ALTER TABLE `product_attribute`
 --
 ALTER TABLE `shop`
   ADD CONSTRAINT `shop_ibfk_1` FOREIGN KEY (`category_id_fk`) REFERENCES `category` (`category_id`);
+
+--
+-- Constraints for table `shop_parent`
+--
+ALTER TABLE `shop_parent`
+  ADD CONSTRAINT `shop_parent_ibfk_1` FOREIGN KEY (`shop_id_fk`) REFERENCES `shop` (`shop_id`);
 
 --
 -- Constraints for table `sub_category`
