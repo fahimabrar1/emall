@@ -1,0 +1,52 @@
+GET http://127.0.0.1:8000/api/categories HTTP/1.1
+
+###
+
+GET http://127.0.0.1:8000/api/subcategories HTTP/1.1 
+###
+
+GET http://127.0.0.1:8000/api/childcategories HTTP/1.1 
+###
+
+
+GET http://127.0.0.1:8000/api/shops HTTP/1.1 
+###
+
+POST http://127.0.0.1:8000/api/categories HTTP/1.1
+Content-Type: application/json
+
+{
+    "name" : "Electronics"
+}
+
+###
+
+POST http://127.0.0.1:8000/api/subcategories HTTP/1.1
+Content-Type: application/json
+
+{
+    "category_id_fk" : "cat1",
+    "name" : "Jeans"
+}
+
+###
+
+POST http://127.0.0.1:8000/api/childcategories HTTP/1.1
+Content-Type: application/json
+
+{
+    "sub_cat_id_fk" : "sub2",
+    "name" : "blue jeans"
+}
+
+###
+
+POST http://127.0.0.1:8000/api/shops HTTP/1.1
+Content-Type: application/json
+
+{
+    "category_id_fk" : "cat1",
+    "shop_name" : "GoodiesShop",
+    "logo" : "https://image.shutterstock.com/image-photo/surreal-image-african-elephant-wearing-260nw-1365289022.jpg"
+
+}
