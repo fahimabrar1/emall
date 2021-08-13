@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 12, 2021 at 08:46 AM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.0
+-- Generation Time: Aug 12, 2021 at 08:42 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -59,6 +59,20 @@ CREATE TABLE `category` (
   `category_id` varchar(10) NOT NULL,
   `name` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`category_id`, `name`) VALUES
+('bags090', 'Bags'),
+('beauty050', 'Beauty Shop'),
+('cloth010', 'Clothing'),
+('elect030', 'Electronics '),
+('foot020', 'Foot Wear'),
+('jewel070', 'Jewelry Shop'),
+('super080', 'Super Shop'),
+('watch040', 'Watches');
 
 -- --------------------------------------------------------
 
@@ -195,9 +209,48 @@ CREATE TABLE `size` (
 
 CREATE TABLE `sub_category` (
   `sub_cat_id` varchar(10) NOT NULL,
-  `category_id_fk` varchar(10) NOT NULL,
-  `name` int(11) NOT NULL
+  `category_id_fk` varchar(20) NOT NULL,
+  `name` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sub_category`
+--
+
+INSERT INTO `sub_category` (`sub_cat_id`, `category_id_fk`, `name`) VALUES
+('0110', 'cloth010', 'Men\'s Clothing'),
+('0120', 'cloth010', 'Women\'s Clothing'),
+('0210', 'foot020', 'Women\'s Footwear'),
+('0220', 'foot020', 'Men\'s Footwear'),
+('0310', 'elect030', 'Phones'),
+('0320', 'elect030', 'Laptop'),
+('0330', 'elect030', 'Desktop'),
+('0340', 'elect030', 'Camera'),
+('0350', 'elect030', 'Refrigerator'),
+('0360', 'elect030', 'TV'),
+('0410', 'watch040', 'Men\'s Watch'),
+('0420', 'watch040', 'Women\'s Watch'),
+('0430', 'watch040', 'Kid\'s Watch'),
+('0510', 'beauty050', 'Makeup'),
+('0520', 'beauty050', 'Beauty Tools'),
+('0530', 'beauty050', 'Hair Care'),
+('0540', 'beauty050', 'Fragrance'),
+('0550', 'beauty050', 'Skin Care'),
+('0560', 'beauty050', 'Men\'s Product'),
+('0710', 'jewel070', 'Gold'),
+('0720', 'jewel070', 'Silver'),
+('0730', 'jewel070', 'Diamond'),
+('0810', 'super080', 'Indulge'),
+('0820', 'super080', 'Fruit and Vegetable'),
+('0830', 'super080', 'Fish and Meat'),
+('0840', 'super080', 'Food and Grocery'),
+('0850', 'super080', 'Households Essential'),
+('0860', 'super080', 'Personal Care'),
+('0870', 'super080', 'Pet Care'),
+('0880', 'super080', 'Fashion'),
+('0910', 'bags090', 'Women\'s Bags'),
+('0920', 'bags090', 'Men\'s Bags'),
+('0930', 'bags090', 'Others');
 
 -- --------------------------------------------------------
 
