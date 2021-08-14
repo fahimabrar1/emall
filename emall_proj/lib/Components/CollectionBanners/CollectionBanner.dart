@@ -42,7 +42,7 @@ class CollectionBannerPanel extends StatelessWidget {
                         title: 'New arrivals\nare now in!',
                         buttonTitle: 'SHOW COLLECTIONS',
                         imagePath:
-                            'images/collection_banners/collection_banner_1.jpg',
+                            'assets/images/collection_banners/collection_banner_1.jpg',
                         boxfit: BoxFit.fitWidth))),
                 SizedBox(width: 20),
                 Expanded(
@@ -50,7 +50,7 @@ class CollectionBannerPanel extends StatelessWidget {
                         title: 'Basic t-shirts\n\$29,99',
                         buttonTitle: 'MORE DETAILS',
                         imagePath:
-                            'images/collection_banners/collection_banner_2.jpg',
+                            'assets/images/collection_banners/collection_banner_2.jpg',
                         boxfit: BoxFit.fitWidth))),
                 SizedBox(width: 20),
                 Expanded(
@@ -58,7 +58,7 @@ class CollectionBannerPanel extends StatelessWidget {
                         title: 'Sale this\nsummer',
                         buttonTitle: 'VIEW ALL',
                         imagePath:
-                            'images/collection_banners/collection_banner_3.jpg',
+                            'assets/images/collection_banners/collection_banner_3.jpg',
                         boxfit: BoxFit.fitWidth))),
               ],
             ),
@@ -70,15 +70,29 @@ class CollectionBannerPanel extends StatelessWidget {
 }
 
 class CollectionBanner extends StatefulWidget {
-  CollectionBannerDataHolder collectionBannerDataHolder;
-  CollectionBanner(this.collectionBannerDataHolder, {Key? key})
+  final CollectionBannerDataHolder collectionBannerDataHolder;
+  CollectionBanner( this.collectionBannerDataHolder, {Key? key})
       : super(key: key);
 
   @override
-  _CollectionBannerState createState() => _CollectionBannerState();
+  _CollectionBannerState createState() =>
+      _CollectionBannerState(collectionBannerDataHolder);
 }
 
 class _CollectionBannerState extends State<CollectionBanner> {
+  CollectionBannerDataHolder collectionBannerDataHolder;
+  late final AssetImage banner;
+  _CollectionBannerState(this.collectionBannerDataHolder) {
+    banner = AssetImage(collectionBannerDataHolder.imagePath);
+  }
+
+  /// Did Change Dependencies
+  @override
+  void didChangeDependencies() {
+    precacheImage(banner, context);
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -86,7 +100,7 @@ class _CollectionBannerState extends State<CollectionBanner> {
         Container(
           foregroundDecoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage(widget.collectionBannerDataHolder.imagePath),
+                image: banner,
                 fit: widget.collectionBannerDataHolder.boxfit,
                 alignment: Alignment.center),
           ),

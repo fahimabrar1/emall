@@ -110,42 +110,42 @@ class _ProductViewPanelState extends State<ProductViewPanel> {
                                               title: 'T-Shirt Summer Vibes',
                                               price: 120,
                                               imagePath:
-                                                  'images/products/product_1.jpg',
+                                                  'assets/images/products/product_1.jpg',
                                               boxfit: BoxFit.fitWidth)),
                                       Product(
                                           product: ProductDataHolder(
                                               title: 'Loose Knit 3/4 Sleeve',
                                               price: 150,
                                               imagePath:
-                                                  'images/products/product_2.jpg',
+                                                  'assets/images/products/product_2.jpg',
                                               boxfit: BoxFit.fitWidth)),
                                       Product(
                                           product: ProductDataHolder(
                                               title: 'Basic Slim Fit T-Shirt',
                                               price: 799.99,
                                               imagePath:
-                                                  'images/products/product_3.jpg',
+                                                  'assets/images/products/product_3.jpg',
                                               boxfit: BoxFit.fitWidth)),
                                       Product(
                                           product: ProductDataHolder(
                                               title: 'T-Shirt Summer Vibes',
                                               price: 120,
                                               imagePath:
-                                                  'images/products/product_4.jpg',
+                                                  'assets/images/products/product_4.jpg',
                                               boxfit: BoxFit.fitWidth)),
                                       Product(
                                           product: ProductDataHolder(
                                               title: 'Loose Textured T-Shirt',
                                               price: 1150,
                                               imagePath:
-                                                  'images/products/product_5.jpg',
+                                                  'assets/images/products/product_5.jpg',
                                               boxfit: BoxFit.fitWidth)),
                                       Product(
                                           product: ProductDataHolder(
                                               title: 'T-Shirt Summer Vibes',
                                               price: 120,
                                               imagePath:
-                                                  'images/products/product_1.jpg',
+                                                  'assets/images/products/product_1.jpg',
                                               boxfit: BoxFit.fitWidth)),
                                     ],
                                   ),

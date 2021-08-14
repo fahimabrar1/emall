@@ -2,89 +2,60 @@ import 'package:emall_proj/Components/Drawer/Drawer.dart';
 import 'package:emall_proj/Components/Footer/Footer.dart';
 import 'package:emall_proj/Components/Navbar/NavBarIcons.dart';
 import 'package:emall_proj/Components/Navbar/Navbars.dart';
-import 'package:emall_proj/Components/Shops/ShopItem.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../MyColors.dart';
 import '../MyGlobalVariables.dart';
+import 'Product.dart';
 
-class ShopPanel extends StatefulWidget {
-  const ShopPanel({Key? key}) : super(key: key);
+class ProductSearchPanel extends StatefulWidget {
+  const ProductSearchPanel({Key? key}) : super(key: key);
 
   @override
-  _ShopPanelState createState() => _ShopPanelState();
+  _ProductSearchPanelState createState() => _ProductSearchPanelState();
 }
 
-class _ShopPanelState extends State<ShopPanel> {
-  List<ShopItemDataHolder> shopitemdataholder = [
-    ShopItemDataHolder(
-        title: "Shop Name Shop Name Shop Name Shop Name",
-        imgPath: "assets/images/products/product_1.jpg"),
-    ShopItemDataHolder(
-        title: "Shop Name Shop Name Shop Name Shop Name",
-        imgPath: "assets/images/products/product_1.jpg"),
-    ShopItemDataHolder(
-        title: "Shop Name Shop Name Shop Name Shop Name",
-        imgPath: "assets/images/products/product_2.jpg"),
-    ShopItemDataHolder(
-        title: "Shop Name Shop Name Shop Name Shop Name",
-        imgPath: "assets/images/products/product_3.jpg"),
-    ShopItemDataHolder(
-        title: "Shop Name Shop Name Shop Name Shop Name",
-        imgPath: "assets/images/products/product_3.jpg"),
-    ShopItemDataHolder(
-        title: "Shop Name Shop Name Shop Name Shop Name",
-        imgPath: "assets/images/products/product_3.jpg"),
-    ShopItemDataHolder(
-        title: "Shop Name Shop Name Shop Name Shop Name",
-        imgPath: "assets/images/products/product_4.jpg"),
-    ShopItemDataHolder(
-        title: "Shop Name Shop Name Shop Name Shop Name",
-        imgPath: "assets/images/products/product_4.jpg"),
-    ShopItemDataHolder(
-        title: "Shop Name Shop Name Shop Name Shop Name",
-        imgPath: "assets/images/products/product_5.jpg"),
-    ShopItemDataHolder(
-        title: "Shop Name Shop Name Shop Name Shop Name",
-        imgPath: "assets/images/products/product_1.jpg"),
-    ShopItemDataHolder(
-        title: "Shop Name Shop Name Shop Name Shop Name",
-        imgPath: "assets/images/products/product_1.jpg"),
-    ShopItemDataHolder(
-        title: "Shop Name Shop Name Shop Name Shop Name",
-        imgPath: "assets/images/products/product_1.jpg"),
-    ShopItemDataHolder(
-        title: "Shop Name Shop Name Shop Name Shop Name",
-        imgPath: "assets/images/products/product_2.jpg"),
-    ShopItemDataHolder(
-        title: "Shop Name Shop Name Shop Name Shop Name",
-        imgPath: "assets/images/products/product_3.jpg"),
-    ShopItemDataHolder(
-        title: "Shop Name Shop Name Shop Name Shop Name",
-        imgPath: "assets/images/products/product_3.jpg"),
-    ShopItemDataHolder(
-        title: "Shop Name Shop Name Shop Name Shop Name",
-        imgPath: "assets/images/products/product_3.jpg"),
-    ShopItemDataHolder(
-        title: "Shop Name Shop Name Shop Name Shop Name",
-        imgPath: "assets/images/products/product_4.jpg"),
-    ShopItemDataHolder(
-        title: "Shop Name Shop Name Shop Name Shop Name",
-        imgPath: "assets/images/products/product_4.jpg"),
-    ShopItemDataHolder(
-        title: "Shop Name Shop Name Shop Name Shop Name",
-        imgPath: "assets/images/products/product_5.jpg"),
-    ShopItemDataHolder(
-        title: "Shop Name Shop Name Shop Name Shop Name",
-        imgPath: "assets/images/products/product_1.jpg"),
+class _ProductSearchPanelState extends State<ProductSearchPanel> {
+  List<ProductDataHolder> productitemdataholder = [
+    ProductDataHolder(
+        title: 'T-Shirt Summer Vibes',
+        price: 120,
+        imagePath: 'assets/images/products/product_1.jpg',
+        boxfit: BoxFit.fitWidth),
+    ProductDataHolder(
+        title: 'Loose Knit 3/4 Sleeve',
+        price: 150,
+        imagePath: 'assets/images/products/product_2.jpg',
+        boxfit: BoxFit.fitWidth),
+    ProductDataHolder(
+        title: 'Basic Slim Fit T-Shirt',
+        price: 799.99,
+        imagePath: 'assets/images/products/product_3.jpg',
+        boxfit: BoxFit.fitWidth),
+    ProductDataHolder(
+        title: 'T-Shirt Summer Vibes',
+        price: 120,
+        imagePath: 'assets/images/products/product_4.jpg',
+        boxfit: BoxFit.fitWidth),
+    ProductDataHolder(
+        title: 'Loose Textured T-Shirt',
+        price: 1150,
+        imagePath: 'assets/images/products/product_5.jpg',
+        boxfit: BoxFit.fitWidth),
+    ProductDataHolder(
+        title: 'T-Shirt Summer Vibes',
+        price: 120,
+        imagePath: 'assets/images/products/product_1.jpg',
+        boxfit: BoxFit.fitWidth),
   ];
   List<String> dropDownMenu = ["10", "20", "30"];
   String dropdownValue = "10";
 
   int counter = 10;
   int incrementByDropdown = 10;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -149,7 +120,7 @@ class _ShopPanelState extends State<ShopPanel> {
               ),
             ),
 
-            //Search Grid Settings In Sliver
+            //Search Grid Title And Option In Sliver
             SliverToBoxAdapter(
               child: Container(
                 height: 50,
@@ -165,7 +136,7 @@ class _ShopPanelState extends State<ShopPanel> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              "All Shops: ",
+                              "All Products: ",
                               style: GoogleFonts.poppins(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 18,
@@ -189,7 +160,7 @@ class _ShopPanelState extends State<ShopPanel> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              "Show Shows: ",
+                              "Show Products: ",
                               style: GoogleFonts.poppins(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 18,
@@ -231,23 +202,22 @@ class _ShopPanelState extends State<ShopPanel> {
               sliver: SliverGrid(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 5,
-                    childAspectRatio: 1,
-                    mainAxisSpacing: 10.0,
-                    crossAxisSpacing: 10.0),
+                    childAspectRatio: (productWidth / productHeight) - 0.1,
+                    mainAxisSpacing: panelElementGaps,
+                    crossAxisSpacing: panelElementGaps),
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
-                    ShopItemDataHolder sdh;
+                    ProductDataHolder pdh;
                     try {
-                      sdh = ShopItemDataHolder(
-                          title: shopitemdataholder[index].title,
-                          imgPath: shopitemdataholder[index].imgPath);
+                      pdh = ProductDataHolder(
+                          title: productitemdataholder[index].title,
+                          price: productitemdataholder[index].price,
+                          imagePath: productitemdataholder[index].imagePath,
+                          boxfit: productitemdataholder[index].boxfit);
+                      return Product(product: pdh);
                     } catch (Exception) {
-                      sdh = ShopItemDataHolder(
-                          title: "No Shop",
-                          imgPath: "images/products/product_1.jpg");
+                      //No More Products
                     }
-
-                    return ShopItem(shopItemDataHolder: sdh);
                   },
                   childCount: counter,
                 ),
@@ -256,7 +226,7 @@ class _ShopPanelState extends State<ShopPanel> {
 
             //Load More Button
             SliverToBoxAdapter(
-              child: (counter == shopitemdataholder.length)
+              child: (counter == productitemdataholder.length)
                   ? Container()
                   : Container(
                       margin: EdgeInsets.only(bottom: borderMargin / 2),
@@ -302,7 +272,9 @@ class _ShopPanelState extends State<ShopPanel> {
 
   void _increaseChildCount() {
     setState(() {
-      counter += incrementByDropdown;
+      if (productitemdataholder.length > counter) {
+        counter += incrementByDropdown;
+      }
     });
   }
 }

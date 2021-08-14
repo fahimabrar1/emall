@@ -1,17 +1,26 @@
 import 'dart:developer';
-
 import 'package:emall_proj/Components/Drawer/Drawer.dart';
 import 'package:emall_proj/Components/Footer/Footer.dart';
 import 'package:emall_proj/Components/MyGlobalVariables.dart';
 import 'package:emall_proj/Components/Navbar/Navbars.dart';
 import 'package:emall_proj/Components/RadioButtons/MyRadioButton.dart';
-import 'package:emall_proj/Components/Widgets/InputFields.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../MyColors.dart';
+import 'ProductViewPanel.dart';
+
+///
+///
+/// Product Panel Vis the Product Page.
+/// It shows all the details of a product.
+/// Gives us flexibility to retrive information from database and use the informations retrived in the page
+/// So Users can add it to their cart.
+///
+///
 
 class ProductPanal extends StatefulWidget {
   const ProductPanal({Key? key}) : super(key: key);
@@ -27,6 +36,17 @@ class _ProductPanalState extends State<ProductPanal> {
     RadioModel(false, Colors.deepPurple),
     RadioModel(false, Colors.pinkAccent),
   ];
+
+  int productQuantity = 1;
+  final mycontroller = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    mycontroller.text = productQuantity.toString();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -208,7 +228,7 @@ class _ProductPanalState extends State<ProductPanal> {
                                     child: InkWell(
                                       child: Image(
                                         image: AssetImage(
-                                            "images/products/product_1.jpg"),
+                                            "assets/images/products/product_1.jpg"),
                                         fit: BoxFit.fitWidth,
                                       ),
                                       onTap: () {},
@@ -222,7 +242,7 @@ class _ProductPanalState extends State<ProductPanal> {
                                     child: InkWell(
                                       child: Image(
                                         image: AssetImage(
-                                            "images/products/product_1.jpg"),
+                                            "assets/images/products/product_1.jpg"),
                                         fit: BoxFit.fitWidth,
                                       ),
                                       onTap: () {},
@@ -236,7 +256,7 @@ class _ProductPanalState extends State<ProductPanal> {
                                     child: InkWell(
                                       child: Image(
                                         image: AssetImage(
-                                            "images/products/product_1.jpg"),
+                                            "assets/images/products/product_1.jpg"),
                                         fit: BoxFit.fitWidth,
                                       ),
                                       onTap: () {},
@@ -253,7 +273,7 @@ class _ProductPanalState extends State<ProductPanal> {
                               padding: EdgeInsets.all(10),
                               child: Image(
                                 image:
-                                    AssetImage("images/products/product_1.jpg"),
+                                    AssetImage("assets/images/products/product_1.jpg"),
                                 fit: BoxFit.fitWidth,
                               ),
                             ))
@@ -482,6 +502,7 @@ class _ProductPanalState extends State<ProductPanal> {
                                             iconSize: 16,
                                             onPressed: () {
                                               log("Minus");
+                                              decrementProductQuantity();
                                             },
                                           ),
                                         ),
@@ -494,6 +515,7 @@ class _ProductPanalState extends State<ProductPanal> {
                                           //color: Colors.yellow,
                                           child: Center(
                                             child: TextField(
+                                              controller: mycontroller,
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                 fontSize: 15.0,
@@ -502,7 +524,6 @@ class _ProductPanalState extends State<ProductPanal> {
                                                   TextInputType.number,
                                               decoration: InputDecoration(
                                                 border: InputBorder.none,
-                                                hintText: "1",
                                               ),
                                             ),
                                           ),
@@ -523,7 +544,9 @@ class _ProductPanalState extends State<ProductPanal> {
                                               color: MyColor.Black,
                                             ),
                                             iconSize: 16,
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              incrementProductQuantity();
+                                            },
                                           ),
                                         ),
                                       ),
@@ -584,14 +607,25 @@ class _ProductPanalState extends State<ProductPanal> {
               SliverToBoxAdapter(
                 child: Container(
                   height: 100,
-                  color: Colors.blue,
+                  color: MyColor.lightOrange,
                   margin: EdgeInsets.only(
-                      top: 50,
-                      bottom: 50,
-                      left: borderMargin,
-                      right: borderMargin),
+                    top: 50,
+                    bottom: 50,
+                  ),
                   child: Row(
-                    children: [],
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Center(
+                        child: Text(
+                          "Description",
+                          style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 28,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -599,19 +633,28 @@ class _ProductPanalState extends State<ProductPanal> {
               //Description And Reviews panels
               SliverToBoxAdapter(
                 child: Container(
-                  height: 500,
                   margin:
                       EdgeInsets.only(left: borderMargin, right: borderMargin),
                   child: Row(
                     children: [
                       Expanded(
-                          child: Container(
-                        color: Colors.red,
-                      )),
-                      Expanded(
-                          child: Container(
-                        color: Colors.red,
-                      ))
+                        child: Container(
+                          //color: Colors.red,
+                          child: Text(
+                            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                            style: GoogleFonts.poppins(
+                              fontWeight: FontWeight.w500,
+                              fontStyle: FontStyle.italic,
+                              fontSize: 16,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                      // Expanded(
+                      //     child: Container(
+                      //   color: Colors.red,
+                      // ),)
                     ],
                   ),
                 ),
@@ -620,9 +663,9 @@ class _ProductPanalState extends State<ProductPanal> {
               //
               // Product View Panel
               //
-              // SliverToBoxAdapter(
-              //   child: ProductViewPanel(),
-              // ),
+              SliverToBoxAdapter(
+                child: ProductViewPanel(),
+              ),
               SliverToBoxAdapter(
                 child: SizedBox(
                   height: 100,
@@ -638,5 +681,49 @@ class _ProductPanalState extends State<ProductPanal> {
         ),
       ),
     );
+  }
+
+///
+///
+///  Increments the product quantity by 1 there is a range too
+  ///
+  void incrementProductQuantity() {
+    if (productQuantity < 99) {
+      setState(() {
+        if (int.parse(mycontroller.text) == productQuantity) {
+          productQuantity++;
+          setTextcontrollerText(productQuantity);
+        } else {
+          productQuantity = int.parse(mycontroller.text) + 1;
+          setTextcontrollerText(productQuantity);
+        }
+      });
+    }
+  }
+
+  ///
+  ///
+  /// Decrements the product quantity by 1 there is a range too
+  ///
+  void decrementProductQuantity() {
+    if (productQuantity > 1) {
+      setState(() {
+        if (int.parse(mycontroller.text) == productQuantity) {
+          productQuantity--;
+          setTextcontrollerText(productQuantity);
+        } else {
+          productQuantity = int.parse(mycontroller.text) - 1;
+          setTextcontrollerText(productQuantity);
+        }
+      });
+    }
+  }
+
+  ///
+  ///
+  /// Sets Product Quanity To the text quantity field
+  ///
+  void setTextcontrollerText(int productQuantity) {
+    mycontroller.text = productQuantity.toString();
   }
 }

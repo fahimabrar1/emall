@@ -21,7 +21,7 @@ class WhyChooseUsDataHolder {
 }
 
 class WhyChooseUs extends StatelessWidget {
-  WhyChooseUsDataHolder whyChooseUsDataHolder;
+  final WhyChooseUsDataHolder whyChooseUsDataHolder;
   WhyChooseUs({required this.whyChooseUsDataHolder, Key? key})
       : super(key: key);
 
@@ -154,6 +154,6 @@ class WhyChoseUsPanel extends StatelessWidget {
         ),
       ],
     );
-    ;
+
   }
 }

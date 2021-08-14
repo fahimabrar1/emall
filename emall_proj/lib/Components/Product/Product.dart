@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:emall_proj/Components/MyGlobalVariables.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +22,8 @@ class ProductDataHolder {
 }
 
 class Product extends StatefulWidget {
-  ProductDataHolder product;
+  final ProductDataHolder product;
   Product({required this.product, Key? key}) : super(key: key);
-
   @override
   _ProductState createState() => _ProductState();
 }
@@ -31,6 +32,8 @@ class _ProductState extends State<Product> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 250,
+      height: 400,
       //color: Colors.yellow.withOpacity(0.4),
       child: Column(
         children: [
@@ -39,6 +42,25 @@ class _ProductState extends State<Product> {
             child: Stack(
               children: [
                 Container(
+                  // child: Image(
+                  //   image: AssetImage(widget.product.imagePath),
+                  //   fit: widget.product.boxfit,
+                  //   alignment: Alignment.center,
+                  //   frameBuilder:
+                  //       (context, child, frame, wasSynchronouslyLoaded) {
+                  //     if (wasSynchronouslyLoaded) {
+                  //       return child;
+                  //     } else {
+                  //       return AnimatedSwitcher(
+                  //         duration: const Duration(milliseconds: 500),
+                  //         child: frame != null
+                  //             ? child
+                  //             : CircularProgressIndicator(),
+                  //       );
+                  //     }
+                  //   },
+                  // ),
+
                   foregroundDecoration: BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage(widget.product.imagePath),

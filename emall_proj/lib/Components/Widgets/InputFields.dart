@@ -1,14 +1,13 @@
 import 'package:emall_proj/Components/CallBacks/Callbacks.dart';
-import 'package:emall_proj/Screens/LoginScreen.dart';
 import 'package:flutter/material.dart';
 
 class InputField extends StatefulWidget {
   final String label;
   final String? hint;
-  bool? obsecure;
-  TextInputType? textInputType;
-  bool _validate = true;
-  BoolCallback? boolCallback;
+  final bool? obsecure ;
+  final TextInputType? textInputType;
+  final bool _validate = true;
+  final BoolCallback? boolCallback;
 
   InputField(
       {required this.label,

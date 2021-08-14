@@ -1,13 +1,33 @@
-import 'package:emall_proj/Components/Login/Login.dart';
-import 'package:emall_proj/Components/Product/ProductPanal.dart';
-import 'package:emall_proj/Screens/HomeScreen.dart';
-import 'package:emall_proj/Screens/LoginScreen.dart';
+import 'package:emall_proj/Components/Product/ProductSearchPanel.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'Screens/ShopScreen.dart';
+import 'Components/Product/Product.dart';
 
 void main() {
   runApp(MyApp());
+}
+
+class NoTransitionsOnWeb extends PageTransitionsTheme {
+  @override
+  Widget buildTransitions<T>(
+    route,
+    context,
+    animation,
+    secondaryAnimation,
+    child,
+  ) {
+    if (kIsWeb) {
+      return child;
+    }
+    return super.buildTransitions(
+      route,
+      context,
+      animation,
+      secondaryAnimation,
+      child,
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -28,6 +48,7 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         primarySwatch: Colors.blue,
+        pageTransitionsTheme: NoTransitionsOnWeb(),
       ),
       home: MyeMall(title: 'Flutter Demo Home Page'),
     );
@@ -35,7 +56,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyeMall extends StatefulWidget {
-  String title;
+  final String title;
 
   MyeMall({Key? key, required this.title}) : super(key: key);
 
@@ -46,7 +67,16 @@ class MyeMall extends StatefulWidget {
 class _MyeMallState extends State<MyeMall> {
   @override
   Widget build(BuildContext context) {
+    //return HomeScreen();
+    return ProductSearchPanel();
+    // return Scaffold(
+    //   body: Product(product: ProductDataHolder(
+    //       title: 'T-Shirt Summer Vibes',
+    //       price: 120,
+    //       imagePath: 'assets/images/products/product_1.jpg',
+    //       boxfit: BoxFit.fitWidth),),
+    // );
     //return ShopScreen();
-    return ProductPanal();
+    //return ProductPanal();
   }
 }

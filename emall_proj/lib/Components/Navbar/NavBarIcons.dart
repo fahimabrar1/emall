@@ -1,14 +1,11 @@
-import 'dart:developer';
-
-import 'package:emall_proj/Components/EnumHolders.dart';
-import 'package:emall_proj/Components/MyColors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class NavBarIcon extends StatefulWidget {
-  IconData icon;
-  NavBarIcon(IconData this.icon, {Key? key}) : super(key: key);
+  final IconData icon;
+  final Color color;
+  NavBarIcon(this.icon, this.color, {Key? key}) : super(key: key);
 
   @override
   _NavBarIconState createState() => _NavBarIconState();
@@ -20,10 +17,21 @@ class _NavBarIconState extends State<NavBarIcon> {
     return IconButton(
         hoverColor: Colors.transparent,
         splashColor: Colors.transparent,
-        onPressed: () => log("Pressed Icon"),
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                // Retrieve the text the that user has entered by using the
+                // TextEditingController.
+                content: Text("Contend"),
+              );
+            },
+          );
+        },
         icon: Icon(
           widget.icon,
-          color: MyColor.White,
+          color: widget.color,
         ));
   }
 }

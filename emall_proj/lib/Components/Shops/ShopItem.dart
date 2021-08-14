@@ -12,7 +12,7 @@ class ShopItemDataHolder {
 }
 
 class ShopItem extends StatefulWidget {
-  ShopItemDataHolder shopItemDataHolder;
+  final ShopItemDataHolder shopItemDataHolder;
   ShopItem({Key? key, required this.shopItemDataHolder}) : super(key: key);
 
   @override

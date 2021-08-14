@@ -1,18 +1,13 @@
-import 'dart:developer';
-
-import 'package:emall_proj/Components/CallBacks/Callbacks.dart';
 import 'package:emall_proj/Components/CollectionBanners/CollectionBanner.dart';
 import 'package:emall_proj/Components/Drawer/Drawer.dart';
 import 'package:emall_proj/Components/Footer/Footer.dart';
 import 'package:emall_proj/Components/MyColors.dart';
-import 'package:emall_proj/Components/MyGlobalVariables.dart';
 import 'package:emall_proj/Components/Navbar/Navbars.dart';
 import 'package:emall_proj/Components/Product/ProductInToday.dart';
 import 'package:emall_proj/Components/Product/ProductViewPanel.dart';
 import 'package:emall_proj/Components/WhyChooseUs/WhyChoseUs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:shimmer/shimmer.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -23,6 +18,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final theImage = AssetImage('assets/images/home_background.jpg');
+
+  /// Did Change Dependencies
+  @override
+  void didChangeDependencies() {
+    precacheImage(theImage, context);
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Image(
                             fit: BoxFit.fitWidth,
                             alignment: Alignment.topCenter,
-                            image: AssetImage('images/home_background.jpg'),
+                            image: theImage,
                             loadingBuilder: (context, child, loadingProgress) {
                               if (loadingProgress == null) return child;
 
