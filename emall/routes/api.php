@@ -567,4 +567,33 @@ Route::get('/shops/select/{start}/{end}', function($start, $end){
 });
 
 
+Route::get('/products/select/{start}/{end}', function($start, $end){
+
+   
+        
+    $prods = Product::all();
+    $prods_all = [];
+    $index = 0;
+    foreach($prods as $x){
+        $strs = $x->product_id;
+        $ID = (int)str_replace('prod', '', $strs);
+        if($ID >= $start and $ID <= $end){
+            array_push($prods_all, $x);
+        }
+        $index += 1;
+    }
+
+    return $prods_all;
+
+
+    //return str_replace('\\', '/', public_path());
+    //return $shops;
+
+
+
+
+
+});
+
+
 
