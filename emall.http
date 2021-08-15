@@ -12,6 +12,11 @@ GET http://127.0.0.1:8000/api/childcategories HTTP/1.1
 GET http://127.0.0.1:8000/api/shops HTTP/1.1 
 ###
 
+GET http://127.0.0.1:8000/api/shopparents HTTP/1.1 
+###
+
+GET http://127.0.0.1:8000/api/products HTTP/1.1 
+###
 POST http://127.0.0.1:8000/api/categories HTTP/1.1
 Content-Type: application/json
 
@@ -45,8 +50,57 @@ POST http://127.0.0.1:8000/api/shops HTTP/1.1
 Content-Type: application/json
 
 {
-    "category_id_fk" : "cat1",
-    "shop_name" : "GoodiesShop",
+    "category_id_fk" : "cat2",
+    "shop_name" : "GoodiesShop3",
     "logo" : "https://image.shutterstock.com/image-photo/surreal-image-african-elephant-wearing-260nw-1365289022.jpg"
 
 }
+
+###
+
+POST http://127.0.0.1:8000/api/shopparents HTTP/1.1
+Content-Type: application/json
+
+{
+        "shop_id_fk" : "shop1",
+        "email" : "iftekhar2@gmail.com",
+        "NID" : "2131233",
+        "dob" : "2/3/1997",
+        "address" : "dhaka",
+        "first_name" : "Iftekhar",
+        "last_name" : "Hyder",
+		"number" : "01213123",
+		"password" : "code",
+		"type" : "staff"
+}
+
+###
+POST http://127.0.0.1:8000/api/products HTTP/1.1
+Content-Type: application/json
+
+{
+
+            "shop_id_fk" : "shop1",
+            "name" : "Silk Sari 2",
+            "description" : "good sari",
+            "price" : 20,
+            "product_category" : "Womens Clothes",
+            "image1" : "https://4.imimg.com/data4/PV/TT/MY-4818930/indian-sari-500x500.jpg",
+            "image2" : "https://assets.vogue.in/photos/5dc3fda6ecd1c50008fe47d9/3:4/w_822,h_1096,c_limit/Sonam%20Kapoor%20in%20Sabyasachi%20sari.jpg",
+            "image3" : "https://static.toiimg.com/photo/79679871/79679871.jpg?v=3",
+            "discount" : 0
+}
+
+###
+
+GET http://127.0.0.1:8000/api/images/prod1/3 HTTP/1.1 
+###
+
+GET http://127.0.0.1:8000/api/shops/select/9/10 HTTP/1.1 
+
+###
+
+
+GET http://127.0.0.1:8000/api/products/select/1/2 HTTP/1.1 
+
+###
