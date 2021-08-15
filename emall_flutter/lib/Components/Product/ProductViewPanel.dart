@@ -1,10 +1,14 @@
+import 'dart:convert';
+import 'dart:developer';
+
+import 'package:emall_proj/Components/Models/productModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../MyColors.dart';
 import '../MyGlobalVariables.dart';
 import 'Product.dart';
+import 'package:http/http.dart' as http;
 
 class ProductViewPanel extends StatefulWidget {
   const ProductViewPanel({Key? key}) : super(key: key);
@@ -14,6 +18,14 @@ class ProductViewPanel extends StatefulWidget {
 }
 
 class _ProductViewPanelState extends State<ProductViewPanel> {
+  late Future<ProductModel> productModel;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    productModel = fetchProduct();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -93,62 +105,146 @@ class _ProductViewPanelState extends State<ProductViewPanel> {
                               Expanded(
                                 child: Container(
                                   height: 500,
-                                  //color: Colors.red,
-                                  child: GridView.count(
-                                    scrollDirection: Axis.horizontal,
-                                    primary: false,
-                                    mainAxisSpacing: panelElementGaps,
-                                    crossAxisCount: 1,
-                                    childAspectRatio:
-                                        (productHeight / productWidth),
-                                    controller: new ScrollController(
-                                        keepScrollOffset: false),
-                                    shrinkWrap: true,
-                                    children: <Widget>[
-                                      Product(
-                                          productData: ProductDataHolder(
-                                              title: 'T-Shirt Summer Vibes',
-                                              price: 120,
-                                              imagePath:
-                                                  'assets/images/products/product_1.jpg',
-                                              boxfit: BoxFit.fitWidth)),
-                                      Product(
-                                          productData: ProductDataHolder(
-                                              title: 'Loose Knit 3/4 Sleeve',
-                                              price: 150,
-                                              imagePath:
-                                                  'assets/images/products/product_2.jpg',
-                                              boxfit: BoxFit.fitWidth)),
-                                      Product(
-                                          productData: ProductDataHolder(
-                                              title: 'Basic Slim Fit T-Shirt',
-                                              price: 799.99,
-                                              imagePath:
-                                                  'assets/images/products/product_3.jpg',
-                                              boxfit: BoxFit.fitWidth)),
-                                      Product(
-                                          productData: ProductDataHolder(
-                                              title: 'T-Shirt Summer Vibes',
-                                              price: 120,
-                                              imagePath:
-                                                  'assets/images/products/product_4.jpg',
-                                              boxfit: BoxFit.fitWidth)),
-                                      Product(
-                                          productData: ProductDataHolder(
-                                              title: 'Loose Textured T-Shirt',
-                                              price: 1150,
-                                              imagePath:
-                                                  'assets/images/products/product_5.jpg',
-                                              boxfit: BoxFit.fitWidth)),
-                                      Product(
-                                          productData: ProductDataHolder(
-                                              title: 'T-Shirt Summer Vibes',
-                                              price: 120,
-                                              imagePath:
-                                                  'assets/images/products/product_1.jpg',
-                                              boxfit: BoxFit.fitWidth)),
-                                    ],
+                                  color: Colors.red,
+                                  child: FutureBuilder<ProductModel>(
+                                    builder: (context, snapshot) {
+                                      if (snapshot.connectionState ==
+                                              ConnectionState.none &&
+                                          !snapshot.hasData) {
+                                        print(
+                                            'project snapshot data is: ${snapshot.data}');
+                                        print('Containeer');
+                                        return Container(
+                                          height: 50,
+                                          width: 50,
+                                          color: Colors.yellow,
+                                        );
+                                      }
+                                      if (snapshot.hasData) {
+                                        return GridView.builder(
+                                          scrollDirection: Axis.horizontal,
+                                          primary: false,
+                                          controller: new ScrollController(
+                                              keepScrollOffset: false),
+                                          shrinkWrap: true,
+                                          itemCount: 10,
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                                  mainAxisSpacing:
+                                                      panelElementGaps,
+                                                  childAspectRatio:
+                                                      (productHeight /
+                                                          productWidth),
+                                                  crossAxisCount: 1),
+                                          itemBuilder: (context, index) {
+                                            if (snapshot.hasData) {
+                                              print("Has Data");
+                                            }
+                                            print(
+                                                'project snapshot data is: ${snapshot.data}');
+                                            print('Grid');
+                                            return Product(
+                                              productData: ProductDataHolder(
+                                                  title:
+                                                      '${snapshot.data!.name}',
+                                                  price: snapshot.data!.price
+                                                      .toDouble(),
+                                                  imagePath:
+                                                      'assets/images/products/product_1.jpg',
+                                                  boxfit: BoxFit.fitWidth),
+                                            );
+                                          },
+                                        );
+                                      } else {
+                                        return CircularProgressIndicator();
+                                      }
+                                    },
+                                    future: fetchProduct(),
                                   ),
+
+                                  //Working Grid.Builder
+
+                                  // child: GridView.builder(
+                                  //     scrollDirection: Axis.horizontal,
+                                  //     primary: false,
+                                  //     controller: new ScrollController(
+                                  //         keepScrollOffset: false),
+                                  //     shrinkWrap: true,
+                                  //     itemCount: 5,
+                                  //     gridDelegate:
+                                  //         SliverGridDelegateWithFixedCrossAxisCount(
+                                  //             mainAxisSpacing: panelElementGaps,
+                                  //             childAspectRatio: (productHeight /
+                                  //                 productWidth),
+                                  //             crossAxisCount: 1),
+                                  //     itemBuilder: (context, index) {
+                                  //       return Product(
+                                  //         productData: ProductDataHolder(
+                                  //             title: 'T-Shirt Summer Vibes',
+                                  //             price: 120,
+                                  //             imagePath:
+                                  //                 'assets/images/products/product_1.jpg',
+                                  //             boxfit: BoxFit.fitWidth),
+                                  //       );
+                                  //     }),
+
+                                  //Working Grid.Count
+
+                                  // child: GridView.count(
+                                  //   scrollDirection: Axis.horizontal,
+                                  //   primary: false,
+                                  //   mainAxisSpacing: panelElementGaps,
+                                  //   crossAxisCount: 1,
+                                  //   childAspectRatio:
+                                  //       (productHeight / productWidth),
+                                  //   controller: new ScrollController(
+                                  //       keepScrollOffset: false),
+                                  //   shrinkWrap: true,
+                                  //   children: <Widget>[
+                                  //     Product(
+                                  //         productData: ProductDataHolder(
+                                  //             title: 'T-Shirt Summer Vibes',
+                                  //             price: 120,
+                                  //             imagePath:
+                                  //                 'assets/images/products/product_1.jpg',
+                                  //             boxfit: BoxFit.fitWidth)),
+                                  //     Product(
+                                  //         productData: ProductDataHolder(
+                                  //             title: 'Loose Knit 3/4 Sleeve',
+                                  //             price: 150,
+                                  //             imagePath:
+                                  //                 'assets/images/products/product_2.jpg',
+                                  //             boxfit: BoxFit.fitWidth)),
+                                  //     Product(
+                                  //         productData: ProductDataHolder(
+                                  //             title: 'Basic Slim Fit T-Shirt',
+                                  //             price: 799.99,
+                                  //             imagePath:
+                                  //                 'assets/images/products/product_3.jpg',
+                                  //             boxfit: BoxFit.fitWidth)),
+                                  //     Product(
+                                  //         productData: ProductDataHolder(
+                                  //             title: 'T-Shirt Summer Vibes',
+                                  //             price: 120,
+                                  //             imagePath:
+                                  //                 'assets/images/products/product_4.jpg',
+                                  //             boxfit: BoxFit.fitWidth)),
+                                  //     Product(
+                                  //         productData: ProductDataHolder(
+                                  //             title: 'Loose Textured T-Shirt',
+                                  //             price: 1150,
+                                  //             imagePath:
+                                  //                 'assets/images/products/product_5.jpg',
+                                  //             boxfit: BoxFit.fitWidth)),
+                                  //     Product(
+                                  //         productData: ProductDataHolder(
+                                  //             title: 'T-Shirt Summer Vibes',
+                                  //             price: 120,
+                                  //             imagePath:
+                                  //                 'assets/images/products/product_1.jpg',
+                                  //             boxfit: BoxFit.fitWidth)),
+                                  //   ],
+                                  // ),
                                 ),
                               ),
                             ],
@@ -164,5 +260,37 @@ class _ProductViewPanelState extends State<ProductViewPanel> {
         ),
       ],
     );
+  }
+
+  List<ProductModel> _postList = <ProductModel>[];
+
+  Future<ProductModel> fetchProduct() async {
+    final response = await http
+        .get(Uri.parse('http://127.0.0.1:8000/api/products/select/2/2'));
+
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+
+      log(response.body);
+      // List<dynamic> values;
+      //values = jsonDecode(response.body);
+      //log(values.length.toString());
+      // if (values.length > 0) {
+      //   for (int i = 0; i < values.length; i++) {
+      //     if (values[i] != null) {
+      //       log(values[i].toString());
+      //       Map<String, dynamic> map = values[i] ;
+      //       _postList.add(ProductModel.fromJson(map));
+      //     }
+      //   }
+      // }
+      Map<String, dynamic> map = jsonDecode(response.body)[0];
+      return ProductModel.fromJson(map);
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      throw Exception('Failed to load album');
+    }
   }
 }
