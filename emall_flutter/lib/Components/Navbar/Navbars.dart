@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:emall_proj/Components/CallBacks/Callbacks.dart';
+import 'package:emall_proj/Components/EnumHolders.dart';
 import 'package:emall_proj/Components/MyColors.dart';
 import 'package:emall_proj/Components/MyGlobalVariables.dart';
 import 'package:emall_proj/Components/Navbar/NavBarButtons.dart';
@@ -11,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TransparentNavBar extends StatefulWidget {
-
   final MyDrawerCallback? drawerCallback;
   TransparentNavBar({
     Key? key,
@@ -186,7 +186,11 @@ class _TransparentNavBarState extends State<TransparentNavBar> {
                                   ),
                                 ),
                               ),
-                              NavBarIcon(Icons.search, MyColor.orange),
+                              NavBarIcon(
+                                NavbBarIconsType.search,
+                                Icons.search,
+                                MyColor.orange,
+                              ),
                             ],
                           ),
                           decoration: BoxDecoration(
@@ -200,11 +204,19 @@ class _TransparentNavBarState extends State<TransparentNavBar> {
                       SizedBox(
                         width: 20,
                       ),
-                      NavBarIcon(Icons.shopping_cart_outlined, MyColor.White),
+                      NavBarIcon(
+                        NavbBarIconsType.cart,
+                        Icons.shopping_cart_outlined,
+                        MyColor.White,
+                      ),
                       SizedBox(
                         width: 20,
                       ),
-                      NavBarIcon(Icons.account_circle_outlined, MyColor.White),
+                      NavBarIcon(
+                        NavbBarIconsType.acount,
+                        Icons.account_circle_outlined,
+                        MyColor.White,
+                      ),
                       SizedBox(
                         width: 20,
                       )
@@ -380,7 +392,11 @@ class _NavBarState extends State<NavBar> {
                                       ),
                                     ),
                                   ),
-                                  NavBarIcon(Icons.search, MyColor.orange),
+                                  NavBarIcon(
+                                    NavbBarIconsType.search,
+                                    Icons.search,
+                                    MyColor.orange,
+                                  ),
                                 ],
                               ),
                               decoration: BoxDecoration(
@@ -394,12 +410,12 @@ class _NavBarState extends State<NavBar> {
                           SizedBox(
                             width: 20,
                           ),
-                          NavBarIcon(
+                          NavBarIcon(NavbBarIconsType.cart,
                               Icons.shopping_cart_outlined, MyColor.White),
                           SizedBox(
                             width: 20,
                           ),
-                          NavBarIcon(
+                          NavBarIcon(NavbBarIconsType.acount,
                               Icons.account_circle_outlined, MyColor.White),
                           SizedBox(
                             width: 20,

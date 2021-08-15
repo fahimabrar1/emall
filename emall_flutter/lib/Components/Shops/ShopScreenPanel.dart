@@ -1,4 +1,5 @@
 import 'package:emall_proj/Components/Drawer/Drawer.dart';
+import 'package:emall_proj/Components/EnumHolders.dart';
 import 'package:emall_proj/Components/Footer/Footer.dart';
 import 'package:emall_proj/Components/Navbar/NavBarIcons.dart';
 import 'package:emall_proj/Components/Navbar/Navbars.dart';
@@ -124,7 +125,8 @@ class _ShopPanelState extends State<ShopPanel> {
                                 ),
                               ),
                             ),
-                            NavBarIcon(Icons.search, MyColor.orange),
+                            NavBarIcon(NavbBarIconsType.search, Icons.search,
+                                MyColor.orange),
                           ],
                         ),
                         decoration: BoxDecoration(

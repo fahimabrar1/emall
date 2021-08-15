@@ -1,4 +1,5 @@
 import 'package:emall_proj/Components/Drawer/Drawer.dart';
+import 'package:emall_proj/Components/EnumHolders.dart';
 import 'package:emall_proj/Components/Footer/Footer.dart';
 import 'package:emall_proj/Components/Navbar/NavBarIcons.dart';
 import 'package:emall_proj/Components/Navbar/Navbars.dart';
@@ -95,7 +96,8 @@ class _ProductSearchPanelState extends State<ProductSearchPanel> {
                                 ),
                               ),
                             ),
-                            NavBarIcon(Icons.search, MyColor.orange),
+                            NavBarIcon(NavbBarIconsType.search, Icons.search,
+                                MyColor.orange),
                           ],
                         ),
                         decoration: BoxDecoration(
@@ -214,7 +216,7 @@ class _ProductSearchPanelState extends State<ProductSearchPanel> {
                           price: productitemdataholder[index].price,
                           imagePath: productitemdataholder[index].imagePath,
                           boxfit: productitemdataholder[index].boxfit);
-                      return Product(product: pdh);
+                      return Product(productData: pdh);
                     } catch (Exception) {
                       //No More Products
                     }

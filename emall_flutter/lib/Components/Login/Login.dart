@@ -6,8 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../MyColors.dart';
 
-class Login extends StatelessWidget {
-  const Login({Key? key}) : super(key: key);
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class Login extends StatelessWidget {
                 ],
               ),
             ),
-            LoginScreen(),
+            LoginScreenPanel(),
           ],
         ),
       ),

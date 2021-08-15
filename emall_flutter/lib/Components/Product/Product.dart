@@ -22,8 +22,8 @@ class ProductDataHolder {
 }
 
 class Product extends StatefulWidget {
-  final ProductDataHolder product;
-  Product({required this.product, Key? key}) : super(key: key);
+  final ProductDataHolder productData;
+  Product({required this.productData, Key? key}) : super(key: key);
   @override
   _ProductState createState() => _ProductState();
 }
@@ -63,8 +63,8 @@ class _ProductState extends State<Product> {
 
                   foregroundDecoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage(widget.product.imagePath),
-                        fit: widget.product.boxfit,
+                        image: AssetImage(widget.productData.imagePath),
+                        fit: widget.productData.boxfit,
                         alignment: Alignment.center),
                   ),
                 ),
@@ -87,14 +87,14 @@ class _ProductState extends State<Product> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          widget.product.title,
+                          widget.productData.title,
                           style: GoogleFonts.poppins(
                               color: MyColor.Black,
                               fontWeight: FontWeight.w400,
                               fontSize: 14),
                         ),
                         Text(
-                          widget.product.price.toString() + "Tk",
+                          widget.productData.price.toString() + "Tk",
                           style: GoogleFonts.poppins(
                               color: MyColor.Black,
                               fontWeight: FontWeight.w500,

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:emall_proj/Components/MyColors.dart';
+import 'package:emall_proj/Components/MyGlobalVariables.dart';
 import 'package:emall_proj/Components/Widgets/InputFields.dart';
 import 'package:emall_proj/Screens/HomeScreen.dart';
 import 'package:emall_proj/Screens/SignupScreen.dart';
@@ -8,17 +9,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class LoginScreenPanel extends StatefulWidget {
+  const LoginScreenPanel({Key? key}) : super(key: key);
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _LoginScreenPanelState createState() => _LoginScreenPanelState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenPanelState extends State<LoginScreenPanel> {
   bool? username = false;
   bool? password = false;
-  double cardBorderRadius = 10;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -117,6 +117,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         TextButton(
                           onPressed: () {
+                            log("message");
+
+                            //Navigator.pop(context);
+                            // AlertDialog(
+                            //   content: SignUpScreenPanel(),
+                            // );
+                            // log("message");
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(

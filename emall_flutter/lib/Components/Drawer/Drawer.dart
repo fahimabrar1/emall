@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:emall_proj/Components/CallBacks/Callbacks.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,12 +21,19 @@ class Item implements ListItem {
 
   List<Widget> listmapper(List<Item> item) {
     return item
-        .map((itm) => (itm.item != null)
-            ? ExpansionTile(
-                title: Text(itm.title),
-                children: listmapper(itm.item!),
-              )
-            : ListTile(title: Text(itm.title)))
+        .map(
+          (itm) => (itm.item != null)
+              ? ExpansionTile(
+                  title: Text(itm.title),
+                  children: listmapper(itm.item!),
+                )
+              : ListTile(
+                  title: Text(itm.title),
+                  onTap: () {
+                    log(title);
+                  },
+                ),
+        )
         .toList();
   }
 
@@ -41,6 +50,9 @@ class Item implements ListItem {
   Widget buildListTile(BuildContext context) {
     return ListTile(
       title: Text(title),
+      onTap: () {
+        log(title);
+      },
     );
   }
 }

@@ -1,8 +1,10 @@
+import 'package:emall_proj/Components/Cart/Cart.dart';
 import 'package:emall_proj/Components/Product/ProductSearchPanel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'Components/Product/Product.dart';
+import 'Screens/HomeScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -65,10 +67,14 @@ class MyeMall extends StatefulWidget {
 }
 
 class _MyeMallState extends State<MyeMall> {
+  //flutter run -d Chrome --web-renderer html
   @override
   Widget build(BuildContext context) {
-    //return HomeScreen();
-    return ProductSearchPanel();
+    // return Scaffold(
+    //   body: Cart(),
+    // );
+    return HomeScreen();
+    //return ProductSearchPanel();
     // return Scaffold(
     //   body: Product(product: ProductDataHolder(
     //       title: 'T-Shirt Summer Vibes',

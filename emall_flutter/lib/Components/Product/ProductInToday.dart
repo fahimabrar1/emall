@@ -65,42 +65,42 @@ class _ProductsInTodayState extends State<ProductsInToday> {
                                     shrinkWrap: true,
                                     children: <Widget>[
                                       Product(
-                                          product: ProductDataHolder(
+                                          productData: ProductDataHolder(
                                               title: 'T-Shirt Summer Vibes',
                                               price: 120,
                                               imagePath:
                                                   'assets/images/products/product_1.jpg',
                                               boxfit: BoxFit.fitWidth)),
                                       Product(
-                                          product: ProductDataHolder(
+                                          productData: ProductDataHolder(
                                               title: 'Loose Knit 3/4 Sleeve',
                                               price: 150,
                                               imagePath:
                                                   'assets/images/products/product_2.jpg',
                                               boxfit: BoxFit.fitWidth)),
                                       Product(
-                                          product: ProductDataHolder(
+                                          productData: ProductDataHolder(
                                               title: 'Basic Slim Fit T-Shirt',
                                               price: 799.99,
                                               imagePath:
                                                   'assets/images/products/product_3.jpg',
                                               boxfit: BoxFit.fitWidth)),
                                       Product(
-                                          product: ProductDataHolder(
+                                          productData: ProductDataHolder(
                                               title: 'T-Shirt Summer Vibes',
                                               price: 120,
                                               imagePath:
                                                   'assets/images/products/product_4.jpg',
                                               boxfit: BoxFit.fitWidth)),
                                       Product(
-                                          product: ProductDataHolder(
+                                          productData: ProductDataHolder(
                                               title: 'Loose Textured T-Shirt',
                                               price: 1150,
                                               imagePath:
                                                   'assets/images/products/product_5.jpg',
                                               boxfit: BoxFit.fitWidth)),
                                       Product(
-                                          product: ProductDataHolder(
+                                          productData: ProductDataHolder(
                                               title: 'T-Shirt Summer Vibes',
                                               price: 120,
                                               imagePath:

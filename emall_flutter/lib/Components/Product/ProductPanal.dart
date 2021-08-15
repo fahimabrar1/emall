@@ -272,8 +272,8 @@ class _ProductPanalState extends State<ProductPanal> {
                               //color: Colors.yellow,
                               padding: EdgeInsets.all(10),
                               child: Image(
-                                image:
-                                    AssetImage("assets/images/products/product_1.jpg"),
+                                image: AssetImage(
+                                    "assets/images/products/product_1.jpg"),
                                 fit: BoxFit.fitWidth,
                               ),
                             ))
@@ -416,7 +416,7 @@ class _ProductPanalState extends State<ProductPanal> {
                             ElevatedButton(
                               onPressed: () {},
                               child: Text(
-                                "Chose Size",
+                                "Choose Size",
                                 style: GoogleFonts.poppins(
                                     color: MyColor.lightGreyBorder),
                               ),
@@ -683,9 +683,9 @@ class _ProductPanalState extends State<ProductPanal> {
     );
   }
 
-///
-///
-///  Increments the product quantity by 1 there is a range too
+  ///
+  ///
+  ///  Increments the product quantity by 1 there is a range too
   ///
   void incrementProductQuantity() {
     if (productQuantity < 99) {
