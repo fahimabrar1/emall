@@ -247,6 +247,7 @@ Route::post('/shops', function(){
             parse_url($file, PHP_URL_PATH), 
             PATHINFO_EXTENSION
         ); 
+        $extension = $file->getClientOriginalExtension();
         //return $extension;
         
         //return $file;
@@ -291,6 +292,7 @@ Route::post('/shops', function(){
             parse_url($file, PHP_URL_PATH), 
             PATHINFO_EXTENSION
         ); 
+        $extension = $file->getClientOriginalExtension();
         //return $extension;
         
         //return $file;
@@ -420,14 +422,20 @@ Route::post('/products', function(){
             parse_url($file, PHP_URL_PATH), 
             PATHINFO_EXTENSION
         ); 
+
+        $extension = $file->getClientOriginalExtension();
         $extension2 =  pathinfo(
             parse_url($file2, PHP_URL_PATH), 
             PATHINFO_EXTENSION
         ); 
+
+        $extension2 = $file2->getClientOriginalExtension();
         $extension3 =  pathinfo(
             parse_url($file3, PHP_URL_PATH), 
             PATHINFO_EXTENSION
         ); 
+
+        $extension3 = $file3->getClientOriginalExtension();
         //return $extension;
         
         //return $file;
@@ -477,26 +485,36 @@ Route::post('/products', function(){
         $file3 = request('image3');
         //return $file;
         $img = file_get_contents($file);
+       // echo $img;
         $img2 = file_get_contents($file2);
         $img3 = file_get_contents($file3);
+
+        //return $img;
 
         $extension =  pathinfo(
             parse_url($file, PHP_URL_PATH), 
             PATHINFO_EXTENSION
         ); 
+
+        $extension = $file->getClientOriginalExtension();
+
         $extension2 =  pathinfo(
             parse_url($file2, PHP_URL_PATH), 
             PATHINFO_EXTENSION
-        ); 
+        );
+        $extension2 = $file2->getClientOriginalExtension(); 
         $extension3 =  pathinfo(
             parse_url($file3, PHP_URL_PATH), 
             PATHINFO_EXTENSION
         ); 
+
+        $extension = $file3->getClientOriginalExtension();
         //return $extension;
         
         //return $file;
 
         file_put_contents(public_path("/images/".$id."_img.".$extension), $img);
+
         file_put_contents(public_path("/images/".$id."_img2.".$extension2), $img2);
         file_put_contents(public_path("/images/".$id."_img3.".$extension3), $img3);
 
@@ -529,6 +547,18 @@ Route::post('/products', function(){
 Route::get('/images/{product_id}/{imageno}', function($pid, $no){
 
     $url =  DB::table('product')->where('product_id', $pid)->pluck('image'.$no);
+
+    //return str_replace('\\', '/', public_path());
+    $image = file_get_contents(public_path().$url[0]);
+
+    return $image;
+
+    
+});
+
+Route::get('/logos/{shop_id}', function($shop_id){
+
+    $url =  DB::table('shop')->where('shop_id', $shop_id)->pluck('logo');
 
     //return str_replace('\\', '/', public_path());
     $image = file_get_contents(public_path().$url[0]);
@@ -594,6 +624,78 @@ Route::get('/products/select/{start}/{end}', function($start, $end){
 
 
 });
+
+
+Route::post('/users', function(){
+    request()->validate([
+        
+        'email' => 'required',
+        'name' => 'required',
+        'dob' => 'required',
+        'address' => 'required',
+        'phone' => 'required',
+        'password' => 'required',
+	
+        
+    ]);
+
+    //$count = Model::latest()->first()->;
+    //$id = "childcat".($count + 1);
+
+    if(User::count() == 0){
+        
+        
+        
+        $date = strtotime(request('dob'));
+        $date = date('d/m/Y', $date); 
+       // return $contents;
+        return User::create([
+            'email' => request('email'),
+            'name' => request('name'),
+            'dob' => $date,
+            'address' => request('address'),
+            'phone' => request('phone'),
+            'password' => Hash::make(request('password'))
+    
+        ]);
+
+    }else{
+       
+        //return $file;
+
+        $date = strtotime(request('dob'));
+        $date = date('d/m/Y', $date); 
+        return User::create([
+            'email' => request('email'),
+            'name' => request('name'),
+            'dob' => $date,
+            'address' => request('address'),
+            'phone' => request('phone'),
+            'password' => Hash::make(request('password'))
+    
+        ]);
+    }
+});
+
+
+Route::get('/users/{email}/{password}', function($email, $pass){
+
+    $users = User::all();
+
+    
+
+    foreach($users as $u){
+        //echo $u->password;
+        if($u->email == $email and Hash::check($pass, $u->password)){
+            return "Match";
+        }
+    }
+
+  return "Not Match";
+
+
+});
+
 
 
 

@@ -45,6 +45,7 @@ class User extends Model
 	];
 
 	protected $fillable = [
+		'email',
 		'name',
 		'dob',
 		'address',
