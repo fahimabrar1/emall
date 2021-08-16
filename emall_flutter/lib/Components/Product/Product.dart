@@ -59,7 +59,7 @@ class _ProductState extends State<Product> {
 
                   foregroundDecoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage(widget.productData.imagePath),
+                        image: NetworkImage(widget.productData.imagePath),
                         fit: widget.productData.boxfit,
                         alignment: Alignment.center),
                   ),

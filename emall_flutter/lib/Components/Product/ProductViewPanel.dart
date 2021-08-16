@@ -18,12 +18,12 @@ class ProductViewPanel extends StatefulWidget {
 }
 
 class _ProductViewPanelState extends State<ProductViewPanel> {
-  late Future<ProductModel> productModel;
+  late Future<List<ProductModel>> productModelList;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    productModel = fetchProduct();
+    productModelList = fetchProduct();
   }
 
   @override
@@ -105,8 +105,8 @@ class _ProductViewPanelState extends State<ProductViewPanel> {
                               Expanded(
                                 child: Container(
                                   height: 500,
-                                  color: Colors.red,
-                                  child: FutureBuilder<ProductModel>(
+                                  //color: Colors.red,
+                                  child: FutureBuilder<List<ProductModel>>(
                                     builder: (context, snapshot) {
                                       if (snapshot.connectionState ==
                                               ConnectionState.none &&
@@ -127,7 +127,7 @@ class _ProductViewPanelState extends State<ProductViewPanel> {
                                           controller: new ScrollController(
                                               keepScrollOffset: false),
                                           shrinkWrap: true,
-                                          itemCount: 10,
+                                          itemCount: snapshot.data!.length,
                                           gridDelegate:
                                               SliverGridDelegateWithFixedCrossAxisCount(
                                                   mainAxisSpacing:
@@ -146,20 +146,25 @@ class _ProductViewPanelState extends State<ProductViewPanel> {
                                             return Product(
                                               productData: ProductDataHolder(
                                                   title:
-                                                      '${snapshot.data!.name}',
-                                                  price: snapshot.data!.price
+                                                      '${snapshot.data![index].name}',
+                                                  price: snapshot
+                                                      .data![index].price
                                                       .toDouble(),
                                                   imagePath:
-                                                      'assets/images/products/product_1.jpg',
-                                                  boxfit: BoxFit.fitWidth),
+                                                      hhtpGetProductImageUrl +
+                                                          snapshot.data![index]
+                                                              .product_id +
+                                                          "/1",
+                                                  boxfit: BoxFit.fitHeight),
                                             );
+                                            return Container();
                                           },
                                         );
                                       } else {
                                         return CircularProgressIndicator();
                                       }
                                     },
-                                    future: fetchProduct(),
+                                    future: productModelList,
                                   ),
 
                                   //Working Grid.Builder
@@ -262,31 +267,34 @@ class _ProductViewPanelState extends State<ProductViewPanel> {
     );
   }
 
-  List<ProductModel> _postList = <ProductModel>[];
-
-  Future<ProductModel> fetchProduct() async {
+  Future<List<ProductModel>> fetchProduct() async {
     final response = await http
-        .get(Uri.parse('http://127.0.0.1:8000/api/products/select/2/2'));
+        .get(Uri.parse('http://127.0.0.1:8000/api/products/select/1/2'));
+
+    List<ProductModel> _postList = <ProductModel>[];
 
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
       // then parse the JSON.
 
-      log(response.body);
-      // List<dynamic> values;
-      //values = jsonDecode(response.body);
-      //log(values.length.toString());
-      // if (values.length > 0) {
-      //   for (int i = 0; i < values.length; i++) {
-      //     if (values[i] != null) {
-      //       log(values[i].toString());
-      //       Map<String, dynamic> map = values[i] ;
-      //       _postList.add(ProductModel.fromJson(map));
-      //     }
-      //   }
-      // }
-      Map<String, dynamic> map = jsonDecode(response.body)[0];
-      return ProductModel.fromJson(map);
+      //print(response.body);
+      List<dynamic> values;
+      values = jsonDecode(response.body);
+      print(values.length.toString());
+      print(values.toString());
+
+      if (values.length > 0) {
+        for (int i = 0; i < values.length; i++) {
+          if (values[i] != null) {
+            log(values[i].toString());
+            Map<String, dynamic> map = values[i];
+            _postList.add(ProductModel.fromJson(map));
+          }
+        }
+      }
+      // Map<String, dynamic> map = jsonDecode(response.body)[0];
+      // return ProductModel.fromJson(map);
+      return _postList;
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.

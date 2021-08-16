@@ -10,7 +10,8 @@ double panelElementGaps = 20;
 bool loggedIn = false;
 double cardBorderRadius = 10;
 double buttonBorderRadius = 50;
-
+String hhtpGetProductImageUrl = "http://127.0.0.1:8000/api/images/";
+String hhtpGetShopLogoUrl = "http://127.0.0.1:8000/api/logo/";
 List<Product> globalproductList = [
   Product(
       productData: ProductDataHolder(
