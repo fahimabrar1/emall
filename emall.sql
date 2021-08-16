@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 16, 2021 at 11:53 AM
+-- Generation Time: Aug 16, 2021 at 12:13 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -291,11 +291,15 @@ INSERT INTO `product` (`product_id`, `name`, `description`, `price`, `product_ca
 ('ap3', 'iPhone 12', '64GB,12MP+12MP,Front(Dual):12MPiOS 14.1, upgradable Li-Ion 2815 mAh, Non-removable', 117000, '', '/image/ap3.jpg', '', '', 0, 'shop10', NULL),
 ('ap4', 'Smart Watch', 'Apple Watch SE (MYDN2LL/A) GPS 40mm Sport Band (Gold, Aluminum, Pink Sand)', 30000, '', '/image/ap4.jpg', '', '', 0, 'shop10', NULL),
 ('ap5', 'iPhone 11', '128GB,12MP+12MP, Front(Dual): 12MPiOS 14.1, upgradable Li-Ion 2815 mAh, Non-removable', 93000, '', '/image/ap5.jpeg', '', '', 0, 'shop10', NULL),
-('b1', 'Shoe', 'durable', 900, '', '/images/b1.jpg', '', '', 0, 'shop4', NULL),
-('b2', 'Kid\'s shoe', 'picchider juta', 200, '', '/images/b2.jpg', '/images/b3.jpg', '', 0, 'shop4', NULL),
-('sa1', 'sharee', 'sadakalo sharee', 20000, '', '/images/sa1.jpg', '', '', 0, 'shop3', NULL),
+('b1', 'Shoe', 'durable unieue shoes ', 2900, '', '/images/b1.jpg', '', '', 0, 'shop4', NULL),
+('b2', 'Kid\'s shoe', 'multi colored shoes for kids', 1450, '', '/images/b2.jpg', '/images/b3.jpg', '', 0, 'shop4', NULL),
+('sa1', 'Saree', 'soft cotton black and white saree', 2000, '', '/images/sa1.jpg', '', '', 0, 'shop3', NULL),
 ('sa2', 'Men\'s Panjabi', 'Soft cotton full black Panjabi for men', 2000, '', '/image/sa2.jpg', '', '', 0, 'shop3', NULL),
 ('sa3', 'Kameez', 'Soft cotton black Kameez', 1700, '', '/image/sa3.jpg', '', '', 0, 'shop3', NULL),
+('ti1', 'Belt watch', 'Brown belted watch for men', 4000, '', '/image/ti1.jpg', '', '', 0, 'shop7', NULL),
+('ti2', 'Chain watch', 'golden chained watch', 7500, '', '', '', '', 0, 'shop7', NULL),
+('ti3', 'Women unique watch', 'Unique women hand watch', 8500, '', '/image/ti3.jpeg', '', '', 0, 'shop7', NULL),
+('ti4', 'Olive belt watch', 'Multi colored belt watch for both men and women', 5500, '', '/image/ti4.jpeg', '', '', 0, 'shop7', NULL),
 ('tim1', 'Men\'s Watch', 'Brown belt unique watch', 15000, '', '/image/tim1.jpeg', '', '', 0, 'shop6', NULL),
 ('tim2', 'Chain Watch', 'Golden chai, black center hand watch', 18000, '', '/image/tim2.jpeg', '', '', 0, 'shop6', NULL),
 ('tim3', 'Belt watch', 'multi colored belt unisex watch', 8000, '', '/image/tim3.jpeg', '', '', 0, 'shop6', NULL),
