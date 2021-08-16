@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 14, 2021 at 03:20 PM
--- Server version: 10.4.20-MariaDB
--- PHP Version: 8.0.8
+-- Generation Time: Aug 16, 2021 at 09:04 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 8.0.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -277,7 +277,7 @@ CREATE TABLE `product` (
   `image1` varchar(100) NOT NULL,
   `image2` varchar(100) NOT NULL,
   `image3` varchar(100) NOT NULL,
-  `discount` int(11) NOT NULL,
+  `discount` int(10) NOT NULL,
   `shop_id_fk` varchar(10) NOT NULL,
   `date_added` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -287,8 +287,13 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `name`, `description`, `price`, `product_category`, `image1`, `image2`, `image3`, `discount`, `shop_id_fk`, `date_added`) VALUES
-('prod1', 'Silk Sari', 'good sari', 20, 'Womens Clothes', '/images/prod1_img.jpg', '/images/prod1_img2.jpg', '/images/prod1_img3.jpg', 0, 'shop1', NULL),
-('prod2', 'Silk Sari 2', 'good sari', 20, 'Womens Clothes', '/images/prod2_img.jpg', '/images/prod2_img2.jpg', '/images/prod2_img3.jpg', 0, 'shop1', NULL);
+('a1', 'panjabi', 'onel valo panjabi', 1700, '', '/images/a1', '', '', 0, 'shop2', NULL),
+('b1', 'Shoe', 'durable', 900, '', '/images/b1.jpg', '', '', 0, 'shop4', NULL),
+('b2', 'Kid\'s shoe', 'picchider juta', 200, '', '/images/b2.jpg', '/images/b3.jpg', '', 0, 'shop4', NULL),
+('sa1', 'sharee', 'sadakalo sharee', 20000, '', '/images/sa1.jpg', '', '', 0, 'shop3', NULL),
+('w1', 'Micro Oven', 'Onek valo oven', 30000, '', '/image/w1.jpg', '', '', 5000, 'shop9', NULL),
+('Y1', 'polo T-shirt', '100% cotton. breathable meterial.', 500, 'Mens Clothes', '/images/y1.jpg', '', '', 0, 'shop1', NULL),
+('Y2', 'Yellow Sharee', 'Yellow sharee. only for rich people.', 20000, 'Womens Clothes', '/images/y2.jpg', '', '', 0, 'shop1', NULL);
 
 -- --------------------------------------------------------
 
@@ -322,17 +327,15 @@ CREATE TABLE `shop` (
 --
 
 INSERT INTO `shop` (`shop_id`, `shop_name`, `category_id_fk`, `logo`) VALUES
-('shop1', 'GoodiesShop3', 'cat2', '/logos/shop1_img.jpg'),
-('shop10', 'GoodiesShop3', 'cat2', '/logos/shop10_img.jpg'),
-('shop11', 'GoodiesShop3', 'cat2', '/logos/shop11_img.jpg'),
-('shop2', 'GoodiesShop3', 'cat2', '/logos/shop2_img.jpg'),
-('shop3', 'GoodiesShop3', 'cat2', '/logos/shop3_img.jpg'),
-('shop4', 'GoodiesShop3', 'cat2', '/logos/shop4_img.jpg'),
-('shop5', 'GoodiesShop3', 'cat2', '/logos/shop5_img.jpg'),
-('shop6', 'GoodiesShop3', 'cat2', '/logos/shop6_img.jpg'),
-('shop7', 'GoodiesShop3', 'cat2', '/logos/shop7_img.jpg'),
-('shop8', 'GoodiesShop3', 'cat2', '/logos/shop8_img.jpg'),
-('shop9', 'GoodiesShop3', 'cat2', '/logos/shop9_img.jpg');
+('shop1', 'Yellow', 'cat2', '/logos/shop1.jpg'),
+('shop2', 'Anjans', 'cat2', '/logos/shop2.jpg'),
+('shop3', 'Sadakalo', 'cat2', '/logos/shop3.jpg'),
+('shop4', 'Bata', 'cat2', '/logos/shop4.jpg'),
+('shop5', 'Apex', 'cat2', '/logos/shop5.jpg'),
+('shop6', 'Time Zone', 'cat2', '/logos/shop6.jpg'),
+('shop7', 'Titan', 'cat2', '/logos/shop7.jpg'),
+('shop8', 'Whirpool', 'cat2', '/logos/shop8.jpg'),
+('shop9', 'Walton', 'cat2', '/logos/shop9.jpg');
 
 -- --------------------------------------------------------
 
