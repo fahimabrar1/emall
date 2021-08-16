@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'package:emall_proj/Components/Drawer/Drawer.dart';
 import 'package:emall_proj/Components/Footer/Footer.dart';
+import 'package:emall_proj/Components/Models/productModel.dart';
 import 'package:emall_proj/Components/MyGlobalVariables.dart';
 import 'package:emall_proj/Components/Navbar/Navbars.dart';
 import 'package:emall_proj/Components/RadioButtons/MyRadioButton.dart';
@@ -9,7 +11,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:http/http.dart' as http;
 import '../MyColors.dart';
 import 'ProductViewPanel.dart';
 
@@ -40,11 +42,12 @@ class _ProductPanalState extends State<ProductPanal> {
   int productQuantity = 1;
   final mycontroller = TextEditingController();
 
+  late Future<ProductModel> productModel;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-
+    productModel = fetchProduct();
     mycontroller.text = productQuantity.toString();
   }
 
@@ -206,399 +209,427 @@ class _ProductPanalState extends State<ProductPanal> {
                   height: 600,
                   margin:
                       EdgeInsets.only(left: borderMargin, right: borderMargin),
-                  child: Row(
-                    children: [
-                      Expanded(
-                          child: Container(
-                        //color: Colors.red,
-                        child: Row(
+                  child: FutureBuilder<ProductModel>(
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return Row(
                           children: [
-                            //List of small images
-                            Container(
-                              //color: Colors.blue,
-                              width: 200,
-                              margin: EdgeInsets.all(10),
-                              child: ListView(
-                                children: [
-                                  Container(
-                                    width: 150,
-                                    height: 150,
-                                    margin: EdgeInsets.only(bottom: 10),
-                                    color: Colors.yellow,
-                                    child: InkWell(
-                                      child: Image(
-                                        image: AssetImage(
-                                            "assets/images/products/product_1.jpg"),
-                                        fit: BoxFit.fitWidth,
-                                      ),
-                                      onTap: () {},
-                                    ),
-                                  ),
-                                  Container(
-                                    width: 150,
-                                    height: 150,
-                                    margin: EdgeInsets.only(bottom: 10),
-                                    color: Colors.yellow,
-                                    child: InkWell(
-                                      child: Image(
-                                        image: AssetImage(
-                                            "assets/images/products/product_1.jpg"),
-                                        fit: BoxFit.fitWidth,
-                                      ),
-                                      onTap: () {},
-                                    ),
-                                  ),
-                                  Container(
-                                    width: 150,
-                                    height: 150,
-                                    margin: EdgeInsets.only(bottom: 10),
-                                    color: Colors.yellow,
-                                    child: InkWell(
-                                      child: Image(
-                                        image: AssetImage(
-                                            "assets/images/products/product_1.jpg"),
-                                        fit: BoxFit.fitWidth,
-                                      ),
-                                      onTap: () {},
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-
-                            //Main Image
                             Expanded(
                                 child: Container(
-                              //color: Colors.yellow,
-                              padding: EdgeInsets.all(10),
-                              child: Image(
-                                image: AssetImage(
-                                    "assets/images/products/product_1.jpg"),
-                                fit: BoxFit.fitWidth,
-                              ),
-                            ))
-                          ],
-                        ),
-                      )),
-
-                      //Product Details Panel
-
-                      Expanded(
-                          child: Container(
-                        padding: EdgeInsets.all(10),
-                        //color: Colors.blue,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            //Product Title
-
-                            Text(
-                              "T-Shirt Summer Vibes",
-                              style: GoogleFonts.poppins(
-                                  fontSize: 24, fontWeight: FontWeight.bold),
-                            ),
-
-                            //Product price Tag
-
-                            Row(
-                              children: [
-                                //On Sale
-
-                                Text(
-                                  "\$149.99",
-                                  style: GoogleFonts.poppins(
-                                      color: MyColor.red,
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w400),
-                                ),
-
-                                //Gap of 20
-
-                                SizedBox(width: 20),
-
-                                //Main Price
-
-                                Text(
-                                  "\$200",
-                                  style: GoogleFonts.poppins(
-                                    color: MyColor.lightGreyBorder,
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.w400,
-                                    decoration: TextDecoration.lineThrough,
-                                  ),
-                                ),
-                              ],
-                            ),
-
-                            //Gap of 50
-
-                            SizedBox(
-                              height: 50,
-                            ),
-
-                            //Text Color
-
-                            Text(
-                              "Colors :",
-                              style: GoogleFonts.poppins(
-                                  fontSize: 16, fontWeight: FontWeight.w500),
-                            ),
-
-                            //Color Radio Button Container
-
-                            Container(
-                              height: 60,
                               //color: Colors.red,
-                              child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: sampleData.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return new InkWell(
-                                    //highlightColor: Colors.red,
-                                    splashColor: sampleData[index]
-                                        .color
-                                        .withOpacity(0.2),
-                                    onTap: () {
-                                      setState(() {
-                                        sampleData.forEach((element) =>
-                                            element.isSelected = false);
-                                        sampleData[index].isSelected = true;
-                                      });
-                                    },
-                                    child: new RadioItem(sampleData[index]),
-                                  );
-                                },
-                              ),
-                            ),
-
-                            //Gap of 50
-
-                            SizedBox(
-                              height: 50,
-                            ),
-
-                            //Quantity Text And Selct size Text
-                            Row(
-                              children: [
-                                //Text Size
-                                Text(
-                                  "Size :",
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500),
-                                ),
-
-                                //Gap of 50
-                                SizedBox(
-                                  width: 50,
-                                ),
-
-                                //Text Select Sizes
-                                Text(
-                                  "Select the sizes",
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                              ],
-                            ),
-
-                            //Gap of 10
-
-                            SizedBox(
-                              height: 10,
-                            ),
-
-                            //Size button
-                            // TODO: Have to implement AlertDialogue
-
-                            ElevatedButton(
-                              onPressed: () {},
-                              child: Text(
-                                "Choose Size",
-                                style: GoogleFonts.poppins(
-                                    color: MyColor.lightGreyBorder),
-                              ),
-                              style: ButtonStyle(
-                                shadowColor: MaterialStateProperty.all<Color>(
-                                    MyColor.White.withOpacity(0)),
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Colors.white),
-                                padding: MaterialStateProperty.all<EdgeInsets>(
-                                    EdgeInsets.only(
-                                        left: 25,
-                                        right: 25,
-                                        top: 15,
-                                        bottom: 15)),
-                                shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18.0),
-                                    side: BorderSide(
-                                        color: MyColor.lightGreyBorder,
-                                        width: 1.5),
-                                  ),
-                                ),
-                              ),
-                            ),
-
-                            SizedBox(
-                              height: 50,
-                            ),
-
-                            //Text Quantity
-                            Text(
-                              "Quantity: ",
-                              style: GoogleFonts.poppins(
-                                  fontSize: 16, fontWeight: FontWeight.w500),
-                            ),
-
-                            //Gap of 10
-
-                            SizedBox(
-                              height: 10,
-                            ),
-
-                            //Quantity Fields And Buttons
-
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                //Quantity input Field
-                                Container(
-                                  width: 100,
-                                  padding: EdgeInsets.only(
-                                    left: 5,
-                                    right: 5,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                        width: 1.5,
-                                        color: MyColor.lightGreyBorder),
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(40),
+                              child: Row(
+                                children: [
+                                  //List of small images
+                                  Container(
+                                    //color: Colors.blue,
+                                    width: 200,
+                                    margin: EdgeInsets.all(10),
+                                    child: ListView(
+                                      children: [
+                                        Container(
+                                          width: 150,
+                                          height: 150,
+                                          margin: EdgeInsets.only(bottom: 10),
+                                          color: Colors.yellow,
+                                          child: InkWell(
+                                            child: Image(
+                                              image: AssetImage(
+                                                  "assets/images/products/product_1.jpg"),
+                                              fit: BoxFit.fitWidth,
+                                            ),
+                                            onTap: () {},
+                                          ),
+                                        ),
+                                        Container(
+                                          width: 150,
+                                          height: 150,
+                                          margin: EdgeInsets.only(bottom: 10),
+                                          color: Colors.yellow,
+                                          child: InkWell(
+                                            child: Image(
+                                              image: AssetImage(
+                                                  "assets/images/products/product_1.jpg"),
+                                              fit: BoxFit.fitWidth,
+                                            ),
+                                            onTap: () {},
+                                          ),
+                                        ),
+                                        Container(
+                                          width: 150,
+                                          height: 150,
+                                          margin: EdgeInsets.only(bottom: 10),
+                                          color: Colors.yellow,
+                                          child: InkWell(
+                                            child: Image(
+                                              image: AssetImage(
+                                                  "assets/images/products/product_1.jpg"),
+                                              fit: BoxFit.fitWidth,
+                                            ),
+                                            onTap: () {},
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      //Subtract button
 
-                                      Flexible(
-                                        child: Container(
-                                          //color: Colors.red,
-                                          child: IconButton(
-                                            splashRadius: 15,
-                                            hoverColor: Colors.transparent,
-                                            splashColor: Colors.transparent,
-                                            icon: Icon(
-                                              Icons.add,
-                                              color: MyColor.Black,
-                                            ),
-                                            iconSize: 16,
-                                            onPressed: () {
-                                              log("Minus");
-                                              decrementProductQuantity();
+                                  //Main Image
+                                  Expanded(
+                                      child: Container(
+                                    //color: Colors.yellow,
+                                    padding: EdgeInsets.all(10),
+                                    child: Image(
+                                      image: AssetImage(
+                                          "assets/images/products/product_1.jpg"),
+                                      fit: BoxFit.fitWidth,
+                                    ),
+                                  ))
+                                ],
+                              ),
+                            )),
+
+                            //Product Details Panel
+
+                            Expanded(
+                              child: Container(
+                                padding: EdgeInsets.all(10),
+                                //color: Colors.blue,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    //Product Title
+
+                                    Text(
+                                      "T-Shirt Summer Vibes",
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+
+                                    //Product price Tag
+
+                                    Row(
+                                      children: [
+                                        //On Sale
+
+                                        Text(
+                                          "\$149.99",
+                                          style: GoogleFonts.poppins(
+                                              color: MyColor.red,
+                                              fontSize: 24,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+
+                                        //Gap of 20
+
+                                        SizedBox(width: 20),
+
+                                        //Main Price
+
+                                        Text(
+                                          "\$200",
+                                          style: GoogleFonts.poppins(
+                                            color: MyColor.lightGreyBorder,
+                                            fontSize: 24,
+                                            fontWeight: FontWeight.w400,
+                                            decoration:
+                                                TextDecoration.lineThrough,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+
+                                    //Gap of 50
+
+                                    SizedBox(
+                                      height: 50,
+                                    ),
+
+                                    //Text Color
+
+                                    Text(
+                                      "Colors :",
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+
+                                    //Color Radio Button Container
+
+                                    Container(
+                                      height: 60,
+                                      //color: Colors.red,
+                                      child: ListView.builder(
+                                        scrollDirection: Axis.horizontal,
+                                        itemCount: sampleData.length,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          return new InkWell(
+                                            //highlightColor: Colors.red,
+                                            splashColor: sampleData[index]
+                                                .color
+                                                .withOpacity(0.2),
+                                            onTap: () {
+                                              setState(() {
+                                                sampleData.forEach((element) =>
+                                                    element.isSelected = false);
+                                                sampleData[index].isSelected =
+                                                    true;
+                                              });
                                             },
+                                            child: new RadioItem(
+                                                sampleData[index]),
+                                          );
+                                        },
+                                      ),
+                                    ),
+
+                                    //Gap of 50
+
+                                    SizedBox(
+                                      height: 50,
+                                    ),
+
+                                    //Quantity Text And Selct size Text
+                                    Row(
+                                      children: [
+                                        //Text Size
+                                        Text(
+                                          "Size :",
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+
+                                        //Gap of 50
+                                        SizedBox(
+                                          width: 50,
+                                        ),
+
+                                        //Text Select Sizes
+                                        Text(
+                                          "Select the sizes",
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                      ],
+                                    ),
+
+                                    //Gap of 10
+
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+
+                                    //Size button
+                                    // TODO: Have to implement AlertDialogue
+
+                                    ElevatedButton(
+                                      onPressed: () {},
+                                      child: Text(
+                                        "Choose Size",
+                                        style: GoogleFonts.poppins(
+                                            color: MyColor.lightGreyBorder),
+                                      ),
+                                      style: ButtonStyle(
+                                        shadowColor:
+                                            MaterialStateProperty.all<Color>(
+                                                MyColor.White.withOpacity(0)),
+                                        backgroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                                Colors.white),
+                                        padding: MaterialStateProperty
+                                            .all<EdgeInsets>(EdgeInsets.only(
+                                                left: 25,
+                                                right: 25,
+                                                top: 15,
+                                                bottom: 15)),
+                                        shape: MaterialStateProperty.all<
+                                            RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(18.0),
+                                            side: BorderSide(
+                                                color: MyColor.lightGreyBorder,
+                                                width: 1.5),
                                           ),
                                         ),
                                       ),
+                                    ),
 
-                                      //Input Field
+                                    SizedBox(
+                                      height: 50,
+                                    ),
 
-                                      Expanded(
-                                        child: Container(
-                                          //color: Colors.yellow,
-                                          child: Center(
-                                            child: TextField(
-                                              controller: mycontroller,
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                fontSize: 15.0,
-                                              ),
-                                              keyboardType:
-                                                  TextInputType.number,
-                                              decoration: InputDecoration(
-                                                border: InputBorder.none,
-                                              ),
+                                    //Text Quantity
+                                    Text(
+                                      "Quantity: ",
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+
+                                    //Gap of 10
+
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+
+                                    //Quantity Fields And Buttons
+
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        //Quantity input Field
+                                        Container(
+                                          width: 100,
+                                          padding: EdgeInsets.only(
+                                            left: 5,
+                                            right: 5,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            border: Border.all(
+                                                width: 1.5,
+                                                color: MyColor.lightGreyBorder),
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(40),
                                             ),
                                           ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              //Subtract button
+
+                                              Flexible(
+                                                child: Container(
+                                                  //color: Colors.red,
+                                                  child: IconButton(
+                                                    splashRadius: 15,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    icon: Icon(
+                                                      Icons.add,
+                                                      color: MyColor.Black,
+                                                    ),
+                                                    iconSize: 16,
+                                                    onPressed: () {
+                                                      log("Minus");
+                                                      decrementProductQuantity();
+                                                    },
+                                                  ),
+                                                ),
+                                              ),
+
+                                              //Input Field
+
+                                              Expanded(
+                                                child: Container(
+                                                  //color: Colors.yellow,
+                                                  child: Center(
+                                                    child: TextField(
+                                                      controller: mycontroller,
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: TextStyle(
+                                                        fontSize: 15.0,
+                                                      ),
+                                                      keyboardType:
+                                                          TextInputType.number,
+                                                      decoration:
+                                                          InputDecoration(
+                                                        border:
+                                                            InputBorder.none,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+
+                                              //Add Button
+
+                                              Flexible(
+                                                child: Container(
+                                                  //color: Colors.red,
+                                                  child: IconButton(
+                                                    splashRadius: 15,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    icon: Icon(
+                                                      Icons.add,
+                                                      color: MyColor.Black,
+                                                    ),
+                                                    iconSize: 16,
+                                                    onPressed: () {
+                                                      incrementProductQuantity();
+                                                    },
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
 
-                                      //Add Button
+                                        //Gap of 25
 
-                                      Flexible(
-                                        child: Container(
-                                          //color: Colors.red,
-                                          child: IconButton(
-                                            splashRadius: 15,
-                                            hoverColor: Colors.transparent,
-                                            splashColor: Colors.transparent,
-                                            icon: Icon(
-                                              Icons.add,
+                                        SizedBox(
+                                          width: 25,
+                                        ),
+
+                                        //Add to Cart
+                                        ElevatedButton(
+                                          onPressed: () {},
+                                          child: Text(
+                                            "Add To Cart",
+                                            style: GoogleFonts.poppins(
                                               color: MyColor.Black,
+                                              fontWeight: FontWeight.w500,
                                             ),
-                                            iconSize: 16,
-                                            onPressed: () {
-                                              incrementProductQuantity();
-                                            },
+                                          ),
+                                          style: ButtonStyle(
+                                            shadowColor: MaterialStateProperty
+                                                .all<Color>(
+                                                    MyColor.White.withOpacity(
+                                                        0)),
+                                            backgroundColor:
+                                                MaterialStateProperty.all<
+                                                    Color>(MyColor.orange),
+                                            padding: MaterialStateProperty.all<
+                                                    EdgeInsets>(
+                                                EdgeInsets.only(
+                                                    left: 35,
+                                                    right: 35,
+                                                    top: 25,
+                                                    bottom: 25)),
+                                            shape: MaterialStateProperty.all<
+                                                RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(40.0),
+                                              ),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-
-                                //Gap of 25
-
-                                SizedBox(
-                                  width: 25,
-                                ),
-
-                                //Add to Cart
-                                ElevatedButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    "Add To Cart",
-                                    style: GoogleFonts.poppins(
-                                      color: MyColor.Black,
-                                      fontWeight: FontWeight.w500,
+                                      ],
                                     ),
-                                  ),
-                                  style: ButtonStyle(
-                                    shadowColor:
-                                        MaterialStateProperty.all<Color>(
-                                            MyColor.White.withOpacity(0)),
-                                    backgroundColor:
-                                        MaterialStateProperty.all<Color>(
-                                            MyColor.orange),
-                                    padding:
-                                        MaterialStateProperty.all<EdgeInsets>(
-                                            EdgeInsets.only(
-                                                left: 35,
-                                                right: 35,
-                                                top: 25,
-                                                bottom: 25)),
-                                    shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(40.0),
-                                      ),
-                                    ),
-                                  ),
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            )
                           ],
-                        ),
-                      ))
-                    ],
+                        );
+                      } else {
+                        return Center(child: LinearProgressIndicator());
+                      }
+                    },
                   ),
                 ),
               ),
@@ -725,5 +756,21 @@ class _ProductPanalState extends State<ProductPanal> {
   ///
   void setTextcontrollerText(int productQuantity) {
     mycontroller.text = productQuantity.toString();
+  }
+
+  Future<ProductModel> fetchProduct() async {
+    final response = await http
+        .get(Uri.parse('http://127.0.0.1:8000/api/products/select/1/2'));
+
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      Map<String, dynamic> map = jsonDecode(response.body)[0];
+      return ProductModel.fromJson(map);
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      throw Exception('Failed to load album');
+    }
   }
 }

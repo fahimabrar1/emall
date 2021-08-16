@@ -1,7 +1,10 @@
 library my_prj.globals;
 
+import 'package:emall_proj/Components/Models/AllCategoriesModel.dart';
 import 'package:emall_proj/Components/Product/Product.dart';
 import 'package:flutter/cupertino.dart';
+
+import 'Drawer/Drawer.dart';
 
 double borderMargin = 200;
 double productWidth = 250;
@@ -12,6 +15,10 @@ double cardBorderRadius = 10;
 double buttonBorderRadius = 50;
 String hhtpGetProductImageUrl = "http://127.0.0.1:8000/api/images/";
 String hhtpGetShopLogoUrl = "http://127.0.0.1:8000/api/logos/";
+
+//late List<Item> item;
+late Future<List<CategoryModel>> categorymodel;
+
 List<Product> globalproductList = [
   Product(
       productData: ProductDataHolder(

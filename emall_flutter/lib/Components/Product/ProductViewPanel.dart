@@ -107,6 +107,7 @@ class _ProductViewPanelState extends State<ProductViewPanel> {
                                   height: 500,
                                   //color: Colors.red,
                                   child: FutureBuilder<List<ProductModel>>(
+                                    future: productModelList,
                                     builder: (context, snapshot) {
                                       if (snapshot.connectionState ==
                                               ConnectionState.none &&
@@ -121,13 +122,15 @@ class _ProductViewPanelState extends State<ProductViewPanel> {
                                         );
                                       }
                                       if (snapshot.hasData) {
+                                        log(snapshot.data!.length.toString());
                                         return GridView.builder(
                                           scrollDirection: Axis.horizontal,
                                           primary: false,
                                           controller: new ScrollController(
                                               keepScrollOffset: false),
                                           shrinkWrap: true,
-                                          itemCount: snapshot.data!.length,
+                                          //itemCount: snapshot.data!.length,
+                                          itemCount: 10,
                                           gridDelegate:
                                               SliverGridDelegateWithFixedCrossAxisCount(
                                                   mainAxisSpacing:
@@ -137,34 +140,56 @@ class _ProductViewPanelState extends State<ProductViewPanel> {
                                                           productWidth),
                                                   crossAxisCount: 1),
                                           itemBuilder: (context, index) {
-                                            if (snapshot.hasData) {
-                                              print("Has Data");
-                                            }
-                                            print(
-                                                'project snapshot data is: ${snapshot.data}');
-                                            print('Grid');
                                             return Product(
                                               productData: ProductDataHolder(
-                                                  title:
-                                                      '${snapshot.data![index].name}',
-                                                  price: snapshot
-                                                      .data![index].price
-                                                      .toDouble(),
+                                                  title: 'T-Shirt Summer Vibes',
+                                                  price: 120,
                                                   imagePath:
-                                                      hhtpGetProductImageUrl +
-                                                          snapshot.data![index]
-                                                              .product_id +
-                                                          "/1",
-                                                  boxfit: BoxFit.fitHeight),
+                                                      'assets/images/products/product_1.jpg',
+                                                  boxfit: BoxFit.fitWidth),
                                             );
-                                            return Container();
+
+                                            //TODO: It's Correct need to change on API
+                                            // return Product(
+                                            //   productData: ProductDataHolder(
+                                            //       title:
+                                            //           '${snapshot.data![index].name}',
+                                            //       price: snapshot
+                                            //           .data![index].price
+                                            //           .toDouble(),
+                                            //       imagePath:
+                                            //           hhtpGetProductImageUrl +
+                                            //               snapshot.data![index]
+                                            //                   .product_id +
+                                            //               "/1",
+                                            //       boxfit: BoxFit.fitHeight),
+                                            // );
                                           },
                                         );
                                       } else {
-                                        return CircularProgressIndicator();
+                                        return GridView.builder(
+                                          scrollDirection: Axis.horizontal,
+                                          primary: false,
+                                          controller: new ScrollController(
+                                              keepScrollOffset: false),
+                                          shrinkWrap: true,
+                                          itemCount: 10,
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                                  mainAxisSpacing:
+                                                      panelElementGaps,
+                                                  childAspectRatio:
+                                                      (productHeight /
+                                                          productWidth),
+                                                  crossAxisCount: 1),
+                                          itemBuilder: (context, index) {
+                                            return Center(
+                                                child:
+                                                    CircularProgressIndicator());
+                                          },
+                                        );
                                       }
                                     },
-                                    future: productModelList,
                                   ),
 
                                   //Working Grid.Builder

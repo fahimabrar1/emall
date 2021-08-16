@@ -1,61 +1,12 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:emall_proj/Components/CallBacks/Callbacks.dart';
+import 'package:emall_proj/Components/Models/AllCategoriesModel.dart';
+import 'package:emall_proj/Components/MyGlobalVariables.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-abstract class ListItem {
-  /// The title line to show in a list item.
-  Widget buildListTile(BuildContext context);
-
-  /// The subtitle line, if any, to show in a list item.
-  Widget buildExpansionTile(
-      BuildContext context, MyDrawerExpansionPanelCallback callback);
-}
-
-class Item implements ListItem {
-  Item({required this.title, this.item});
-
-  String title;
-  List<Item>? item;
-
-  List<Widget> listmapper(List<Item> item) {
-    return item
-        .map(
-          (itm) => (itm.item != null)
-              ? ExpansionTile(
-                  title: Text(itm.title),
-                  children: listmapper(itm.item!),
-                )
-              : ListTile(
-                  title: Text(itm.title),
-                  onTap: () {
-                    log(title);
-                  },
-                ),
-        )
-        .toList();
-  }
-
-  @override
-  Widget buildExpansionTile(
-      BuildContext context, MyDrawerExpansionPanelCallback callback) {
-    return ExpansionTile(
-        title: Text(this.title),
-        children: listmapper(item!),
-        onExpansionChanged: callback);
-  }
-
-  @override
-  Widget buildListTile(BuildContext context) {
-    return ListTile(
-      title: Text(title),
-      onTap: () {
-        log(title);
-      },
-    );
-  }
-}
+import 'package:http/http.dart' as http;
 
 class MyDrawer extends StatefulWidget {
   const MyDrawer({Key? key}) : super(key: key);
@@ -65,34 +16,38 @@ class MyDrawer extends StatefulWidget {
 }
 
 class _MyDrawerState extends State<MyDrawer> {
-  List<Item> item = [
-    Item(title: "Main Item"),
-    Item(
-      title: "Second Item",
-      item: [
-        Item(title: "Item 1"),
-        Item(title: "Item 1", item: [
-          Item(title: "Sub item 1"),
-          Item(title: "Sub item 1"),
-        ]),
-        Item(title: "Item 1"),
-      ],
-    ),
-    Item(title: "Third Item"),
-    Item(title: "Fourth Item"),
-  ];
+  // List<Item> item = [
+  //   Item(title: "Main Item"),
+  //   Item(
+  //     title: "Second Item",
+  //     item: [
+  //       Item(title: "Item 1"),
+  //       Item(title: "Item 1", item: [
+  //         Item(title: "Sub item 1"),
+  //         Item(title: "Sub item 1"),
+  //       ]),
+  //       Item(title: "Item 1"),
+  //     ],
+  //   ),
+  //   Item(title: "Third Item"),
+  //   Item(title: "Fourth Item"),
+  // ];
+
+  List<CategoryItem> item = <CategoryItem>[];
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView.builder(
-          itemCount: item.length,
-          itemBuilder: (context, index) {
-            return (item[index].item != null)
-                ? item[index]
-                    .buildExpansionTile(context, (val) => {setState(() {})})
-                : item[index].buildListTile(context);
-          }),
+        itemCount: globalAllCategory.category.length,
+        itemBuilder: (context, index) {
+          return (globalAllCategory.category[index].item != null)
+              ? globalAllCategory.category[index]
+                  .buildExpansionTile(context, (val) => {setState(() {})})
+              : globalAllCategory.category[index].buildListTile(context);
+        },
+      ),
+
       //,child: ListView(
       //   children: [
       //     ExpansionTile(
