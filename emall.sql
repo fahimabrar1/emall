@@ -293,7 +293,7 @@ INSERT INTO `product` (`product_id`, `name`, `description`, `price`, `product_ca
 ('ap5', 'iPhone 11', '128GB,12MP+12MP, Front(Dual): 12MPiOS 14.1, upgradable Li-Ion 2815 mAh, Non-removable', 93000, 'Electronics', '/images/ap5.jpeg', '', '', 0, 'shop10', '2021-07-25'),
 ('apx1', 'Air Boost Sneakers', 'Olive color, air boost durable unisex sneakers  ', 2400, 'Footwear', '/images/apx1.jpeg', '', '', 0, 'shop5', '2021-07-30'),
 ('apx2', 'Hills', 'Pink color 3-inch hills for women', 2800, 'Footwear', '/images/apx2.jpeg', '', '', 0, 'shop5', '2021-07-30'),
-('apx3', 'Shoes', 'Original black leather shoes foe men', 3500, 'Footwear', '/images/apx3.jpeg', '/image/apx4.jpg', '', 100, 'shop5', '2021-07-30'),
+('apx3', 'Shoes', 'Original black leather shoes foe men', 3500, 'Footwear', '/images/apx3.jpeg', '/images/apx4.jpg', '', 100, 'shop5', '2021-07-30'),
 ('b1', 'Shoe', 'durable unique shoes ', 2900, 'Footwear', '/images/b1.jpg', '', '', 0, 'shop4', '2021-08-04'),
 ('b2', 'Kid\'s shoe', 'multi colored shoes for kids', 1450, 'Footwear', '/images/b2.jpg', '/images/b3.jpg', '', 0, 'shop4', '2021-08-04'),
 ('sa1', 'Saree', 'soft cotton black and white saree', 2000, 'Clothing', '/images/sa1.jpg', '', '', 0, 'shop3', '2021-08-04'),
