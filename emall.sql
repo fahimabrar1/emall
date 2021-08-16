@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 16, 2021 at 12:15 AM
+-- Generation Time: Aug 16, 2021 at 09:04 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -157,6 +157,7 @@ INSERT INTO `product` (`product_id`, `name`, `description`, `price`, `product_ca
 ('b1', 'Shoe', 'durable', 900, '', '/images/b1.jpg', '', '', 0, 'shop4', NULL),
 ('b2', 'Kid\'s shoe', 'picchider juta', 200, '', '/images/b2.jpg', '/images/b3.jpg', '', 0, 'shop4', NULL),
 ('sa1', 'sharee', 'sadakalo sharee', 20000, '', '/images/sa1.jpg', '', '', 0, 'shop3', NULL),
+('w1', 'Micro Oven', 'Onek valo oven', 30000, '', '/image/w1.jpg', '', '', 5000, 'shop9', NULL),
 ('Y1', 'polo T-shirt', '100% cotton. breathable meterial.', 500, 'Mens Clothes', '/images/y1.jpg', '', '', 0, 'shop1', NULL),
 ('Y2', 'Yellow Sharee', 'Yellow sharee. only for rich people.', 20000, 'Womens Clothes', '/images/y2.jpg', '', '', 0, 'shop1', NULL);
 
