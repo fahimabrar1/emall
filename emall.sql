@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 16, 2021 at 11:05 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.6
+-- Generation Time: Aug 16, 2021 at 11:53 AM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -296,10 +296,16 @@ INSERT INTO `product` (`product_id`, `name`, `description`, `price`, `product_ca
 ('sa1', 'sharee', 'sadakalo sharee', 20000, '', '/images/sa1.jpg', '', '', 0, 'shop3', NULL),
 ('sa2', 'Men\'s Panjabi', 'Soft cotton full black Panjabi for men', 2000, '', '/image/sa2.jpg', '', '', 0, 'shop3', NULL),
 ('sa3', 'Kameez', 'Soft cotton black Kameez', 1700, '', '/image/sa3.jpg', '', '', 0, 'shop3', NULL),
+('tim1', 'Men\'s Watch', 'Brown belt unique watch', 15000, '', '/image/tim1.jpeg', '', '', 0, 'shop6', NULL),
+('tim2', 'Chain Watch', 'Golden chai, black center hand watch', 18000, '', '/image/tim2.jpeg', '', '', 0, 'shop6', NULL),
+('tim3', 'Belt watch', 'multi colored belt unisex watch', 8000, '', '/image/tim3.jpeg', '', '', 0, 'shop6', NULL),
 ('w1', 'Micro Oven', 'Microwave, grill & combination, 3 combination cooking options, 1200 Watts, 20 L', 30000, '', '/image/w1.jpg', '', '', 5000, 'shop9', NULL),
 ('w2', 'Refrigerator', '50ltr bottom freezer. ', 50000, '', '/image/w2.jpg', '', '', 5000, 'shop9', NULL),
 ('w3', 'Air Conditioner', '5275 Watts,(1.5 ton) AC', 45000, '', '/image/w3.jpg', '', '', 3000, 'shop9', NULL),
 ('w5', 'Motorbike', '125cc, Walton runner', 150000, '', '/image/w5.jpg', '', '', 0, 'shop9', NULL),
+('whi1', 'Refrigerator', '80ltr Wide french door refrigerator', 100000, '', '/image/whi1.jpeg', '', '', 2000, 'shop8', NULL),
+('whi2', 'Microwave Oven', 'Whirlpool Magic cook 30 BC 30 L Convection Microwave Oven, multifunction, stainless steel cavity', 25000, '', '/image/whi2.jpeg', '', '', 0, 'shop8', NULL),
+('whi3', 'Air conditioner', '5300 WATTS(1800BTU/hr), 2ton AC', 85000, '', '/image/whi3.jpeg', '', '', 2000, 'shop8', NULL),
 ('Y1', 'polo T-shirt', '100% cotton. breathable meterial.', 500, 'Mens Clothes', '/images/y1.jpg', '', '', 0, 'shop1', NULL),
 ('Y2', 'Yellow Sharee', 'Yellow sharee. only for rich people.', 20000, 'Womens Clothes', '/images/y2.jpg', '', '', 0, 'shop1', NULL);
 
