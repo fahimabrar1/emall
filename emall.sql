@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 16, 2021 at 09:04 AM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.0
+-- Generation Time: Aug 16, 2021 at 11:05 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -64,7 +64,6 @@ CREATE TABLE `category` (
 --
 -- Dumping data for table `category`
 --
-
 
 INSERT INTO `category` (`category_id`, `name`) VALUES
 ('bags090', 'Bags'),
@@ -222,9 +221,6 @@ INSERT INTO `child_category` (`child_cat_id`, `name`, `sub_cat_id_fk`) VALUES
 
 -- --------------------------------------------------------
 
-
--- --------------------------------------------------------
-
 --
 -- Table structure for table `color`
 --
@@ -287,11 +283,23 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `name`, `description`, `price`, `product_category`, `image1`, `image2`, `image3`, `discount`, `shop_id_fk`, `date_added`) VALUES
-('a1', 'panjabi', 'onel valo panjabi', 1700, '', '/images/a1', '', '', 0, 'shop2', NULL),
+('a1', 'panjabi', 'Soft cotton panjabi', 1700, '', '/images/a1', '', '', 0, 'shop2', NULL),
+('a2', 'Salwar Kameez', 'white and orange shaded cotton Salwar Kameez', 2300, '', '/image/a2.jpg', '', '', 300, 'shop2', NULL),
+('a3', 'Panjani kameez set', 'White colored cotton cloths ', 6000, '', '/image/a3.jpg', '', '', 500, 'shop2', NULL),
+('ap1', 'Macbook pro', 'MacBook Pro 13″· 13.3-inch Retina display· Apple M1 chip. Also available with. Intel Core i5 or i7 processor', 109000, '', '/image/ap1.jpeg', '', '', 0, 'shop10', NULL),
+('ap2', 'Macbook Air', 'Macbook Air 13 M1 2021- 8GB|256GB|7-Core GPU', 105900, '', '/image/ap2.jpeg', '', '', 0, 'shop10', NULL),
+('ap3', 'iPhone 12', '64GB,12MP+12MP,Front(Dual):12MPiOS 14.1, upgradable Li-Ion 2815 mAh, Non-removable', 117000, '', '/image/ap3.jpg', '', '', 0, 'shop10', NULL),
+('ap4', 'Smart Watch', 'Apple Watch SE (MYDN2LL/A) GPS 40mm Sport Band (Gold, Aluminum, Pink Sand)', 30000, '', '/image/ap4.jpg', '', '', 0, 'shop10', NULL),
+('ap5', 'iPhone 11', '128GB,12MP+12MP, Front(Dual): 12MPiOS 14.1, upgradable Li-Ion 2815 mAh, Non-removable', 93000, '', '/image/ap5.jpeg', '', '', 0, 'shop10', NULL),
 ('b1', 'Shoe', 'durable', 900, '', '/images/b1.jpg', '', '', 0, 'shop4', NULL),
 ('b2', 'Kid\'s shoe', 'picchider juta', 200, '', '/images/b2.jpg', '/images/b3.jpg', '', 0, 'shop4', NULL),
 ('sa1', 'sharee', 'sadakalo sharee', 20000, '', '/images/sa1.jpg', '', '', 0, 'shop3', NULL),
-('w1', 'Micro Oven', 'Onek valo oven', 30000, '', '/image/w1.jpg', '', '', 5000, 'shop9', NULL),
+('sa2', 'Men\'s Panjabi', 'Soft cotton full black Panjabi for men', 2000, '', '/image/sa2.jpg', '', '', 0, 'shop3', NULL),
+('sa3', 'Kameez', 'Soft cotton black Kameez', 1700, '', '/image/sa3.jpg', '', '', 0, 'shop3', NULL),
+('w1', 'Micro Oven', 'Microwave, grill & combination, 3 combination cooking options, 1200 Watts, 20 L', 30000, '', '/image/w1.jpg', '', '', 5000, 'shop9', NULL),
+('w2', 'Refrigerator', '50ltr bottom freezer. ', 50000, '', '/image/w2.jpg', '', '', 5000, 'shop9', NULL),
+('w3', 'Air Conditioner', '5275 Watts,(1.5 ton) AC', 45000, '', '/image/w3.jpg', '', '', 3000, 'shop9', NULL),
+('w5', 'Motorbike', '125cc, Walton runner', 150000, '', '/image/w5.jpg', '', '', 0, 'shop9', NULL),
 ('Y1', 'polo T-shirt', '100% cotton. breathable meterial.', 500, 'Mens Clothes', '/images/y1.jpg', '', '', 0, 'shop1', NULL),
 ('Y2', 'Yellow Sharee', 'Yellow sharee. only for rich people.', 20000, 'Womens Clothes', '/images/y2.jpg', '', '', 0, 'shop1', NULL);
 
@@ -328,6 +336,7 @@ CREATE TABLE `shop` (
 
 INSERT INTO `shop` (`shop_id`, `shop_name`, `category_id_fk`, `logo`) VALUES
 ('shop1', 'Yellow', 'cat2', '/logos/shop1.jpg'),
+('shop10', 'iphone', 'cat2', '/logo/shop10.jpg'),
 ('shop2', 'Anjans', 'cat2', '/logos/shop2.jpg'),
 ('shop3', 'Sadakalo', 'cat2', '/logos/shop3.jpg'),
 ('shop4', 'Bata', 'cat2', '/logos/shop4.jpg'),
@@ -581,12 +590,6 @@ ALTER TABLE `product_attribute`
   ADD CONSTRAINT `product_attribute_ibfk_2` FOREIGN KEY (`size_id_fk`) REFERENCES `size` (`size_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `product_attribute_ibfk_3` FOREIGN KEY (`product_id_fk`) REFERENCES `product` (`product_id`),
   ADD CONSTRAINT `product_attribute_ibfk_4` FOREIGN KEY (`child_cat_id_fk`) REFERENCES `child_category` (`child_cat_id`);
-
---
--- Constraints for table `shop`
---
-ALTER TABLE `shop`
-  ADD CONSTRAINT `shop_ibfk_1` FOREIGN KEY (`category_id_fk`) REFERENCES `category` (`category_id`);
 
 --
 -- Constraints for table `shop_parent`
