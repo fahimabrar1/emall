@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 17, 2021 at 12:14 AM
+-- Generation Time: Aug 16, 2021 at 03:42 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -284,35 +284,35 @@ CREATE TABLE `product` (
 
 INSERT INTO `product` (`product_id`, `name`, `description`, `price`, `product_category`, `image1`, `image2`, `image3`, `discount`, `shop_id_fk`, `date_added`) VALUES
 ('a1', 'panjabi', 'Soft cotton panjabi', 1700, 'Clothing', '/images/a1.jpg', '', '', 0, 'shop2', '2021-08-16'),
-('a2', 'Salwar Kameez', 'white and orange shaded cotton Salwar Kameez', 2300, 'Clothing', '/images/a2.jpg', '', '', 300, 'shop2', '2021-08-16'),
-('a3', 'Panjani kameez set', 'White colored cotton cloths ', 6000, 'Clothing', '/images/a3.jpg', '', '', 500, 'shop2', '2021-08-16'),
-('ap1', 'Macbook pro', 'MacBook Pro 13″· 13.3-inch Retina display· Apple M1 chip. Also available with. Intel Core i5 or i7 processor', 109000, 'Electronics', '/images/ap1.jpeg', '', '', 0, 'shop10', '2021-07-25'),
-('ap2', 'Macbook Air', 'Macbook Air 13 M1 2021- 8GB|256GB|7-Core GPU', 105900, 'Electronics', '/images/ap2.jpeg', '', '', 0, 'shop10', '2021-07-25'),
-('ap3', 'iPhone 12', '64GB,12MP+12MP,Front(Dual):12MPiOS 14.1, upgradable Li-Ion 2815 mAh, Non-removable', 117000, 'Electronics', '/images/ap3.jpg', '', '', 0, 'shop10', '2021-07-25'),
-('ap4', 'Smart Watch', 'Apple Watch SE (MYDN2LL/A) GPS 40mm Sport Band (Gold, Aluminum, Pink Sand)', 30000, 'Electronics', '/images/ap4.jpg', '', '', 0, 'shop10', '2021-07-25'),
-('ap5', 'iPhone 11', '128GB,12MP+12MP, Front(Dual): 12MPiOS 14.1, upgradable Li-Ion 2815 mAh, Non-removable', 93000, 'Electronics', '/images/ap5.jpeg', '', '', 0, 'shop10', '2021-07-25'),
-('apx1', 'Air Boost Sneakers', 'Olive color, air boost durable unisex sneakers  ', 2400, 'Footwear', '/images/apx1.jpeg', '', '', 0, 'shop5', '2021-07-30'),
-('apx2', 'Hills', 'Pink color 3-inch hills for women', 2800, 'Footwear', '/images/apx2.jpeg', '', '', 0, 'shop5', '2021-07-30'),
-('apx3', 'Shoes', 'Original black leather shoes foe men', 3500, 'Footwear', '/images/apx3.jpeg', '/image/apx4.jpg', '', 100, 'shop5', '2021-07-30'),
+('a2', 'Salwar Kameez', 'white and orange shaded cotton Salwar Kameez', 2300, 'Clothing', '/image/a2.jpg', '', '', 300, 'shop2', '2021-08-16'),
+('a3', 'Panjani kameez set', 'White colored cotton cloths ', 6000, 'Clothing', '/image/a3.jpg', '', '', 500, 'shop2', '2021-08-16'),
+('ap1', 'Macbook pro', 'MacBook Pro 13″· 13.3-inch Retina display· Apple M1 chip. Also available with. Intel Core i5 or i7 processor', 109000, 'Electronics', '/image/ap1.jpeg', '', '', 0, 'shop10', '2021-07-25'),
+('ap2', 'Macbook Air', 'Macbook Air 13 M1 2021- 8GB|256GB|7-Core GPU', 105900, 'Electronics', '/image/ap2.jpeg', '', '', 0, 'shop10', '2021-07-25'),
+('ap3', 'iPhone 12', '64GB,12MP+12MP,Front(Dual):12MPiOS 14.1, upgradable Li-Ion 2815 mAh, Non-removable', 117000, 'Electronics', '/image/ap3.jpg', '', '', 0, 'shop10', '2021-07-25'),
+('ap4', 'Smart Watch', 'Apple Watch SE (MYDN2LL/A) GPS 40mm Sport Band (Gold, Aluminum, Pink Sand)', 30000, 'Electronics', '/image/ap4.jpg', '', '', 0, 'shop10', '2021-07-25'),
+('ap5', 'iPhone 11', '128GB,12MP+12MP, Front(Dual): 12MPiOS 14.1, upgradable Li-Ion 2815 mAh, Non-removable', 93000, 'Electronics', '/image/ap5.jpeg', '', '', 0, 'shop10', '2021-07-25'),
+('apx1', 'Air Boost Sneakers', 'Olive color, air boost durable unisex sneakers  ', 2400, 'Footwear', '/image/apx1.jpeg', '', '', 0, 'shop5', '2021-07-30'),
+('apx2', 'Hills', 'Pink color 3-inch hills for women', 2800, 'Footwear', '/image/apx2.jpeg', '', '', 0, 'shop5', '2021-07-30'),
+('apx3', 'Shoes', 'Original black leather shoes foe men', 3500, 'Footwear', '/image/apx3.jpeg', '/image/apx4.jpg', '', 100, 'shop5', '2021-07-30'),
 ('b1', 'Shoe', 'durable unique shoes ', 2900, 'Footwear', '/images/b1.jpg', '', '', 0, 'shop4', '2021-08-04'),
 ('b2', 'Kid\'s shoe', 'multi colored shoes for kids', 1450, 'Footwear', '/images/b2.jpg', '/images/b3.jpg', '', 0, 'shop4', '2021-08-04'),
 ('sa1', 'Saree', 'soft cotton black and white saree', 2000, 'Clothing', '/images/sa1.jpg', '', '', 0, 'shop3', '2021-08-04'),
-('sa2', 'Men\'s Panjabi', 'Soft cotton full black Panjabi for men', 2000, 'Clothing', '/images/sa2.jpg', '', '', 0, 'shop3', '2021-08-04'),
-('sa3', 'Kameez', 'Soft cotton black Kameez', 1700, 'Clothing', '/images/sa3.jpg', '', '', 0, 'shop3', '2021-08-04'),
-('ti1', 'Belt watch', 'Brown belted watch for men', 4000, 'Watches', '/images/ti1.jpg', '', '', 0, 'shop7', '2021-08-06'),
-('ti2', 'Chain watch', 'golden chained watch', 7500, 'Watches', '/images/ti2.jpg', '', '', 0, 'shop7', '2021-08-06'),
-('ti3', 'Women unique watch', 'Unique women hand watch', 8500, 'Watches', '/images/ti3.jpeg', '', '', 0, 'shop7', '2021-08-06'),
-('ti4', 'Olive belt watch', 'Multi colored belt watch for both men and women', 5500, 'Watches', '/images/ti4.jpeg', '', '', 0, 'shop7', '2021-08-06'),
-('tim1', 'Men\'s Watch', 'Brown belt unique watch', 15000, 'Watches', '/images/tim1.jpeg', '', '', 0, 'shop6', '2021-07-28'),
-('tim2', 'Chain Watch', 'Golden chai, black center hand watch', 18000, 'Watches', '/images/tim2.jpeg', '', '', 0, 'shop6', '2021-07-28'),
-('tim3', 'Belt watch', 'multi colored belt unisex watch', 8000, 'Watches', '/images/tim3.jpeg', '', '', 0, 'shop6', '2021-07-28'),
-('w1', 'Micro Oven', 'Microwave, grill & combination, 3 combination cooking options, 1200 Watts, 20 L', 30000, 'Electronics', '/images/w1.jpg', '', '', 5000, 'shop9', '2021-08-16'),
-('w2', 'Refrigerator', '50ltr bottom freezer. ', 50000, 'Electronics', '/images/w2.jpg', '', '', 5000, 'shop9', '2021-08-16'),
-('w3', 'Air Conditioner', '5275 Watts,(1.5 ton) AC', 45000, 'Electronics', '/images/w3.jpg', '', '', 3000, 'shop9', '2021-08-16'),
-('w5', 'Motorbike', '125cc, Walton runner', 150000, 'Vehicle', '/images/w5.jpg', '', '', 0, 'shop9', '2021-08-16'),
-('whi1', 'Refrigerator', '80ltr Wide french door refrigerator', 100000, 'Electronics', '/images/whi1.jpeg', '', '', 2000, 'shop8', '2021-07-30'),
-('whi2', 'Microwave Oven', 'Whirlpool Magic cook 30 BC 30 L Convection Microwave Oven, multifunction, stainless steel cavity', 25000, 'Electronics', '/images/whi2.jpeg', '', '', 0, 'shop8', '2021-07-30'),
-('whi3', 'Air conditioner', '5300 WATTS(1800BTU/hr), 2ton AC', 85000, 'Electronics', '/images/whi3.jpeg', '', '', 2000, 'shop8', '2021-08-09'),
+('sa2', 'Men\'s Panjabi', 'Soft cotton full black Panjabi for men', 2000, 'Clothing', '/image/sa2.jpg', '', '', 0, 'shop3', '2021-08-04'),
+('sa3', 'Kameez', 'Soft cotton black Kameez', 1700, 'Clothing', '/image/sa3.jpg', '', '', 0, 'shop3', '2021-08-04'),
+('ti1', 'Belt watch', 'Brown belted watch for men', 4000, 'Watches', '/image/ti1.jpg', '', '', 0, 'shop7', '2021-08-06'),
+('ti2', 'Chain watch', 'golden chained watch', 7500, 'Watches', '/image/ti2.jpg', '', '', 0, 'shop7', '2021-08-06'),
+('ti3', 'Women unique watch', 'Unique women hand watch', 8500, 'Watches', '/image/ti3.jpeg', '', '', 0, 'shop7', '2021-08-06'),
+('ti4', 'Olive belt watch', 'Multi colored belt watch for both men and women', 5500, 'Watches', '/image/ti4.jpeg', '', '', 0, 'shop7', '2021-08-06'),
+('tim1', 'Men\'s Watch', 'Brown belt unique watch', 15000, 'Watches', '/image/tim1.jpeg', '', '', 0, 'shop6', '2021-07-28'),
+('tim2', 'Chain Watch', 'Golden chai, black center hand watch', 18000, 'Watches', '/image/tim2.jpeg', '', '', 0, 'shop6', '2021-07-28'),
+('tim3', 'Belt watch', 'multi colored belt unisex watch', 8000, 'Watches', '/image/tim3.jpeg', '', '', 0, 'shop6', '2021-07-28'),
+('w1', 'Micro Oven', 'Microwave, grill & combination, 3 combination cooking options, 1200 Watts, 20 L', 30000, 'Electronics', '/image/w1.jpg', '', '', 5000, 'shop9', '2021-08-16'),
+('w2', 'Refrigerator', '50ltr bottom freezer. ', 50000, 'Electronics', '/image/w2.jpg', '', '', 5000, 'shop9', '2021-08-16'),
+('w3', 'Air Conditioner', '5275 Watts,(1.5 ton) AC', 45000, 'Electronics', '/image/w3.jpg', '', '', 3000, 'shop9', '2021-08-16'),
+('w5', 'Motorbike', '125cc, Walton runner', 150000, 'Vehicle', '/image/w5.jpg', '', '', 0, 'shop9', '2021-08-16'),
+('whi1', 'Refrigerator', '80ltr Wide french door refrigerator', 100000, 'Electronics', '/image/whi1.jpeg', '', '', 2000, 'shop8', '2021-07-30'),
+('whi2', 'Microwave Oven', 'Whirlpool Magic cook 30 BC 30 L Convection Microwave Oven, multifunction, stainless steel cavity', 25000, 'Electronics', '/image/whi2.jpeg', '', '', 0, 'shop8', '2021-07-30'),
+('whi3', 'Air conditioner', '5300 WATTS(1800BTU/hr), 2ton AC', 85000, 'Electronics', '/image/whi3.jpeg', '', '', 2000, 'shop8', '2021-08-09'),
 ('Y1', 'polo T-shirt', '100% cotton. breathable meterial.', 500, 'Clothing', '/images/y1.jpg', '', '', 0, 'shop1', '2021-08-09'),
 ('Y2', 'Yellow Saree', 'Yellow georgette saree .', 6500, 'Clothing', '/images/y2.jpg', '', '', 0, 'shop1', '2021-08-09');
 
@@ -349,7 +349,7 @@ CREATE TABLE `shop` (
 
 INSERT INTO `shop` (`shop_id`, `shop_name`, `category_id_fk`, `logo`) VALUES
 ('shop1', 'Yellow', 'cat2', '/logos/shop1.jpg'),
-('shop10', 'iphone', 'cat2', '/logos/shop10.jpg'),
+('shop10', 'iphone', 'cat2', '/logo/shop10.jpg'),
 ('shop2', 'Anjans', 'cat2', '/logos/shop2.jpg'),
 ('shop3', 'Sadakalo', 'cat2', '/logos/shop3.jpg'),
 ('shop4', 'Bata', 'cat2', '/logos/shop4.jpg'),
