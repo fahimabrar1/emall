@@ -32,7 +32,7 @@ class _ShopItemState extends State<ShopItem> {
             child: Container(
               height: 200,
               width: 200,
-              child: Image.asset(
+              child: Image.network(
                 widget.shopItemDataHolder.imgPath,
                 fit: BoxFit.fill,
               ),

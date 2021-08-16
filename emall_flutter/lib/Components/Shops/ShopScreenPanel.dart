@@ -1,13 +1,17 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:emall_proj/Components/Drawer/Drawer.dart';
 import 'package:emall_proj/Components/EnumHolders.dart';
 import 'package:emall_proj/Components/Footer/Footer.dart';
+import 'package:emall_proj/Components/Models/shopModel.dart';
 import 'package:emall_proj/Components/Navbar/NavBarIcons.dart';
 import 'package:emall_proj/Components/Navbar/Navbars.dart';
 import 'package:emall_proj/Components/Shops/ShopItem.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:http/http.dart' as http;
 import '../MyColors.dart';
 import '../MyGlobalVariables.dart';
 
@@ -86,6 +90,14 @@ class _ShopPanelState extends State<ShopPanel> {
 
   int counter = 10;
   int incrementByDropdown = 10;
+  late Future<List<ShopModel>> shopModelList;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    shopModelList = fetchShopList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -224,37 +236,78 @@ class _ShopPanelState extends State<ShopPanel> {
             ),
 
             //SliverGrid In Sliver
+            //
             SliverPadding(
               padding: EdgeInsets.only(
                   left: borderMargin,
                   right: borderMargin,
                   top: borderMargin / 2,
                   bottom: borderMargin / 2),
-              sliver: SliverGrid(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 5,
-                    childAspectRatio: 1,
-                    mainAxisSpacing: 10.0,
-                    crossAxisSpacing: 10.0),
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    ShopItemDataHolder sdh;
-                    try {
-                      sdh = ShopItemDataHolder(
-                          title: shopitemdataholder[index].title,
-                          imgPath: shopitemdataholder[index].imgPath);
-                    } catch (Exception) {
-                      sdh = ShopItemDataHolder(
-                          title: "No Shop",
-                          imgPath: "images/products/product_1.jpg");
-                    }
+              sliver: FutureBuilder<List<ShopModel>>(
+                future: shopModelList,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.none ||
+                      !snapshot.hasData) {
+                    return SliverToBoxAdapter(
+                        child: CircularProgressIndicator());
+                  }
 
-                    return ShopItem(shopItemDataHolder: sdh);
-                  },
-                  childCount: counter,
-                ),
+                  return SliverGrid(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 5,
+                        childAspectRatio: 0.8,
+                        mainAxisSpacing: 10.0,
+                        crossAxisSpacing: 10.0),
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        ShopItemDataHolder sdh;
+                        try {
+                          sdh = ShopItemDataHolder(
+                              title: snapshot.data![index].shop_name,
+                              imgPath: hhtpGetShopLogoUrl +
+                                  snapshot.data![index].shop_id);
+
+                          return ShopItem(shopItemDataHolder: sdh);
+                        } catch (e) {}
+                      },
+                      childCount: counter,
+                    ),
+                  );
+                },
               ),
             ),
+
+            // SliverPadding(
+            //   padding: EdgeInsets.only(
+            //       left: borderMargin,
+            //       right: borderMargin,
+            //       top: borderMargin / 2,
+            //       bottom: borderMargin / 2),
+            //   sliver: SliverGrid(
+            //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            //         crossAxisCount: 5,
+            //         childAspectRatio: 1,
+            //         mainAxisSpacing: 10.0,
+            //         crossAxisSpacing: 10.0),
+            //     delegate: SliverChildBuilderDelegate(
+            //       (context, index) {
+            //         ShopItemDataHolder sdh;
+            //         try {
+            //           sdh = ShopItemDataHolder(
+            //               title: shopitemdataholder[index].title,
+            //               imgPath: shopitemdataholder[index].imgPath);
+            //         } catch (Exception) {
+            //           sdh = ShopItemDataHolder(
+            //               title: "No Shop",
+            //               imgPath: "images/products/product_1.jpg");
+            //         }
+
+            //         return ShopItem(shopItemDataHolder: sdh);
+            //       },
+            //       childCount: counter,
+            //     ),
+            //   ),
+            // ),
 
             //Load More Button
             SliverToBoxAdapter(
@@ -306,5 +359,39 @@ class _ShopPanelState extends State<ShopPanel> {
     setState(() {
       counter += incrementByDropdown;
     });
+  }
+
+  Future<List<ShopModel>> fetchShopList() async {
+    List<ShopModel> shoplist = <ShopModel>[];
+    final response = await http
+        .get(Uri.parse('http://127.0.0.1:8000/api/shops/select/1/10'));
+
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+
+      //print(response.body);
+      List<dynamic> values;
+      values = jsonDecode(response.body);
+      print(values.length.toString());
+      print(values.toString());
+
+      if (values.length > 0) {
+        for (int i = 0; i < values.length; i++) {
+          if (values[i] != null) {
+            log(values[i].toString());
+            Map<String, dynamic> map = values[i];
+            shoplist.add(ShopModel.fromJson(map));
+          }
+        }
+      }
+      // Map<String, dynamic> map = jsonDecode(response.body)[0];
+      // return ProductModel.fromJson(map);
+      return shoplist;
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      throw Exception('Failed to load album');
+    }
   }
 }

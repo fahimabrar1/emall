@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'Components/Product/Product.dart';
 import 'Screens/HomeScreen.dart';
+import 'Screens/ShopScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -73,7 +74,7 @@ class _MyeMallState extends State<MyeMall> {
     // return Scaffold(
     //   body: Cart(),
     // );
-    return HomeScreen();
+    //return HomeScreen();
     //return ProductSearchPanel();
     // return Scaffold(
     //   body: Product(product: ProductDataHolder(
@@ -82,7 +83,7 @@ class _MyeMallState extends State<MyeMall> {
     //       imagePath: 'assets/images/products/product_1.jpg',
     //       boxfit: BoxFit.fitWidth),),
     // );
-    //return ShopScreen();
+    return ShopScreen();
     //return ProductPanal();
   }
 }
