@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 16, 2021 at 12:13 PM
--- Server version: 10.4.20-MariaDB
--- PHP Version: 8.0.9
+-- Generation Time: Aug 16, 2021 at 12:31 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -291,6 +291,9 @@ INSERT INTO `product` (`product_id`, `name`, `description`, `price`, `product_ca
 ('ap3', 'iPhone 12', '64GB,12MP+12MP,Front(Dual):12MPiOS 14.1, upgradable Li-Ion 2815 mAh, Non-removable', 117000, '', '/image/ap3.jpg', '', '', 0, 'shop10', NULL),
 ('ap4', 'Smart Watch', 'Apple Watch SE (MYDN2LL/A) GPS 40mm Sport Band (Gold, Aluminum, Pink Sand)', 30000, '', '/image/ap4.jpg', '', '', 0, 'shop10', NULL),
 ('ap5', 'iPhone 11', '128GB,12MP+12MP, Front(Dual): 12MPiOS 14.1, upgradable Li-Ion 2815 mAh, Non-removable', 93000, '', '/image/ap5.jpeg', '', '', 0, 'shop10', NULL),
+('apx1', 'Air Boost Sneakers', 'Olive color, air boost durable unisex sneakers  ', 2400, '', '/image/apx1.jpeg', '', '', 0, 'shop5', NULL),
+('apx2', 'Hills', 'Pink color 3-inch hills for women', 2800, '', '/image/apx2.jpeg', '', '', 0, 'shop5', NULL),
+('apx3', 'Shoes', 'Original black leather shoes foe men', 3500, '', '/image/apx3.jpeg', '/image/apx4.jpg', '', 100, 'shop5', NULL),
 ('b1', 'Shoe', 'durable unieue shoes ', 2900, '', '/images/b1.jpg', '', '', 0, 'shop4', NULL),
 ('b2', 'Kid\'s shoe', 'multi colored shoes for kids', 1450, '', '/images/b2.jpg', '/images/b3.jpg', '', 0, 'shop4', NULL),
 ('sa1', 'Saree', 'soft cotton black and white saree', 2000, '', '/images/sa1.jpg', '', '', 0, 'shop3', NULL),
