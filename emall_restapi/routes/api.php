@@ -843,6 +843,14 @@ Route::get('/products/select/{start}/{end}', function($start, $end){
 
 });
 
+Route::get('/products/random/{end}', function($end){
+
+   
+        return Product::all()->random($end);
+});
+
+
+
 
 Route::post('/users', function(){
     request()->validate([
@@ -894,6 +902,8 @@ Route::post('/users', function(){
         ]);
     }
 });
+
+
 
 
 Route::get('/users/{email}/{password}', function($email, $pass){
