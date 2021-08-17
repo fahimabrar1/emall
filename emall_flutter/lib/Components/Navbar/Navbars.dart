@@ -28,7 +28,7 @@ class _TransparentNavBarState extends State<TransparentNavBar> {
   bool isHovered = false;
   String dropdownValue = 'One';
   //GlobalKey _key = GlobalKey();
-
+  TextEditingController shopSearchTextController = TextEditingController();
   void onEntered(bool isHovered) => setState(() {
         this.isHovered = isHovered;
       });
@@ -180,16 +180,30 @@ class _TransparentNavBarState extends State<TransparentNavBar> {
                                 child: Container(
                                   padding: EdgeInsets.only(left: 20),
                                   child: TextField(
+                                    controller: shopSearchTextController,
                                     decoration: InputDecoration(
                                         border: InputBorder.none,
-                                        hintText: "Search..."),
+                                        hintText: "Search Shop..."),
                                   ),
                                 ),
                               ),
-                              NavBarIcon(
-                                NavbBarIconsType.search,
-                                Icons.search,
-                                MyColor.orange,
+                              IconButton(
+                                onPressed: () {
+                                  log("Search : " +
+                                      shopSearchTextController.text);
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => ShopScreen(
+                                        shopName: shopSearchTextController.text,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                icon: Icon(
+                                  Icons.search,
+                                  color: MyColor.orange,
+                                ),
                               ),
                             ],
                           ),
@@ -279,6 +293,7 @@ class _NavBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> screens = [HomeScreen(), ShopScreen()];
+    TextEditingController shopSearchTextController = TextEditingController();
 
     return Row(
       children: [
@@ -388,14 +403,28 @@ class _NavBarState extends State<NavBar> {
                                       child: TextField(
                                         decoration: InputDecoration(
                                             border: InputBorder.none,
-                                            hintText: "Search..."),
+                                            hintText: "Search Shop..."),
                                       ),
                                     ),
                                   ),
-                                  NavBarIcon(
-                                    NavbBarIconsType.search,
-                                    Icons.search,
-                                    MyColor.orange,
+                                  IconButton(
+                                    onPressed: () {
+                                      log("Search : " +
+                                          shopSearchTextController.text);
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => ShopScreen(
+                                            shopName:
+                                                shopSearchTextController.text,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    icon: Icon(
+                                      Icons.search,
+                                      color: MyColor.orange,
+                                    ),
                                   ),
                                 ],
                               ),

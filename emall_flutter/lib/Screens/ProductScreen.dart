@@ -6,6 +6,8 @@ class ProductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ProductPanal();
+    return ProductPanal(
+      productId: "1",
+    );
   }
 }

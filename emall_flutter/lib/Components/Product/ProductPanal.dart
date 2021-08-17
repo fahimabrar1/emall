@@ -5,6 +5,7 @@ import 'package:emall_proj/Components/Footer/Footer.dart';
 import 'package:emall_proj/Components/Models/productModel.dart';
 import 'package:emall_proj/Components/MyGlobalVariables.dart';
 import 'package:emall_proj/Components/Navbar/Navbars.dart';
+import 'package:emall_proj/Components/Product/Product.dart';
 import 'package:emall_proj/Components/RadioButtons/MyRadioButton.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -24,14 +25,18 @@ import 'ProductViewPanel.dart';
 ///
 ///
 
+// ignore: must_be_immutable
 class ProductPanal extends StatefulWidget {
-  const ProductPanal({Key? key}) : super(key: key);
+  String productId;
+  ProductPanal({required this.productId, Key? key}) : super(key: key);
 
   @override
-  _ProductPanalState createState() => _ProductPanalState();
+  _ProductPanalState createState() => _ProductPanalState(productId);
 }
 
 class _ProductPanalState extends State<ProductPanal> {
+  String? productId;
+  _ProductPanalState(this.productId);
   List<RadioModel> sampleData = [
     RadioModel(false, Colors.blueAccent),
     RadioModel(false, Colors.green),
@@ -43,6 +48,8 @@ class _ProductPanalState extends State<ProductPanal> {
   final mycontroller = TextEditingController();
 
   late Future<ProductModel> productModel;
+  final String imageUrl = "http://127.0.0.1:8000/api/images/";
+  int selectedImage = 1;
   @override
   void initState() {
     // TODO: implement initState
@@ -210,6 +217,7 @@ class _ProductPanalState extends State<ProductPanal> {
                   margin:
                       EdgeInsets.only(left: borderMargin, right: borderMargin),
                   child: FutureBuilder<ProductModel>(
+                    future: productModel,
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         return Row(
@@ -226,63 +234,114 @@ class _ProductPanalState extends State<ProductPanal> {
                                     margin: EdgeInsets.all(10),
                                     child: ListView(
                                       children: [
-                                        Container(
-                                          width: 150,
-                                          height: 150,
-                                          margin: EdgeInsets.only(bottom: 10),
-                                          color: Colors.yellow,
-                                          child: InkWell(
-                                            child: Image(
-                                              image: AssetImage(
-                                                  "assets/images/products/product_1.jpg"),
-                                              fit: BoxFit.fitWidth,
-                                            ),
-                                            onTap: () {},
-                                          ),
-                                        ),
-                                        Container(
-                                          width: 150,
-                                          height: 150,
-                                          margin: EdgeInsets.only(bottom: 10),
-                                          color: Colors.yellow,
-                                          child: InkWell(
-                                            child: Image(
-                                              image: AssetImage(
-                                                  "assets/images/products/product_1.jpg"),
-                                              fit: BoxFit.fitWidth,
-                                            ),
-                                            onTap: () {},
-                                          ),
-                                        ),
-                                        Container(
-                                          width: 150,
-                                          height: 150,
-                                          margin: EdgeInsets.only(bottom: 10),
-                                          color: Colors.yellow,
-                                          child: InkWell(
-                                            child: Image(
-                                              image: AssetImage(
-                                                  "assets/images/products/product_1.jpg"),
-                                              fit: BoxFit.fitWidth,
-                                            ),
-                                            onTap: () {},
-                                          ),
-                                        ),
+                                        (!snapshot.data!.image1.isEmpty)
+                                            ? Container(
+                                                width: 150,
+                                                height: 150,
+                                                margin:
+                                                    EdgeInsets.only(bottom: 10),
+                                                //color: Colors.yellow,
+                                                child: InkWell(
+                                                  child: Image.network(
+                                                    imageUrl +
+                                                        snapshot
+                                                            .data!.product_id +
+                                                        "/1",
+                                                    fit: BoxFit.fitWidth,
+                                                    errorBuilder:
+                                                        (context, o, s) {
+                                                      return Image.asset(
+                                                          "assets/images/products/product_1.jpg");
+                                                    },
+                                                  ),
+                                                  onTap: () {
+                                                    setState(() {
+                                                      selectedImage = 1;
+                                                    });
+                                                  },
+                                                ),
+                                              )
+                                            : Container(),
+                                        (!snapshot.data!.image2.isEmpty)
+                                            ? Container(
+                                                width: 150,
+                                                height: 150,
+                                                margin:
+                                                    EdgeInsets.only(bottom: 10),
+                                                //color: Colors.yellow,
+                                                child: InkWell(
+                                                  child: Image.network(
+                                                    imageUrl +
+                                                        snapshot
+                                                            .data!.product_id +
+                                                        "/1",
+                                                    fit: BoxFit.fitWidth,
+                                                    errorBuilder:
+                                                        (context, o, s) {
+                                                      return Image.asset(
+                                                          "assets/images/products/product_1.jpg");
+                                                    },
+                                                  ),
+                                                  onTap: () {
+                                                    setState(() {
+                                                      selectedImage = 2;
+                                                    });
+                                                  },
+                                                ),
+                                              )
+                                            : Container(),
+                                        (!snapshot.data!.image3.isEmpty)
+                                            ? Container(
+                                                width: 150,
+                                                height: 150,
+                                                margin:
+                                                    EdgeInsets.only(bottom: 10),
+                                                //color: Colors.yellow,
+                                                child: InkWell(
+                                                  child: Image.network(
+                                                    imageUrl +
+                                                        snapshot
+                                                            .data!.product_id +
+                                                        "/2",
+                                                    fit: BoxFit.fitWidth,
+                                                    errorBuilder:
+                                                        (context, o, s) {
+                                                      return Image.asset(
+                                                          "assets/images/products/product_1.jpg");
+                                                    },
+                                                  ),
+                                                  onTap: () {
+                                                    setState(() {
+                                                      selectedImage = 3;
+                                                    });
+                                                  },
+                                                ),
+                                              )
+                                            : Container(),
                                       ],
                                     ),
                                   ),
 
                                   //Main Image
                                   Expanded(
-                                      child: Container(
-                                    //color: Colors.yellow,
-                                    padding: EdgeInsets.all(10),
-                                    child: Image(
-                                      image: AssetImage(
-                                          "assets/images/products/product_1.jpg"),
-                                      fit: BoxFit.fitWidth,
+                                    child: Container(
+                                      //color: Colors.red,
+                                      foregroundDecoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          alignment: Alignment.topCenter,
+                                          image: NetworkImage(
+                                            imageUrl +
+                                                snapshot.data!.product_id +
+                                                "/" +
+                                                selectedImage.toString(),
+                                          ),
+                                          fit: BoxFit.fitHeight,
+                                        ),
+                                      ),
+                                      //color: Colors.yellow,
+                                      padding: EdgeInsets.all(10),
                                     ),
-                                  ))
+                                  ),
                                 ],
                               ),
                             )),
@@ -292,6 +351,7 @@ class _ProductPanalState extends State<ProductPanal> {
                             Expanded(
                               child: Container(
                                 padding: EdgeInsets.all(10),
+                                margin: EdgeInsets.only(left: 20),
                                 //color: Colors.blue,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -300,7 +360,8 @@ class _ProductPanalState extends State<ProductPanal> {
                                     //Product Title
 
                                     Text(
-                                      "T-Shirt Summer Vibes",
+                                      //"T-Shirt Summer Vibes",
+                                      snapshot.data!.name,
                                       style: GoogleFonts.poppins(
                                           fontSize: 24,
                                           fontWeight: FontWeight.bold),
@@ -311,31 +372,59 @@ class _ProductPanalState extends State<ProductPanal> {
                                     Row(
                                       children: [
                                         //On Sale
-
-                                        Text(
-                                          "\$149.99",
-                                          style: GoogleFonts.poppins(
-                                              color: MyColor.red,
-                                              fontSize: 24,
-                                              fontWeight: FontWeight.w400),
-                                        ),
+                                        (snapshot.data!.discount > 0)
+                                            ? Text(
+                                                //"\$149.99",
+                                                "\$" +
+                                                    snapshot.data!.discount
+                                                        .toString(),
+                                                style: GoogleFonts.poppins(
+                                                    color: MyColor.red,
+                                                    fontSize: 24,
+                                                    fontWeight:
+                                                        FontWeight.w400),
+                                              )
+                                            : Container(
+                                                height: 0,
+                                                width: 0,
+                                              ),
 
                                         //Gap of 20
 
-                                        SizedBox(width: 20),
+                                        (snapshot.data!.discount > 0)
+                                            ? SizedBox(width: 20)
+                                            : Container(),
 
                                         //Main Price
 
-                                        Text(
-                                          "\$200",
-                                          style: GoogleFonts.poppins(
-                                            color: MyColor.lightGreyBorder,
-                                            fontSize: 24,
-                                            fontWeight: FontWeight.w400,
-                                            decoration:
-                                                TextDecoration.lineThrough,
-                                          ),
-                                        ),
+                                        (snapshot.data!.discount > 0)
+                                            ? Text(
+                                                //"\$200",
+                                                "\$" +
+                                                    snapshot.data!.price
+                                                        .toString(),
+
+                                                style: GoogleFonts.poppins(
+                                                  color:
+                                                      MyColor.lightGreyBorder,
+                                                  fontSize: 24,
+                                                  fontWeight: FontWeight.w400,
+                                                  decoration: TextDecoration
+                                                      .lineThrough,
+                                                ),
+                                              )
+                                            : Text(
+                                                //"\$200",
+                                                "\$" +
+                                                    snapshot.data!.price
+                                                        .toString(),
+
+                                                style: GoogleFonts.poppins(
+                                                  color: MyColor.Black,
+                                                  fontSize: 24,
+                                                  fontWeight: FontWeight.w400,
+                                                ),
+                                              ),
                                       ],
                                     ),
 
@@ -355,7 +444,6 @@ class _ProductPanalState extends State<ProductPanal> {
                                     ),
 
                                     //Color Radio Button Container
-
                                     Container(
                                       height: 60,
                                       //color: Colors.red,
@@ -520,7 +608,7 @@ class _ProductPanalState extends State<ProductPanal> {
                                                     ),
                                                     iconSize: 16,
                                                     onPressed: () {
-                                                      log("Minus");
+                                                      //log("Minus");
                                                       decrementProductQuantity();
                                                     },
                                                   ),
@@ -586,7 +674,34 @@ class _ProductPanalState extends State<ProductPanal> {
 
                                         //Add to Cart
                                         ElevatedButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            setState(() {
+                                              int initialprice =
+                                                  (snapshot.data!.discount > 0)
+                                                      ? snapshot.data!.discount
+                                                      : snapshot.data!.price;
+                                              double quantity = double.parse(
+                                                  mycontroller.text);
+
+                                              globalproductList.add(Product(
+                                                cartproductData:
+                                                    CartProductDataHolder(
+                                                        product_id: snapshot
+                                                            .data!.product_id,
+                                                        title:
+                                                            snapshot.data!.name,
+                                                        price: initialprice *
+                                                            quantity,
+                                                        imagePath: imageUrl +
+                                                            snapshot.data!
+                                                                .product_id +
+                                                            "/1",
+                                                        boxfit: BoxFit.fill,
+                                                        quantity: int.parse(
+                                                            mycontroller.text)),
+                                              ));
+                                            });
+                                          },
                                           child: Text(
                                             "Add To Cart",
                                             style: GoogleFonts.poppins(
@@ -759,12 +874,13 @@ class _ProductPanalState extends State<ProductPanal> {
   }
 
   Future<ProductModel> fetchProduct() async {
-    final response = await http
-        .get(Uri.parse('http://127.0.0.1:8000/api/products/select/1/2'));
+    final response = await http.get(Uri.parse(
+        'http://127.0.0.1:8000/api/products/select/$productId/$productId'));
 
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
       // then parse the JSON.
+      log("Body : " + response.body);
       Map<String, dynamic> map = jsonDecode(response.body)[0];
       return ProductModel.fromJson(map);
     } else {

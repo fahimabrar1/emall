@@ -172,7 +172,7 @@ class _MyeMallState extends State<MyeMall> {
     // return Scaffold(
     //   body: Cart(),
     // );
-    //return HomeScreen();
+    return HomeScreen();
     //return ProductSearchPanel();
     // return Scaffold(
     //   body: Product(product: ProductDataHolder(
@@ -182,7 +182,9 @@ class _MyeMallState extends State<MyeMall> {
     //       boxfit: BoxFit.fitWidth),),
     // );
     //return ShopScreen();
-    return ProductPanal();
+    // return ProductPanal(
+    //   productId: 1,
+    // );
   }
 
   Future<List<CategoryModel>> fetchCategory() async {

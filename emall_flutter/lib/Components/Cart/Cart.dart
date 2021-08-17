@@ -24,86 +24,101 @@ class _CartState extends State<Cart> {
         ),
       ),
       width: 850,
+      height: (globalproductList.isEmpty) ? 100 : null,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          ListView.builder(
-            shrinkWrap: true,
-            itemCount: globalproductList.length,
-            itemBuilder: (context, index) {
-              if (globalproductList.isEmpty) {
-                return Text("Your Cart Is Empty.");
-              } else {
-                return CartItem(
-                  product: Product(
-                      productData: globalproductList[index].productData),
-                  deleteCallBack: () {
-                    setState(() {
-                      globalproductList.removeAt(index);
-                    });
-                  },
-                );
-              }
-            },
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              ElevatedButton(
-                child: Text(
-                  "View All",
-                  style: GoogleFonts.poppins(
-                      color: MyColor.Black,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500),
+          (globalproductList.isEmpty)
+              ? Center(
+                  child: Text(
+                    "Your Cart Is Empty.",
+                    textAlign: TextAlign.center,
+                  ),
+                )
+              : Container(
+                  height: (globalproductList.length > 4) ? 500 : null,
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: globalproductList.length,
+                    itemBuilder: (context, index) {
+                      return CartItem(
+                        product: Product(
+                          cartproductData:
+                              globalproductList[index].cartproductData,
+                        ),
+                        deleteCallBack: () {
+                          setState(() {
+                            globalproductList.removeAt(index);
+                          });
+                        },
+                      );
+                    },
+                  ),
                 ),
-                style: ButtonStyle(
-                  shadowColor: MaterialStateProperty.all<Color>(
-                      MyColor.White.withOpacity(0)),
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.white),
-                  padding: MaterialStateProperty.all<EdgeInsets>(
-                      EdgeInsets.only(
-                          left: 35, right: 35, top: 25, bottom: 25)),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(buttonBorderRadius),
-                      side: BorderSide(
-                          color: MyColor.lightGreyBorder, width: 1.5),
+          (globalproductList.isEmpty) ? SizedBox(height: 10) : Container(),
+          (globalproductList.isEmpty)
+              ? Container()
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    //View All button
+                    ElevatedButton(
+                      child: Text(
+                        "View All",
+                        style: GoogleFonts.poppins(
+                            color: MyColor.Black,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      style: ButtonStyle(
+                        shadowColor: MaterialStateProperty.all<Color>(
+                            MyColor.White.withOpacity(0)),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.white),
+                        padding: MaterialStateProperty.all<EdgeInsets>(
+                            EdgeInsets.only(
+                                left: 35, right: 35, top: 25, bottom: 25)),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.circular(buttonBorderRadius),
+                            side: BorderSide(
+                                color: MyColor.lightGreyBorder, width: 1.5),
+                          ),
+                        ),
+                      ),
+                      onPressed: () {},
                     ),
-                  ),
-                ),
-                onPressed: () {},
-              ),
-              ElevatedButton(
-                onPressed: () {},
-                child: Text(
-                  "Checkout",
-                  style: GoogleFonts.poppins(
-                    color: MyColor.Black,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                style: ButtonStyle(
-                  shadowColor: MaterialStateProperty.all<Color>(
-                      MyColor.White.withOpacity(0)),
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(MyColor.orange),
-                  padding: MaterialStateProperty.all<EdgeInsets>(
-                      EdgeInsets.only(
-                          left: 35, right: 35, top: 25, bottom: 25)),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(buttonBorderRadius),
+                    //Checkout button
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Text(
+                        "Checkout",
+                        style: GoogleFonts.poppins(
+                          color: MyColor.Black,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      style: ButtonStyle(
+                        shadowColor: MaterialStateProperty.all<Color>(
+                            MyColor.White.withOpacity(0)),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(MyColor.orange),
+                        padding: MaterialStateProperty.all<EdgeInsets>(
+                            EdgeInsets.only(
+                                left: 35, right: 35, top: 25, bottom: 25)),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.circular(buttonBorderRadius),
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ),
-            ],
-          )
+                  ],
+                )
         ],
       ),
     );
@@ -129,7 +144,8 @@ class CartItem extends StatelessWidget {
             //Avatar
             Expanded(
               child: CircleAvatar(
-                backgroundImage: AssetImage(product.productData.imagePath),
+                backgroundImage:
+                    NetworkImage(product.cartproductData!.imagePath),
               ),
             ),
 
@@ -140,7 +156,7 @@ class CartItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    product.productData.title,
+                    product.cartproductData!.title,
                     style: GoogleFonts.poppins(
                       fontWeight: FontWeight.w400,
                     ),
@@ -180,93 +196,123 @@ class CartItem extends StatelessWidget {
             ),
 
             //Product Amount
+            // Expanded(
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     crossAxisAlignment: CrossAxisAlignment.center,
+            //     children: [
+            //       //Quantity input Field
+            //       Container(
+            //         width: 80,
+            //         decoration: BoxDecoration(
+            //           border: Border.all(
+            //               width: 1.5, color: MyColor.lightGreyBorder),
+            //           borderRadius: BorderRadius.all(
+            //             Radius.circular(40),
+            //           ),
+            //         ),
+            //         child: Row(
+            //           mainAxisAlignment: MainAxisAlignment.start,
+            //           crossAxisAlignment: CrossAxisAlignment.center,
+            //           children: [
+            //             //Subtract button
+
+            //             Flexible(
+            //               child: Container(
+            //                 //color: Colors.red,
+            //                 child: IconButton(
+            //                   splashRadius: 15,
+            //                   hoverColor: Colors.transparent,
+            //                   splashColor: Colors.transparent,
+            //                   icon: Icon(
+            //                     Icons.add,
+            //                     color: MyColor.Black,
+            //                   ),
+            //                   iconSize: 14,
+            //                   onPressed: () {
+            //                     log("Minus");
+            //                     incrementProductQuantity();
+            //                   },
+            //                 ),
+            //               ),
+            //             ), Flexible(
+            //               child: Container(
+            //                 //color: Colors.red,
+            //                 child: IconButton(
+            //                   splashRadius: 15,
+            //                   hoverColor: Colors.transparent,
+            //                   splashColor: Colors.transparent,
+            //                   icon: Icon(
+            //                     Icons.add,
+            //                     color: MyColor.Black,
+            //                   ),
+            //                   iconSize: 14,
+            //                   onPressed: () {
+            //                     log("Minus");
+            //                     incrementProductQuantity();
+            //                   },
+            //                 ),
+            //               ),
+            //             ),
+
+            //             //Input Field
+
+            //             Expanded(
+            //               child: Container(
+            //                 //color: Colors.yellow,
+            //                 child: Center(
+            //                   child: TextField(
+            //                     controller: mycontroller,
+            //                     textAlign: TextAlign.center,
+            //                     style: TextStyle(
+            //                       fontSize: 15.0,
+            //                     ),
+            //                     keyboardType: TextInputType.number,
+            //                     decoration: InputDecoration(
+            //                       border: InputBorder.none,
+            //                     ),
+            //                   ),
+            //                 ),
+            //               ),
+            //             ),
+
+            //             //Add Button
+
+            //             Flexible(
+            //               child: Container(
+            //                 //color: Colors.red,
+            //                 child: IconButton(
+            //                   alignment: Alignment.centerLeft,
+            //                   splashRadius: 15,
+            //                   hoverColor: Colors.transparent,
+            //                   splashColor: Colors.transparent,
+            //                   icon: Icon(
+            //                     Icons.add,
+            //                     color: MyColor.Black,
+            //                   ),
+            //                   iconSize: 14,
+            //                   onPressed: () {
+            //                     incrementProductQuantity();
+            //                   },
+            //                 ),
+            //               ),
+            //             ),
+            //           ],
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
+
+            //Product Price
             Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  //Quantity input Field
-                  Container(
-                    width: 80,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                          width: 1.5, color: MyColor.lightGreyBorder),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(40),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        //Subtract button
-
-                        Flexible(
-                          child: Container(
-                            //color: Colors.red,
-                            child: IconButton(
-                              splashRadius: 15,
-                              hoverColor: Colors.transparent,
-                              splashColor: Colors.transparent,
-                              icon: Icon(
-                                Icons.add,
-                                color: MyColor.Black,
-                              ),
-                              iconSize: 14,
-                              onPressed: () {
-                                log("Minus");
-                                incrementProductQuantity();
-                              },
-                            ),
-                          ),
-                        ),
-
-                        //Input Field
-
-                        Expanded(
-                          child: Container(
-                            //color: Colors.yellow,
-                            child: Center(
-                              child: TextField(
-                                controller: mycontroller,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 15.0,
-                                ),
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-
-                        //Add Button
-
-                        Flexible(
-                          child: Container(
-                            //color: Colors.red,
-                            child: IconButton(
-                              alignment: Alignment.centerLeft,
-                              splashRadius: 15,
-                              hoverColor: Colors.transparent,
-                              splashColor: Colors.transparent,
-                              icon: Icon(
-                                Icons.add,
-                                color: MyColor.Black,
-                              ),
-                              iconSize: 14,
-                              onPressed: () {
-                                incrementProductQuantity();
-                              },
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+              child: Center(
+                child: Text(
+                  product.cartproductData!.quantity.toString(),
+                  style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w400,
                   ),
-                ],
+                ),
               ),
             ),
 
@@ -274,7 +320,7 @@ class CartItem extends StatelessWidget {
             Expanded(
               child: Center(
                 child: Text(
-                  product.productData.price.toString(),
+                  product.cartproductData!.price.toString(),
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w400,
                   ),

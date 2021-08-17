@@ -129,41 +129,46 @@ class _ProductViewPanelState extends State<ProductViewPanel> {
                                           controller: new ScrollController(
                                               keepScrollOffset: false),
                                           shrinkWrap: true,
-                                          //itemCount: snapshot.data!.length,
-                                          itemCount: 10,
+                                          itemCount: snapshot.data!.length,
+                                          //itemCount: 10,
                                           gridDelegate:
                                               SliverGridDelegateWithFixedCrossAxisCount(
                                                   mainAxisSpacing:
                                                       panelElementGaps,
                                                   childAspectRatio:
                                                       (productHeight /
-                                                          productWidth),
+                                                              productWidth) +
+                                                          0.4,
                                                   crossAxisCount: 1),
                                           itemBuilder: (context, index) {
-                                            return Product(
-                                              productData: ProductDataHolder(
-                                                  title: 'T-Shirt Summer Vibes',
-                                                  price: 120,
-                                                  imagePath:
-                                                      'assets/images/products/product_1.jpg',
-                                                  boxfit: BoxFit.fitWidth),
-                                            );
-
-                                            //TODO: It's Correct need to change on API
                                             // return Product(
                                             //   productData: ProductDataHolder(
-                                            //       title:
-                                            //           '${snapshot.data![index].name}',
-                                            //       price: snapshot
-                                            //           .data![index].price
-                                            //           .toDouble(),
+                                            //       title: 'T-Shirt Summer Vibes',
+                                            //       price: 120,
                                             //       imagePath:
-                                            //           hhtpGetProductImageUrl +
-                                            //               snapshot.data![index]
-                                            //                   .product_id +
-                                            //               "/1",
-                                            //       boxfit: BoxFit.fitHeight),
+                                            //           'assets/images/products/product_1.jpg',
+                                            //       boxfit: BoxFit.fitWidth),
                                             // );
+
+                                            return Product(
+                                              productData: ProductDataHolder(
+                                                  product_id: snapshot
+                                                      .data![index].product_id,
+                                                  title:
+                                                      '${snapshot.data![index].name}',
+                                                  price: snapshot
+                                                      .data![index].price
+                                                      .toDouble(),
+                                                  discount: snapshot
+                                                      .data![index].discount
+                                                      .toDouble(),
+                                                  imagePath:
+                                                      hhtpGetProductImageUrl +
+                                                          snapshot.data![index]
+                                                              .product_id +
+                                                          "/1",
+                                                  boxfit: BoxFit.fitHeight),
+                                            );
                                           },
                                         );
                                       } else {
@@ -294,7 +299,7 @@ class _ProductViewPanelState extends State<ProductViewPanel> {
 
   Future<List<ProductModel>> fetchProduct() async {
     final response = await http
-        .get(Uri.parse('http://127.0.0.1:8000/api/products/select/1/2'));
+        .get(Uri.parse('http://127.0.0.1:8000/api/products/random/7'));
 
     List<ProductModel> _postList = <ProductModel>[];
 
