@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 17, 2021 at 08:01 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.6
+-- Generation Time: Aug 17, 2021 at 08:43 PM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -335,12 +335,28 @@ INSERT INTO `product` (`product_id`, `name`, `description`, `price`, `product_ca
 --
 
 CREATE TABLE `product_attribute` (
-  `product_id_fk` varchar(10) NOT NULL,
-  `color_id_fk` varchar(10) NOT NULL,
-  `size_id_fk` varchar(10) NOT NULL,
-  `child_cat_id_fk` varchar(10) NOT NULL,
+  `product_id_fk` varchar(20) NOT NULL,
+  `color_id_fk` varchar(20) NOT NULL,
+  `size_id_fk` varchar(20) NOT NULL,
+  `child_cat_id_fk` varchar(20) NOT NULL,
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `product_attribute`
+--
+
+INSERT INTO `product_attribute` (`product_id_fk`, `color_id_fk`, `size_id_fk`, `child_cat_id_fk`, `quantity`) VALUES
+('a1', 'Magenta06', 'large03', '1150', 2),
+('a2', 'white05', 'medium02', '1210', 3),
+('apx1', 'blue02', 'sh10', '2220', 4),
+('apx2', 'yellow04', 'sh08', '2130', 3),
+('apx3', 'blue02', 'sh09', '2210', 4),
+('b2', 'blue02', 'sh09', '2230', 4),
+('sa2', 'white05', 'large03', '1150', 4),
+('sa3', 'white05', 'medium02', '1210', 4),
+('Y1', 'red01', 'medium02', '1110', 3),
+('Y2', 'green03', 'free05', '1240', 4);
 
 -- --------------------------------------------------------
 
@@ -407,6 +423,7 @@ CREATE TABLE `size` (
 
 INSERT INTO `size` (`size_id`, `value`) VALUES
 ('extra04', 'XL'),
+('free05', 'Free size'),
 ('large03', 'L'),
 ('medium02', 'M'),
 ('sh06', '6'),
