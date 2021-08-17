@@ -125,3 +125,13 @@ GET http://127.0.0.1:8000/api/products/select/1/2 HTTP/1.1
 ###
 
 GET http://127.0.0.1:8000/api/users/iftekhar@gmail.com/123
+
+
+###
+
+GET http://127.0.0.1:8000/api/shops/products/Walton
+
+###
+
+GET http://127.0.0.1:8000/api/shops/get/Walton
+
