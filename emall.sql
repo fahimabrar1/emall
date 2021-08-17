@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 17, 2021 at 12:14 AM
+-- Generation Time: Aug 17, 2021 at 08:01 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -230,6 +230,18 @@ CREATE TABLE `color` (
   `value` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `color`
+--
+
+INSERT INTO `color` (`color_id`, `value`) VALUES
+('blue02', '#0000FF'),
+('green03', '#00FF00'),
+('Magenta06', '#FF00FF'),
+('red01', '#FF0000'),
+('white05', '#FFFFFF'),
+('yellow04', '#FFFF00');
+
 -- --------------------------------------------------------
 
 --
@@ -385,9 +397,24 @@ CREATE TABLE `shop_parent` (
 --
 
 CREATE TABLE `size` (
-  `size_id` varchar(10) NOT NULL,
-  `value` varchar(10) NOT NULL
+  `size_id` varchar(20) NOT NULL,
+  `value` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `size`
+--
+
+INSERT INTO `size` (`size_id`, `value`) VALUES
+('extra04', 'XL'),
+('large03', 'L'),
+('medium02', 'M'),
+('sh06', '6'),
+('sh07', '7'),
+('sh08', '8'),
+('sh09', '9'),
+('sh10', '10'),
+('small01', 'S');
 
 -- --------------------------------------------------------
 
