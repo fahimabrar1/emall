@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 17, 2021 at 08:43 PM
+-- Generation Time: Aug 17, 2021 at 09:37 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -307,18 +307,18 @@ INSERT INTO `product` (`product_id`, `name`, `description`, `price`, `product_ca
 ('apx2', 'Hills', 'Pink color 3-inch hills for women', 2800, 'Footwear', '/images/apx2.jpeg', '', '', 0, 'shop5', '2021-07-30'),
 ('apx3', 'Shoes', 'Original black leather shoes foe men', 3500, 'Footwear', '/images/apx3.jpeg', '/images/apx4.jpg', '', 100, 'shop5', '2021-07-30'),
 ('b1', 'Shoe', 'durable unique shoes ', 2900, 'Footwear', '/images/b1.jpg', '', '', 0, 'shop4', '2021-08-04'),
-('b2', 'Kid\'s shoe', 'multi colored shoes for kids', 1450, 'Footwear', '/images/b2.jpg', '/images/b3.jpg', '', 0, 'shop4', '2021-08-04'),
+('b2', 'Kid\'s shoe', 'multi colored shoes for kids', 1450, 'Footwear', '/images/b2.jpeg', '/images/b3.jpg', '', 0, 'shop4', '2021-08-04'),
 ('sa1', 'Saree', 'soft cotton black and white saree', 2000, 'Clothing', '/images/sa1.jpg', '', '', 0, 'shop3', '2021-08-04'),
 ('sa2', 'Men\'s Panjabi', 'Soft cotton full black Panjabi for men', 2000, 'Clothing', '/images/sa2.jpg', '', '', 0, 'shop3', '2021-08-04'),
-('sa3', 'Kameez', 'Soft cotton black Kameez', 1700, 'Clothing', '/images/sa3.jpg', '', '', 0, 'shop3', '2021-08-04'),
+('sa3', 'Kameez', 'Soft cotton black Kameez', 1700, 'Clothing', '/images/sa3.jpeg', '', '', 0, 'shop3', '2021-08-04'),
 ('ti1', 'Belt watch', 'Brown belted watch for men', 4000, 'Watches', '/images/ti1.jpg', '', '', 0, 'shop7', '2021-08-06'),
 ('ti2', 'Chain watch', 'golden chained watch', 7500, 'Watches', '/images/ti2.jpg', '', '', 0, 'shop7', '2021-08-06'),
 ('ti3', 'Women unique watch', 'Unique women hand watch', 8500, 'Watches', '/images/ti3.jpeg', '', '', 0, 'shop7', '2021-08-06'),
 ('ti4', 'Olive belt watch', 'Multi colored belt watch for both men and women', 5500, 'Watches', '/images/ti4.jpeg', '', '', 0, 'shop7', '2021-08-06'),
 ('tim1', 'Men\'s Watch', 'Brown belt unique watch', 15000, 'Watches', '/images/tim1.jpeg', '', '', 0, 'shop6', '2021-07-28'),
 ('tim2', 'Chain Watch', 'Golden chai, black center hand watch', 18000, 'Watches', '/images/tim2.jpeg', '', '', 0, 'shop6', '2021-07-28'),
-('tim3', 'Belt watch', 'multi colored belt unisex watch', 8000, 'Watches', '/images/tim3.jpeg', '', '', 0, 'shop6', '2021-07-28'),
-('w1', 'Micro Oven', 'Microwave, grill & combination, 3 combination cooking options, 1200 Watts, 20 L', 30000, 'Electronics', '/images/w1.jpg', '', '', 5000, 'shop9', '2021-08-16'),
+('tim3', 'Belt watch', 'multi colored belt unisex watch', 8000, 'Watches', '/images/tim3.jpg', '', '', 0, 'shop6', '2021-07-28'),
+('w1', 'Micro Oven', 'Microwave, grill & combination, 3 combination cooking options, 1200 Watts, 20 L', 30000, 'Electronics', '/images/w1.jpeg', '', '', 5000, 'shop9', '2021-08-16'),
 ('w2', 'Refrigerator', '50ltr bottom freezer. ', 50000, 'Electronics', '/images/w2.jpg', '', '', 5000, 'shop9', '2021-08-16'),
 ('w3', 'Air Conditioner', '5275 Watts,(1.5 ton) AC', 45000, 'Electronics', '/images/w3.jpg', '', '', 3000, 'shop9', '2021-08-16'),
 ('w5', 'Motorbike', '125cc, Walton runner', 150000, 'Vehicle', '/images/w5.jpg', '', '', 0, 'shop9', '2021-08-16'),
