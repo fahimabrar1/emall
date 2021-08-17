@@ -965,6 +965,18 @@ Route::get('/shops/products/{name}', function($name){
 });
 
 
+Route::get('/products/recent/{end}', function($end){
+
+   
+        
+    $prods = DB::table('product')->orderBy('date_added', 'desc')->take($end)->get();
+
+    return $prods;
+
+
+
+});
+
 Route::get('/shops/get/{name}', function($name){
 
    
