@@ -1,1 +1,1 @@
-emall_flutter
+emall_flutter/*
