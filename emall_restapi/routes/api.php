@@ -384,7 +384,7 @@ Route::post('/shopparents', function(){
 
 });
 
-Route::post('/products', function(){
+Route::post('/products', function(Request $request){
 
     request()->validate([
         
@@ -394,8 +394,6 @@ Route::post('/products', function(){
         'price' => 'required',
         'product_category' => 'required',
         'image1' => 'required',
-		'image2' => 'required',
-		'image3' => 'required',
 		'discount' => 'required',
         
     ]);
@@ -413,10 +411,66 @@ Route::post('/products', function(){
         $file = request('image1');
         $file2 = request('image2');
         $file3 = request('image3');
+
+        //return $file." ".$file2." ".$file3;
+
+      
+       
+
+        $img = "";
+        $img2 = "";
+        $img3 = "";
+        $extension = "";
+        $extension2 = "";
+        $extension3 = "";
+
+        if($file2 != "" and $file3 == ""){
+            
+            $img2 = file_get_contents($file2);
+            $extension2 =  pathinfo(
+                parse_url($file2, PHP_URL_PATH), 
+                PATHINFO_EXTENSION
+            ); 
+    
+            $extension2 = $file2->getClientOriginalExtension();
+
+            file_put_contents(public_path("/images/".$id."_img2.".$extension2), $img2);
+
+        }else if($file2 != "" and $file3 != ""){
+            $img2 = file_get_contents($file2);
+            $img3 = file_get_contents($file3);
+            $extension2 =  pathinfo(
+                parse_url($file2, PHP_URL_PATH), 
+                PATHINFO_EXTENSION
+            ); 
+    
+            $extension2 = $file2->getClientOriginalExtension();
+
+            $extension3 =  pathinfo(
+                parse_url($file3, PHP_URL_PATH), 
+                PATHINFO_EXTENSION
+            ); 
+            
+            $extension3 = $file3->getClientOriginalExtension();
+            file_put_contents(public_path("/images/".$id."_img2.".$extension2), $img2);
+
+            file_put_contents(public_path("/images/".$id."_img3.".$extension3), $img3);
+        }else if($file3 != "" and $file2 == ""){
+            $img3 = file_get_contents($file3);
+
+            $extension3 =  pathinfo(
+                parse_url($file3, PHP_URL_PATH), 
+                PATHINFO_EXTENSION
+            ); 
+    
+            $extension3 = $file3->getClientOriginalExtension();
+            file_put_contents(public_path("/images/".$id."_img3.".$extension3), $img3);
+
+        }
         //return $file;
         $img = file_get_contents($file);
-        $img2 = file_get_contents($file2);
-        $img3 = file_get_contents($file3);
+        
+       
 
         $extension =  pathinfo(
             parse_url($file, PHP_URL_PATH), 
@@ -424,31 +478,27 @@ Route::post('/products', function(){
         ); 
 
         $extension = $file->getClientOriginalExtension();
-        $extension2 =  pathinfo(
-            parse_url($file2, PHP_URL_PATH), 
-            PATHINFO_EXTENSION
-        ); 
-
-        $extension2 = $file2->getClientOriginalExtension();
-        $extension3 =  pathinfo(
-            parse_url($file3, PHP_URL_PATH), 
-            PATHINFO_EXTENSION
-        ); 
-
-        $extension3 = $file3->getClientOriginalExtension();
+        
+       
         //return $extension;
         
         //return $file;
 
         file_put_contents(public_path("/images/".$id."_img.".$extension), $img);
-        file_put_contents(public_path("/images/".$id."_img2.".$extension2), $img2);
-        file_put_contents(public_path("/images/".$id."_img3.".$extension3), $img3);
+        
+        
 
         $url = "/images/".$id."_img.".$extension;
+        $url2 = "";
+        $url3 = "";
+        
+
+        if($file2 != "" and $file3 != ""){
+
         $url2 = "/images/".$id."_img2.".$extension2;
         $url3 = "/images/".$id."_img3.".$extension3;
-       
-       // return $contents;
+
+
         return Product::create([
             "product_id" => $id,
             "shop_id_fk" => request("shop_id_fk"),
@@ -462,6 +512,67 @@ Route::post('/products', function(){
             "discount" => request("discount")
     
         ]);
+
+        }else if($file2 != "" and $file3 == ""){
+
+            $url2 = "/images/".$id."_img2.".$extension2;
+            
+    
+    
+            return Product::create([
+                "product_id" => $id,
+                "shop_id_fk" => request("shop_id_fk"),
+                "name" => request("name"),
+                "description" => request("description"),
+                "price" => request("price"),
+                "product_category" => request("product_category"),
+                "image1" => $url,
+                "image2" => $url2,
+                "image3" => "",
+                "discount" => request("discount")
+        
+            ]);
+
+        }else if($file3 != "" and $file2 == ""){
+
+            
+            $url3 = "/images/".$id."_img3.".$extension3;
+    
+    
+            return Product::create([
+                "product_id" => $id,
+                "shop_id_fk" => request("shop_id_fk"),
+                "name" => request("name"),
+                "description" => request("description"),
+                "price" => request("price"),
+                "product_category" => request("product_category"),
+                "image1" => $url,
+                "image2" => "",
+                "image3" => $url3,
+                "discount" => request("discount")
+        
+            ]);
+
+        }else{
+            return Product::create([
+                "product_id" => $id,
+                "shop_id_fk" => request("shop_id_fk"),
+                "name" => request("name"),
+                "description" => request("description"),
+                "price" => request("price"),
+                "product_category" => request("product_category"),
+                "image1" => $url,
+                "image2" => "",
+                "image3" => "",
+                "discount" => request("discount")
+        
+            ]);
+        }
+
+
+       
+       // return $contents;
+      
 
     }else{
        
@@ -479,17 +590,71 @@ Route::post('/products', function(){
 
         $id = "prod".$c_id;
 
-
+            
+        
         $file = request('image1');
         $file2 = request('image2');
         $file3 = request('image3');
+
+        //return $file." ".$file2." ".$file3;
+
+      
+       
+
+        $img = "";
+        $img2 = "";
+        $img3 = "";
+        $extension = "";
+        $extension2 = "";
+        $extension3 = "";
+
+        if($file2 != "" and $file3 == ""){
+            
+            $img2 = file_get_contents($file2);
+            $extension2 =  pathinfo(
+                parse_url($file2, PHP_URL_PATH), 
+                PATHINFO_EXTENSION
+            ); 
+    
+            $extension2 = $file2->getClientOriginalExtension();
+
+            file_put_contents(public_path("/images/".$id."_img2.".$extension2), $img2);
+
+        }else if($file2 != "" and $file3 != ""){
+            $img2 = file_get_contents($file2);
+            $img3 = file_get_contents($file3);
+            $extension2 =  pathinfo(
+                parse_url($file2, PHP_URL_PATH), 
+                PATHINFO_EXTENSION
+            ); 
+    
+            $extension2 = $file2->getClientOriginalExtension();
+
+            $extension3 =  pathinfo(
+                parse_url($file3, PHP_URL_PATH), 
+                PATHINFO_EXTENSION
+            ); 
+            
+            $extension3 = $file3->getClientOriginalExtension();
+            file_put_contents(public_path("/images/".$id."_img2.".$extension2), $img2);
+
+            file_put_contents(public_path("/images/".$id."_img3.".$extension3), $img3);
+        }else if($file3 != "" and $file2 == ""){
+            $img3 = file_get_contents($file3);
+
+            $extension3 =  pathinfo(
+                parse_url($file3, PHP_URL_PATH), 
+                PATHINFO_EXTENSION
+            ); 
+    
+            $extension3 = $file3->getClientOriginalExtension();
+            file_put_contents(public_path("/images/".$id."_img3.".$extension3), $img3);
+
+        }
         //return $file;
         $img = file_get_contents($file);
-       // echo $img;
-        $img2 = file_get_contents($file2);
-        $img3 = file_get_contents($file3);
-
-        //return $img;
+        
+       
 
         $extension =  pathinfo(
             parse_url($file, PHP_URL_PATH), 
@@ -497,32 +662,27 @@ Route::post('/products', function(){
         ); 
 
         $extension = $file->getClientOriginalExtension();
-
-        $extension2 =  pathinfo(
-            parse_url($file2, PHP_URL_PATH), 
-            PATHINFO_EXTENSION
-        );
-        $extension2 = $file2->getClientOriginalExtension(); 
-        $extension3 =  pathinfo(
-            parse_url($file3, PHP_URL_PATH), 
-            PATHINFO_EXTENSION
-        ); 
-
-        $extension = $file3->getClientOriginalExtension();
+        
+       
         //return $extension;
         
         //return $file;
 
         file_put_contents(public_path("/images/".$id."_img.".$extension), $img);
-
-        file_put_contents(public_path("/images/".$id."_img2.".$extension2), $img2);
-        file_put_contents(public_path("/images/".$id."_img3.".$extension3), $img3);
+        
+        
 
         $url = "/images/".$id."_img.".$extension;
+        $url2 = "";
+        $url3 = "";
+        
+
+        if($file2 != "" and $file3 != ""){
+
         $url2 = "/images/".$id."_img2.".$extension2;
         $url3 = "/images/".$id."_img3.".$extension3;
-       
-       // return $contents;
+
+
         return Product::create([
             "product_id" => $id,
             "shop_id_fk" => request("shop_id_fk"),
@@ -537,8 +697,66 @@ Route::post('/products', function(){
     
         ]);
 
-    }
+        }else if($file2 != "" and $file3 == ""){
 
+            $url2 = "/images/".$id."_img2.".$extension2;
+            
+    
+    
+            return Product::create([
+                "product_id" => $id,
+                "shop_id_fk" => request("shop_id_fk"),
+                "name" => request("name"),
+                "description" => request("description"),
+                "price" => request("price"),
+                "product_category" => request("product_category"),
+                "image1" => $url,
+                "image2" => $url2,
+                "image3" => "",
+                "discount" => request("discount")
+        
+            ]);
+
+        }else if($file3 != "" and $file2 == ""){
+
+            
+            $url3 = "/images/".$id."_img3.".$extension3;
+    
+    
+            return Product::create([
+                "product_id" => $id,
+                "shop_id_fk" => request("shop_id_fk"),
+                "name" => request("name"),
+                "description" => request("description"),
+                "price" => request("price"),
+                "product_category" => request("product_category"),
+                "image1" => $url,
+                "image2" => "",
+                "image3" => $url3,
+                "discount" => request("discount")
+        
+            ]);
+
+        }else{
+            return Product::create([
+                "product_id" => $id,
+                "shop_id_fk" => request("shop_id_fk"),
+                "name" => request("name"),
+                "description" => request("description"),
+                "price" => request("price"),
+                "product_category" => request("product_category"),
+                "image1" => $url,
+                "image2" => "",
+                "image3" => "",
+                "discount" => request("discount")
+        
+            ]);
+        }
+
+
+       
+       // return $contents;
+    }
 
 });
 
@@ -696,6 +914,85 @@ Route::get('/users/{email}/{password}', function($email, $pass){
 
 });
 
+Route::get('/shops/products/{name}', function($name){
 
+   
+        
+    $prods = Product::all();
+    $shops = Shop::all();
+
+    $shop_id = "";
+    foreach($shops as $s){
+        if($s->shop_name == $name){
+            $shop_id = $s->shop_id;
+        }
+    }
+    if($shop_id == ""){
+        return "Invalid shop name";
+    }
+    $prods_all = [];
+    $index = 0;
+    foreach($prods as $p){
+
+        
+            if($p->shop_id_fk == $shop_id){
+                array_push($prods_all, $p);
+            }
+        
+        $index += 1;
+    }
+
+    return $prods_all;
+
+
+    //return str_replace('\\', '/', public_path());
+    //return $shops;
+
+
+
+
+
+});
+
+
+Route::get('/shops/get/{name}', function($name){
+
+   
+        
+    
+    $shops = Shop::all();
+
+    $shop_id = "";
+    foreach($shops as $s){
+        if($s->shop_name == $name){
+            $shop_id = $s->shop_id;
+        }
+    }
+    if($shop_id == ""){
+        return "Invalid shop name";
+    }
+    
+    $index = 0;
+    foreach($shops as $s){
+
+        
+            if($s->shop_id == $shop_id){
+                return $s;
+            }
+        
+        $index += 1;
+    }
+
+ 
+
+
+    //return str_replace('\\', '/', public_path());
+    //return $shops;
+
+
+
+
+
+});
 
 
