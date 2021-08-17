@@ -134,4 +134,7 @@ GET http://127.0.0.1:8000/api/shops/products/Walton
 ###
 
 GET http://127.0.0.1:8000/api/shops/get/Walton
+###
+
+GET http://127.0.0.1:8000/api/products/random/10 HTTP/1.1 
 
