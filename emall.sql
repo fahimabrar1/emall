@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 17, 2021 at 09:37 PM
+-- Generation Time: Aug 18, 2021 at 07:37 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -235,12 +235,12 @@ CREATE TABLE `color` (
 --
 
 INSERT INTO `color` (`color_id`, `value`) VALUES
-('blue02', '#0000FF'),
-('green03', '#00FF00'),
-('Magenta06', '#FF00FF'),
-('red01', '#FF0000'),
-('white05', '#FFFFFF'),
-('yellow04', '#FFFF00');
+('blue02', '0000FF'),
+('green03', '00FF00'),
+('Magenta06', 'FF00FF'),
+('red01', 'FF0000'),
+('white05', 'FFFFFF'),
+('yellow04', 'FFFF00');
 
 -- --------------------------------------------------------
 
