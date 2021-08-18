@@ -1113,6 +1113,32 @@ Route::post('/sizes', function(){
 
 });
 
+Route::post('/productattributes', function(){
+    request()->validate([
+        'product_id_fk' => 'required',
+        'color_id_fk' => 'required',
+
+        'size_id_fk' => 'required',
+        'child_cat_id_fk' => 'required',
+        'quantity' => 'required'
+
+    ]);
+
+    return ProductAttribute::create([
+        "product_id_fk" => request("product_id_fk"),
+        "color_id_fk" => request("color_id_fk"),
+        "size_id_fk" => request("size_id_fk"),
+        "child_cat_id_fk" => request("child_cat_id_fk"),
+        "quantity" => request("quantity")
+
+
+    ]);
+
+
+
+
+
+});
 
 Route::get('/getattributes/{prod_id}', function($prod_id){
 
