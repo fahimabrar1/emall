@@ -1018,3 +1018,200 @@ Route::get('/shops/get/{name}', function($name){
 });
 
 
+
+Route::post('/colors', function(){
+
+    request()->validate([
+        'value' => 'required'
+    ]);
+
+   
+
+    if(Color::count() == 0){
+        
+        $id = "color"."1";
+
+        return Color::create([
+            'color_id' => $id,
+            'value' => request('value'),
+    
+    
+        ]);
+
+    }else{
+        $colors = Color::all();
+        $color_ids = [];
+        $index = 0;
+        foreach($colors as $x){
+            $strs = $x->color_id;
+            $color_ids[$index] = (int)str_replace('color', '', $strs);
+            $index += 1;
+        }
+
+        $c_id = max($color_ids) + 1;
+        $id = "color".$c_id;
+
+        return Color::create([
+            'color_id' => $id,
+            'value' => request('value'),
+    
+    
+        ]);
+    
+
+    }
+    
+
+   
+
+});
+
+Route::post('/sizes', function(){
+
+    request()->validate([
+        'value' => 'required'
+    ]);
+
+   
+
+    if(Size::count() == 0){
+        
+        $id = "size"."1";
+
+        return Size::create([
+            'size_id' => $id,
+            'value' => request('value'),
+    
+    
+        ]);
+
+    }else{
+        $sizes = Size::all();
+        $size_ids = [];
+        $index = 0;
+        foreach($sizes as $x){
+            $strs = $x->size_id;
+            $size_ids[$index] = (int)str_replace('size', '', $strs);
+            $index += 1;
+        }
+
+        $c_id = max($size_ids) + 1;
+        $id = "size".$c_id;
+
+        return Size::create([
+            'size_id' => $id,
+            'value' => request('value'),
+    
+    
+        ]);
+    
+
+    }
+    
+
+   
+
+});
+
+
+Route::get('/getattributes/{prod_id}', function($prod_id){
+
+
+    $attributes = ProductAttribute::all();
+    $color_ids = [];
+    $size_ids = [];
+    $child_ids = [];
+
+    $products = Product::all();
+    $product_info = "";
+
+    foreach($products as $p){
+        if($p->product_id == $prod_id){
+            $product_info = $p;
+
+        }
+    }
+
+    foreach($attributes as $a){
+
+        if($a->product_id_fk == $prod_id){
+            array_push($color_ids, $a->color_id_fk);
+            array_push($size_ids, $a->size_id_fk);
+            array_push($child_ids, $a->child_cat_id_fk);
+
+
+        }
+
+    }
+
+   // return $color_ids;
+
+    $colors_l = [];
+    $sizes_l = [];
+    $childs_l = [];
+    
+
+    $colors = Color::all();
+    $sizes = Size::all();
+    $childs = ChildCategory::all();
+
+    $index = 0;
+    foreach($colors as $c){
+        if($c->color_id == $color_ids[$index]){
+            array_push($colors_l, $c);
+            //echo $index.",".$c;
+            if($index < count($color_ids) - 1){
+                $index += 1;
+            }
+            
+           
+
+            
+        }
+        
+
+    }
+
+  //  return $colors_l;
+    $index = 0;
+    foreach($sizes as $s){
+        if($s->size_id == $size_ids[$index]){
+            array_push($sizes_l, $s);
+            if($index < count($size_ids) - 1){
+                $index += 1;
+            }
+           
+        }
+
+        
+
+    }
+
+    $index = 0;
+    foreach($childs as $c){
+        if($c->child_cat_id == $child_ids[$index]){
+            array_push($childs_l, $c);
+            if($index < count($child_ids) - 1){
+                $index += 1;
+            }
+            
+        }
+        
+    }
+
+
+    return response()->json([
+        "product" => $product_info,
+        "colors" => $colors_l,
+        "sizes" => $sizes_l,
+        "childs" => $childs_l
+
+    ]);
+
+    
+    
+    
+
+});
+
+
