@@ -17,6 +17,10 @@ GET http://127.0.0.1:8000/api/shopparents HTTP/1.1
 
 GET http://127.0.0.1:8000/api/products HTTP/1.1 
 ###
+
+GET http://127.0.0.1:8000/api/users HTTP/1.1 
+###
+
 POST http://127.0.0.1:8000/api/categories HTTP/1.1
 Content-Type: application/json
 
@@ -141,3 +145,55 @@ GET http://127.0.0.1:8000/api/products/random/4 HTTP/1.1
 
 
 GET http://127.0.0.1:8000/api/products/recent/3 HTTP/1.1
+
+
+###
+GET http://127.0.0.1:8000/api/productattributes HTTP/1.1
+
+###
+GET http://127.0.0.1:8000/api/colors HTTP/1.1
+
+###
+
+GET http://127.0.0.1:8000/api/sizes HTTP/1.1
+
+###
+POST http://127.0.0.1:8000/api/colors HTTP/1.1
+
+
+###
+POST http://127.0.0.1:8000/api/colors HTTP/1.1
+Content-Type: application/json
+
+{
+
+            
+            "value" : "#B81FBF"
+}
+
+###
+POST http://127.0.0.1:8000/api/sizes HTTP/1.1
+Content-Type: application/json
+
+{
+
+            
+            "value" : "medium"
+}
+
+###
+POST http://127.0.0.1:8000/api/productattributes HTTP/1.1
+Content-Type: application/json
+
+{
+
+        "product_id_fk" : "prod2",
+        "color_id_fk" :"color4",
+        "size_id_fk" : "size1",
+        "child_cat_id_fk" : "child1",
+        "quantity" : 20
+           
+}
+
+###
+GET http://127.0.0.1:8000/api/getattributes/prod1 HTTP/1.1
