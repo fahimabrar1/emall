@@ -26,6 +26,7 @@ class Size extends Model
 	public $timestamps = false;
 
 	protected $fillable = [
+		'size_id',
 		'value'
 	];
 
