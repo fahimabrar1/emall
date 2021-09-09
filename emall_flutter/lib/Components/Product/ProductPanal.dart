@@ -251,7 +251,7 @@ class _ProductPanalState extends State<ProductPanal> {
                                                     errorBuilder:
                                                         (context, o, s) {
                                                       return Image.asset(
-                                                          "assets/images/products/product_1.jpg");
+                                                          noImage);
                                                     },
                                                   ),
                                                   onTap: () {
@@ -279,7 +279,7 @@ class _ProductPanalState extends State<ProductPanal> {
                                                     errorBuilder:
                                                         (context, o, s) {
                                                       return Image.asset(
-                                                          "assets/images/products/product_1.jpg");
+                                                          noImage);
                                                     },
                                                   ),
                                                   onTap: () {
@@ -307,7 +307,7 @@ class _ProductPanalState extends State<ProductPanal> {
                                                     errorBuilder:
                                                         (context, o, s) {
                                                       return Image.asset(
-                                                          "assets/images/products/product_1.jpg");
+                                                          noImage);
                                                     },
                                                   ),
                                                   onTap: () {

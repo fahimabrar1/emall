@@ -5,6 +5,7 @@ import 'package:emall_proj/Components/MyColors.dart';
 import 'package:emall_proj/Components/MyGlobalVariables.dart';
 import 'package:emall_proj/Components/Navbar/NavBarButtons.dart';
 import 'package:emall_proj/Components/Navbar/NavBarIcons.dart';
+import 'package:emall_proj/Screens/ContactPageScreen.dart';
 import 'package:emall_proj/Screens/HomeScreen.dart';
 import 'package:emall_proj/Screens/ShopScreen.dart';
 import 'package:flutter/cupertino.dart';
@@ -79,7 +80,11 @@ class _TransparentNavBarState extends State<TransparentNavBar> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> screens = [HomeScreen(), ShopScreen()];
+    final List<Widget> screens = [
+      HomeScreen(),
+      ShopScreen(),
+      ContactPageScreen()
+    ];
 
     return Container(
       //color: Colors.blue,
@@ -100,19 +105,23 @@ class _TransparentNavBarState extends State<TransparentNavBar> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         TextButton(
-                          child: Text(
-                            "eMall",
-                            style: GoogleFonts.poppins(
-                                color: MyColor.White,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 24),
-                          ),
-                          style: ButtonStyle(
-                            overlayColor: MaterialStateProperty.all(
-                                Colors.white.withOpacity(0)),
-                          ),
-                          onPressed: () {},
-                        ),
+                            child: Text(
+                              "eMall",
+                              style: GoogleFonts.poppins(
+                                  color: MyColor.White,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 24),
+                            ),
+                            style: ButtonStyle(
+                              overlayColor: MaterialStateProperty.all(
+                                  Colors.white.withOpacity(0)),
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => HomeScreen()));
+                            }),
                       ]),
                 ),
                 Expanded(
@@ -163,7 +172,7 @@ class _TransparentNavBarState extends State<TransparentNavBar> {
                         ),
                         NavBarButtons(
                           "Contact Us",
-                          screens.elementAt(0),
+                          screens.elementAt(2),
                         ),
                       ]),
                 ),
@@ -292,7 +301,11 @@ class _NavBarState extends State<NavBar> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> screens = [HomeScreen(), ShopScreen()];
+    final List<Widget> screens = [
+      HomeScreen(),
+      ShopScreen(),
+      ContactPageScreen()
+    ];
     TextEditingController shopSearchTextController = TextEditingController();
 
     return Row(
@@ -327,7 +340,12 @@ class _NavBarState extends State<NavBar> {
                                 overlayColor: MaterialStateProperty.all(
                                     Colors.white.withOpacity(0)),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => HomeScreen()));
+                              },
                             ),
                           ]),
                     ),
@@ -384,7 +402,7 @@ class _NavBarState extends State<NavBar> {
                             ),
                             NavBarButtons(
                               "Contact Us",
-                              screens.elementAt(0),
+                              screens.elementAt(2),
                             ),
                           ]),
                     ),

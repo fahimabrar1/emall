@@ -307,7 +307,7 @@ class _ShopPanelState extends State<ShopPanel> {
                         ShopItemDataHolder sdh;
                         try {
                           sdh = ShopItemDataHolder(
-                              shop_id: snapshot.data![index].shop_id,
+                              shop_id: snapshot.data![index].shop_name,
                               title: snapshot.data![index].shop_name,
                               imgPath: hhtpGetShopLogoUrl +
                                   snapshot.data![index].shop_id);
