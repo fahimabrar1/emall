@@ -762,7 +762,10 @@ Route::post('/products', function(Request $request){
 
 
 
-Route::get('/images/{product_id}/{imageno}', function($pid, $no){
+Route::get('/images', function(Request $request){
+    $data = request()->json()->all();
+    $pid = $data['product_id'];
+    $no = $data['imageno'];
 
     $url =  DB::table('product')->where('product_id', $pid)->pluck('image'.$no);
 
@@ -774,7 +777,11 @@ Route::get('/images/{product_id}/{imageno}', function($pid, $no){
     
 });
 
-Route::get('/logos/{shop_id}', function($shop_id){
+Route::get('/logos', function(Request $request){
+
+    $data = request()->json()->all();
+    $shop_id = $data['shop_id'];
+   
 
     $url =  DB::table('shop')->where('shop_id', $shop_id)->pluck('logo');
 
@@ -786,9 +793,11 @@ Route::get('/logos/{shop_id}', function($shop_id){
     
 });
 
-Route::get('/shops/select/{start}/{end}', function($start, $end){
+Route::get('/shops/select', function(Request $request){
 
-   
+    $data = request()->json()->all();
+    $start = $data['start'];
+    $end = $data['end'];
         
         $shops = Shop::all();
         $shops_all = [];
@@ -815,8 +824,10 @@ Route::get('/shops/select/{start}/{end}', function($start, $end){
 });
 
 
-Route::get('/products/select/{start}/{end}', function($start, $end){
-
+Route::get('/products/select', function(Request $request){
+    $data = request()->json()->all();
+    $start = $data['start'];
+    $end = $data['end'];
    
         
     $prods = Product::all();
@@ -843,7 +854,9 @@ Route::get('/products/select/{start}/{end}', function($start, $end){
 
 });
 
-Route::get('/products/random/{end}', function($end){
+Route::get('/products/random', function(Request $request){
+    $data = request()->json()->all();
+    $end = $data['end'];
 
    
         return Product::all()->random($end);
@@ -906,9 +919,13 @@ Route::post('/users', function(){
 
 
 
-Route::get('/users/{email}/{password}', function($email, $pass){
+Route::get('/users', function(Request $request){
 
     $users = User::all();
+    $data = request()->json()->all();
+    $email = $data['email'];
+    $pass = $data['pass'];
+
 
     
 
@@ -924,7 +941,11 @@ Route::get('/users/{email}/{password}', function($email, $pass){
 
 });
 
-Route::get('/shops/products/{name}', function($name){
+Route::get('/shops/products', function(Request $request){
+
+    $data = request()->json()->all();
+    $name = $data['name'];
+
 
    
         
@@ -965,7 +986,10 @@ Route::get('/shops/products/{name}', function($name){
 });
 
 
-Route::get('/products/recent/{end}', function($end){
+Route::get('/products/recent', function(){
+
+    $data = request()->json()->all();
+    $end = $data['end'];
 
    
         
@@ -977,11 +1001,13 @@ Route::get('/products/recent/{end}', function($end){
 
 });
 
-Route::get('/shops/get/{name}', function($name){
+Route::get('/shops/get', function(Request $request){
 
    
         
-    
+    $data = request()->json()->all();
+    $name = $data['name'];
+
     $shops = Shop::all();
 
     $shop_id = "";
@@ -1140,8 +1166,9 @@ Route::post('/productattributes', function(){
 
 });
 
-Route::get('/getattributes/{prod_id}', function($prod_id){
-
+Route::get('/getattributes', function(Reqeust $request){
+    $data = request()->json()->all();
+    $prod_id = $data['prod_id'];
 
     $attributes = ProductAttribute::all();
     $color_ids = [];
