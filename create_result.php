@@ -2,7 +2,12 @@
 
 	$email = $_GET["email"];
 
+	// date conversion from string
 	$dob = $_GET["dob"];
+	$dob =  str_replace('/', '-', $dob);
+	$dob = date("Y-m-d", strtotime($dob));
+
+	echo $dob;
 	
 	$address = $_GET["address"];
 
@@ -29,9 +34,9 @@
 
 
 
-	mysqli_query( $connect, "INSERT INTO shop_parent VALUES ( '$email', '$dob', '$address', '$nid', '$first_name', '$last_name', '$number', '$password', '$type', '$shop_id_fk'  )" )
+	mysqli_query( $connect, "INSERT INTO shop_parent VALUES ( '$email', '$dob', '$address', '$nid', '$first_name', '$last_name', '$number', '$password', '$type', '$shop_id_fk')")
 
-		or die("Can not execute query");
+		or die($connect->error);
 
 
 

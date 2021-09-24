@@ -1,0 +1,38 @@
+.main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    padding: 20px;
+
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    padding: 20px;
+
+}
+.row1{
+flex-grow: 2;
+}
+
+.row2{
+    flex-grow: 2;
+
+}
+#t{
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20pt;
+}
+span{
+    font-size: 20pt;
+}
+
+input {
+    width: 300pt;
+    height: 30pt;
+}
