@@ -13,9 +13,9 @@
 
 
 
-	mysqli_query( $connect, "DELETE FROM shop_parent WHERE email=$email" )
+	mysqli_query( $connect, "DELETE FROM shop_parent WHERE email='$email'" )
 
-		or die("Can not execute query");
+		or die($connect->error);
 
 
 
