@@ -36,7 +36,10 @@
 
 	<p>
 	
-	Type: <input type=text name=type> <br>
+	Type: <select type="text" name="type">
+          <option value="Owner">Owner</option>
+          <option value="Stuff">Stuff</option>
+          </select><br/>
 
 	<p>
 
