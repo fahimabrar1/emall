@@ -1,14 +1,13 @@
+<?php
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stuff Login</title>
-    <link rel="stylesheet" href="owner.css"> 
+session_start();
 
-    <?php
+if(isset($_SESSION['staff'])){
+    echo "Already Logged in";
+
+
+}
+
 if(isset($_GET['msg'])){
     $msg = $_GET['msg'];
 }
@@ -23,12 +22,13 @@ if(isset($_GET['msg'])){
 
 		or die("Can not connect");
 
-    $query = "SELECT email FROM shop_parent WHERE type='Stuff' and email='$var1' and pass='$var2'";
-    $returnval = $connect->query($query);
+    $query = "SELECT email FROM shop_parent WHERE type='Stuff' and email='$var1' and password='$var2'";
+    $returnval = mysqli_query($connect, $query);
 
-    if($returnval->rowCount()==1){
+    if(mysqli_num_rows($returnval)==1){
 
-        $_SESSION["owner"] = $var1;
+        $_SESSION["staff"] = $var1;
+        echo "Successfully logged in! :)";
 
         // write a switching to the stuff managing page code here
 
@@ -36,19 +36,24 @@ if(isset($_GET['msg'])){
     }else{
           
 
-          ?>
-        <script>
-
-                window.location.href = 'stuff.php?msg=Invalid Login! :(';
-        </script>
-
-
-          <?php
+         $msg = "Invalid Login";
       }
        
 
    }
 ?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stuff Login</title>
+    <link rel="stylesheet" href="owner.css"> 
+
+   
 
 </head>
 <body>

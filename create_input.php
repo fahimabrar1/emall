@@ -32,7 +32,7 @@
 
 	<p>
 
-	Password: <input type=text name=password> <br>
+	Password: <input type=password name=password> <br>
 
 	<p>
 	

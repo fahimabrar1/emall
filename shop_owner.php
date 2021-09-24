@@ -1,4 +1,54 @@
 
+<?php
+
+session_start();
+
+if(isset($_SESSION['owner'])){
+    echo "Already Logged in";
+
+
+}else{
+
+    
+   if(isset($_POST['submit'])){
+    //echo $_POST['email'];
+    
+ 
+    $var1=$_POST['email'];
+    $var2=$_POST['pass'];
+    
+    
+    require_once('db_connect.php');
+
+	$connect = mysqli_connect( HOST, USER, PASS, DB )
+		or die("Can not connect");
+
+    $query = "SELECT * FROM shop_parent WHERE type='Owner' and email='$var1' and password='$var2'";
+    $returnval = mysqli_query($connect, $query);
+
+   echo $connect->error;
+
+    if(mysqli_num_rows($returnval)==1){
+        
+
+        $_SESSION["owner"] = $var1;
+        echo "Sucessfully logged in! :)";
+
+        // write a switching to the stuff managing page code here
+
+
+    }else{
+
+               $msg = "Invalid Login";
+
+         
+      }
+       
+
+   }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,48 +58,6 @@
     <title>Shop Owner Login</title>
     <link rel="stylesheet" href="owner.css"> 
 
-    <?php
-if(isset($_GET['msg'])){
-    $msg = $_GET['msg'];
-}
-   if(isset($_POST['submit'])){
- 
-    $var1=$_POST['email'];
-    $var2=$_POST['pass'];
-    
-    require_once('db_connect.php');
-
-	$connect = mysqli_connect( HOST, USER, PASS, DB )
-
-		or die("Can not connect");
-
-    $query = "SELECT email FROM shop_parent WHERE type='Owner' and email='$var1' and pass='$var2'";
-    $returnval = $connect->query($query);
-
-    if($returnval->rowCount()==1){
-
-        $_SESSION["owner"] = $var1;
-
-        // write a switching to the stuff managing page code here
-
-
-    }else{
-          
-
-          ?>
-        <script>
-
-                window.location.href = 'shop_owner.php?msg=Invalid Login! :(';
-        </script>
-
-
-          <?php
-      }
-       
-
-   }
-?>
-
 </head>
 <body>
 
@@ -57,7 +65,7 @@ if(isset($_GET['msg'])){
 
 <div class="container">
 <span id="t"> Shop Owner Login :- </span> <br><br>
-<form action="" method="POST">
+<form action="shop_owner.php" method="POST">
     <span>Email: </span> <div class="row1"><input name="email"></div><br><br>
     <span>Password: </span> <div class="row2"><input type="password" name="pass"></div><br>
     <input name="submit" type="submit" value="Login"><br><br>
