@@ -35,6 +35,7 @@ class Order extends Model
 	];
 
 	protected $fillable = [
+		'order_id',
 		'date',
 		'order_address',
 		'state',

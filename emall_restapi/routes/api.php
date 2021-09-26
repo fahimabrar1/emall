@@ -993,12 +993,6 @@ Route::post('/post_orders', function(Request $request){
         ]);
 
 
-        //return "Success";
-        return response()->json([
-            'status' => 'success'
-            
-        ]);
-
         
 
         
