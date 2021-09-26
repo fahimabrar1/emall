@@ -688,6 +688,8 @@ class _ProductPanalState extends State<ProductPanal> {
                                                     CartProductDataHolder(
                                                         product_id: snapshot
                                                             .data!.product_id,
+                                                        shop_id: snapshot
+                                                            .data!.shop_id_fk,
                                                         title:
                                                             snapshot.data!.name,
                                                         price: initialprice *

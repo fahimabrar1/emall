@@ -1,18 +1,10 @@
 import 'dart:convert';
-import 'dart:developer';
-
-import 'package:emall_proj/Components/Cart/Cart.dart';
-import 'package:emall_proj/Components/Product/ProductSearchPanel.dart';
+import 'package:emall_proj/Screens/CheckOutScreen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'Components/Drawer/Drawer.dart';
 import 'Components/Models/AllCategoriesModel.dart';
-import 'Components/MyGlobalVariables.dart';
-import 'Components/Product/Product.dart';
-import 'Components/Product/ProductPanal.dart';
 import 'Screens/HomeScreen.dart';
-import 'Screens/ShopScreen.dart';
 import 'package:http/http.dart' as http;
 
 void main() {
@@ -82,8 +74,6 @@ class _MyeMallState extends State<MyeMall> {
   @override
   void initState() {
     // TODO: implement initState
-    super.initState();
-
     fetchCategory().whenComplete(() {
       gotcate = true;
       if (gotcate && gotcsubcate && gotsubcate) {
@@ -102,6 +92,7 @@ class _MyeMallState extends State<MyeMall> {
         startcal();
       }
     });
+    super.initState();
   }
 
   void startcal() {
@@ -172,7 +163,8 @@ class _MyeMallState extends State<MyeMall> {
     // return Scaffold(
     //   body: Cart(),
     // );
-    return HomeScreen();
+    //return HomeScreen();
+    return CheckOutScreen();
     //return ProductSearchPanel();
     // return Scaffold(
     //   body: Product(product: ProductDataHolder(

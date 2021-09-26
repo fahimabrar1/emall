@@ -17,6 +17,10 @@ class LoginScreenPanel extends StatefulWidget {
 }
 
 class _LoginScreenPanelState extends State<LoginScreenPanel> {
+  TextEditingController usernamec = TextEditingController();
+  TextEditingController passwordc = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
   bool? username = false;
   bool? password = false;
   @override
@@ -143,25 +147,35 @@ class _LoginScreenPanelState extends State<LoginScreenPanel> {
                       height: 40,
                     ),
 
+                    Form(
+                        key: _formKey,
+                        child: Column(
+                          children: [
+                            InputField(
+                              controller: usernamec,
+                              label: "Mobile No.",
+                              hint: "Mobile no.",
+                              textInputType: TextInputType.number,
+                              boolCallback: (val) =>
+                                  {setState(() => username = val)},
+                            ),
+
+                            //Gender Widget from the widgets folder
+
+                            SizedBox(height: 20.0),
+
+                            //InputField Widget from the widgets folder
+                            InputField(
+                              controller: passwordc,
+                              label: "Password",
+                              hint: "Password",
+                              obsecure: true,
+                              boolCallback: (val) =>
+                                  {setState(() => password = val)},
+                            ),
+                          ],
+                        )),
                     //InputField Widget from the widgets folder
-                    InputField(
-                      label: "Mobile No.",
-                      hint: "Mobile no.",
-                      textInputType: TextInputType.number,
-                      boolCallback: (val) => {setState(() => username = val)},
-                    ),
-
-                    //Gender Widget from the widgets folder
-
-                    SizedBox(height: 20.0),
-
-                    //InputField Widget from the widgets folder
-                    InputField(
-                      label: "Password",
-                      hint: "Password",
-                      obsecure: true,
-                      boolCallback: (val) => {setState(() => password = val)},
-                    ),
 
                     SizedBox(
                       height: 20.0,
@@ -203,20 +217,22 @@ class _LoginScreenPanelState extends State<LoginScreenPanel> {
                                   EdgeInsets.all(20)),
                             ),
                             onPressed: () {
-                              if (username == true && password == true) {
-                                log("Can Login");
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => HomeScreen()));
-                              } else if (username == false &&
-                                  password == true) {
-                                log("User Empty");
-                              } else if (username == true &&
-                                  password == false) {
-                                log("Password Empty");
-                              } else {
-                                log("All Empty");
+                              if (_formKey.currentState!.validate()) {
+                                if (username == true && password == true) {
+                                  log("Can Login");
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => HomeScreen()));
+                                } else if (username == false &&
+                                    password == true) {
+                                  log("User Empty");
+                                } else if (username == true &&
+                                    password == false) {
+                                  log("Password Empty");
+                                } else {
+                                  log("All Empty");
+                                }
                               }
                             },
                             child: Text(

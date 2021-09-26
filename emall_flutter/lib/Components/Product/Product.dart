@@ -11,6 +11,7 @@ import '../MyColors.dart';
 
 class CartProductDataHolder {
   String product_id;
+  String shop_id;
   String title;
   String imagePath;
   BoxFit boxfit;
@@ -21,6 +22,7 @@ class CartProductDataHolder {
 
   CartProductDataHolder(
       {required this.product_id,
+      required this.shop_id,
       required this.title,
       required this.price,
       required this.imagePath,

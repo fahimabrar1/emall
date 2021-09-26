@@ -4,14 +4,16 @@ import 'package:flutter/material.dart';
 class InputField extends StatefulWidget {
   final String label;
   final String? hint;
-  final bool? obsecure ;
+  final bool? obsecure;
   final TextInputType? textInputType;
   final bool _validate = true;
   final BoolCallback? boolCallback;
+  final TextEditingController? controller;
 
   InputField(
       {required this.label,
       this.hint,
+      this.controller,
       this.obsecure,
       this.textInputType,
       this.boolCallback});
@@ -43,7 +45,8 @@ class _InputFieldState extends State<InputField> {
             Container(
               width: 400,
               color: Colors.blue[50],
-              child: TextField(
+              child: TextFormField(
+                controller: widget.controller,
                 onChanged: (str) => (str.length > 0)
                     ? widget.boolCallback!(true)
                     : widget.boolCallback!(false),

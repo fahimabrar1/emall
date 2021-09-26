@@ -19,7 +19,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-
+Use \Carbon\Carbon;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -852,7 +852,7 @@ Route::get('/products/random/{end}', function($end){
 
 
 
-Route::post('/users', function(){
+Route::post('/register', function(){
     request()->validate([
         
         'email' => 'required',
@@ -904,11 +904,132 @@ Route::post('/users', function(){
 });
 
 
+Route::post('/post_orders', function(Request $request){
+
+    $list = $request->all();
+
+    
 
 
-Route::get('/users/{email}/{password}', function($email, $pass){
+    foreach($list as $order){
+        //echo $order['product_id'];
+        $product_id = $order['product_id'];
+        
+        $shop_id = $order['shop_id'];
+        $total = $order['total'];
+        $order_address = $order['order_address'];
+        $state = $order['state'];
+        $user_email = $order['user_email'];
+        $date = Carbon::now();
+        $cart_id = "cart1";
+        $order_id = "order1";
+        
+        if((Cart::count() == 0)){
+            $id = 1;
+            $cart_id = "cart".$id;
 
+        }else{
+            $carts = Cart::all();
+        $cart_ids = [];
+        $index = 0;
+        foreach($carts as $x){
+            $strs = $x->cart_id;
+            $cart_ids[$index] = (int)str_replace('cart', '', $strs);
+            $index += 1;
+        }
+
+        $c_id = max($cart_ids) + 1;
+
+        $cart_id = "cart".$c_id;
+        }
+        
+        $product_id = $order['product_id'];
+        $cart = Cart::create([
+            'cart_id' => $cart_id,
+            'total' => $total,
+            'user_email_fk' => $user_email,
+            'product_id_fk' => $product_id,
+    
+        ]);
+
+        //echo $product_id;
+
+
+        if((Order::count() == 0)){
+            $id = 1;
+            $order_id = "order".$id;
+
+        }else{
+            $orders = Order::all();
+        $order_ids = [];
+        $index = 0;
+        foreach($orders as $x){
+            $strs = $x->order_id;
+            $order_ids[$index] = (int)str_replace('order', '', $strs);
+            $index += 1;
+        }
+
+        $c_id = max($order_ids) + 1;
+
+        $order_id = "order".$c_id;
+        }
+
+        $order = Order::create([
+            'order_id' => $order_id,
+            'date' => $date,
+            'order_address' => $order_address,
+            'state' => $state,
+            'user_email_fk' => $user_email
+    
+        ]);
+
+        $order_a = OrderAttribute::create([
+            'date' => $date,
+            'product_id_fk' => $product_id,
+            'shop_id_fk' => $shop_id,
+            'cart_id_fk' => $cart_id,
+            'order_id_fk' => $order->order_id
+    
+        ]);
+
+
+        //return "Success";
+        return response()->json([
+            'status' => 'success'
+            
+        ]);
+
+        
+
+        
+
+
+
+
+
+
+    
+
+
+    }
+
+
+
+
+});
+
+Route::post('/login', function(Request $request){
+if($request->isMethod('post')){
     $users = User::all();
+
+    request()->validate([
+        'email' => 'required',
+        'password' => 'required'
+    ]);
+
+    $email = request('email');
+    $pass = request('password'); 
+    
 
     
 
@@ -920,6 +1041,11 @@ Route::get('/users/{email}/{password}', function($email, $pass){
     }
 
   return "Not Match";
+
+}else{
+    echo "NOT POST METHOD";
+}
+   
 
 
 });
@@ -1239,5 +1365,4 @@ Route::get('/getattributes/{prod_id}', function($prod_id){
     
 
 });
-
 
