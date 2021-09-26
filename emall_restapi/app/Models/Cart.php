@@ -32,8 +32,10 @@ class Cart extends Model
 	];
 
 	protected $fillable = [
+		'cart_id',
 		'total',
-		'user_email_fk'
+		'user_email_fk',
+		'product_id_fk'
 	];
 
 	public function user()
