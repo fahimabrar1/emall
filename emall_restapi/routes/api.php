@@ -852,7 +852,7 @@ Route::get('/products/random/{end}', function($end){
 
 
 
-Route::post('/users', function(){
+Route::post('/register', function(){
     request()->validate([
         
         'email' => 'required',
@@ -906,9 +906,18 @@ Route::post('/users', function(){
 
 
 
-Route::get('/users/{email}/{password}', function($email, $pass){
-
+Route::post('/login', function(Request $request){
+if($request->isMethod('post')){
     $users = User::all();
+
+    request()->validate([
+        'email' => 'required',
+        'password' => 'required'
+    ]);
+
+    $email = request('email');
+    $pass = request('password'); 
+    
 
     
 
@@ -920,6 +929,11 @@ Route::get('/users/{email}/{password}', function($email, $pass){
     }
 
   return "Not Match";
+
+}else{
+    echo "NOT POST METHOD";
+}
+   
 
 
 });
