@@ -102,14 +102,13 @@ class _ProductState extends State<Product> {
                     //),
                     foregroundDecoration: BoxDecoration(
                         image: DecorationImage(
-                            image: (widget.productData != null)
-                                ? NetworkImage(widget.productData!.imagePath)
-                                : NetworkImage(
-                                    widget.cartproductData!.imagePath),
-                            fit: (widget.productData != null)
-                                ? widget.productData!.boxfit
-                                : widget.cartproductData!.boxfit,
-                            onError: (o, s) {})),
+                      image: (widget.productData != null)
+                          ? NetworkImage(widget.productData!.imagePath)
+                          : NetworkImage(widget.cartproductData!.imagePath),
+                      fit: (widget.productData != null)
+                          ? widget.productData!.boxfit
+                          : widget.cartproductData!.boxfit,
+                    )),
                   ),
                   Container(
                     color: Colors.black.withOpacity(0.1),

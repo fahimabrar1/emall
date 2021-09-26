@@ -1,8 +1,4 @@
-import 'package:emall_proj/Components/CollectionBanners/BasicPrice.dart';
-import 'package:emall_proj/Components/CollectionBanners/NewArrival.dart';
-import 'package:emall_proj/Components/CollectionBanners/Summersale.dart';
 import 'package:emall_proj/Components/MyColors.dart';
-import 'package:emall_proj/Components/Product/ProductSearchPanel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,13 +10,11 @@ class CollectionBannerDataHolder {
   String buttonTitle;
   String imagePath;
   BoxFit boxfit;
-  Widget context;
   CollectionBannerDataHolder(
       {required this.title,
       required this.buttonTitle,
       required this.imagePath,
-      required this.boxfit,
-      required this.context});
+      required this.boxfit});
 }
 
 class CollectionBannerPanel extends StatelessWidget {
@@ -43,44 +37,29 @@ class CollectionBannerPanel extends StatelessWidget {
             child: Row(
               children: [
                 Expanded(
-                  flex: 2,
-                  child: CollectionBanner(
-                    CollectionBannerDataHolder(
-                      title: 'New arrivals\nare now in!',
-                      buttonTitle: 'SHOW COLLECTIONS',
-                      imagePath:
-                          'assets/images/collection_banners/collection_banner_1.jpg',
-                      boxfit: BoxFit.fitWidth,
-                      context: NewArrivalScreen(),
-                    ),
-                  ),
-                ),
+                    flex: 2,
+                    child: CollectionBanner(CollectionBannerDataHolder(
+                        title: 'New arrivals\nare now in!',
+                        buttonTitle: 'SHOW COLLECTIONS',
+                        imagePath:
+                            'assets/images/collection_banners/collection_banner_1.jpg',
+                        boxfit: BoxFit.fitWidth))),
                 SizedBox(width: 20),
                 Expanded(
-                  child: CollectionBanner(
-                    CollectionBannerDataHolder(
-                      title: 'Basic t-shirts\n\$29,99',
-                      buttonTitle: 'MORE DETAILS',
-                      imagePath:
-                          'assets/images/collection_banners/collection_banner_2.jpg',
-                      boxfit: BoxFit.fitWidth,
-                      context: BasicPrice(),
-                    ),
-                  ),
-                ),
+                    child: CollectionBanner(CollectionBannerDataHolder(
+                        title: 'Basic t-shirts\n\$29,99',
+                        buttonTitle: 'MORE DETAILS',
+                        imagePath:
+                            'assets/images/collection_banners/collection_banner_2.jpg',
+                        boxfit: BoxFit.fitWidth))),
                 SizedBox(width: 20),
                 Expanded(
-                  child: CollectionBanner(
-                    CollectionBannerDataHolder(
-                      title: 'Sale this\nsummer',
-                      buttonTitle: 'VIEW ALL',
-                      imagePath:
-                          'assets/images/collection_banners/collection_banner_3.jpg',
-                      boxfit: BoxFit.fitWidth,
-                      context: SummerSale(),
-                    ),
-                  ),
-                ),
+                    child: CollectionBanner(CollectionBannerDataHolder(
+                        title: 'Sale this\nsummer',
+                        buttonTitle: 'VIEW ALL',
+                        imagePath:
+                            'assets/images/collection_banners/collection_banner_3.jpg',
+                        boxfit: BoxFit.fitWidth))),
               ],
             ),
           ),
@@ -92,7 +71,7 @@ class CollectionBannerPanel extends StatelessWidget {
 
 class CollectionBanner extends StatefulWidget {
   final CollectionBannerDataHolder collectionBannerDataHolder;
-  CollectionBanner(this.collectionBannerDataHolder, {Key? key})
+  CollectionBanner( this.collectionBannerDataHolder, {Key? key})
       : super(key: key);
 
   @override
@@ -162,13 +141,7 @@ class _CollectionBannerState extends State<CollectionBanner> {
                         RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(18.0),
                     ))),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              widget.collectionBannerDataHolder.context));
-                },
+                onPressed: () {},
               ),
             ],
           ),

@@ -287,8 +287,7 @@ class _ProductSearchPanelState extends State<ProductSearchPanel> {
                               product_id: snapshot.data![index].product_id,
                               title: snapshot.data![index].name,
                               price: snapshot.data![index].price.toDouble(),
-                              discount:
-                                  snapshot.data![index].discount.toDouble(),
+                              discount: snapshot.data![index].price.toDouble(),
                               imagePath: hhtpGetProductImageUrl +
                                   snapshot.data![index].product_id +
                                   "/1",

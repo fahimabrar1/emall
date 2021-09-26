@@ -127,7 +127,7 @@ class _ProductsInTodayState extends State<ProductsInToday> {
                                                       .data![index].price
                                                       .toDouble(),
                                                   discount: snapshot
-                                                      .data![index].discount
+                                                      .data![index].price
                                                       .toDouble(),
                                                   imagePath:
                                                       hhtpGetProductImageUrl +
