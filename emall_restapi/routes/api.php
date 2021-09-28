@@ -774,6 +774,8 @@ Route::get('/images/{product_id}/{imageno}', function($pid, $no){
     
 });
 
+
+
 Route::get('/logos/{shop_id}', function($shop_id){
 
     $url =  DB::table('shop')->where('shop_id', $shop_id)->pluck('logo');

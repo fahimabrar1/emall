@@ -21,8 +21,9 @@ class _ProductsInTodayState extends State<ProductsInToday> {
   @override
   void initState() {
     // TODO: implement initState
-    super.initState();
     productModelList = fetchProduct();
+
+    super.initState();
   }
 
   @override
@@ -101,12 +102,6 @@ class _ProductsInTodayState extends State<ProductsInToday> {
                                                           0.4,
                                                   crossAxisCount: 1),
                                           itemBuilder: (context, index) {
-                                            if (snapshot.hasData) {
-                                              print("Has Data");
-                                            }
-                                            print(
-                                                'project snapshot data is: ${snapshot.data}');
-                                            print('Grid');
                                             // return Product(
                                             //   productData: ProductDataHolder(
                                             //       title: 'T-Shirt Summer Vibes',
@@ -145,7 +140,7 @@ class _ProductsInTodayState extends State<ProductsInToday> {
                                           controller: new ScrollController(
                                               keepScrollOffset: false),
                                           shrinkWrap: true,
-                                          itemCount: 10,
+                                          // itemCount: 10,
                                           gridDelegate:
                                               SliverGridDelegateWithFixedCrossAxisCount(
                                                   mainAxisSpacing:
@@ -163,62 +158,6 @@ class _ProductsInTodayState extends State<ProductsInToday> {
                                       }
                                     },
                                   ),
-
-                                  //   child: GridView.count(
-                                  //     scrollDirection: Axis.horizontal,
-                                  //     primary: false,
-                                  //     mainAxisSpacing: panelElementGaps,
-                                  //     crossAxisCount: 1,
-                                  //     childAspectRatio:
-                                  //         (productHeight / productWidth),
-                                  //     controller: new ScrollController(
-                                  //         keepScrollOffset: false),
-                                  //     shrinkWrap: true,
-                                  //     children: <Widget>[
-                                  //       Product(
-                                  //           productData: ProductDataHolder(
-                                  //               title: 'T-Shirt Summer Vibes',
-                                  //               price: 120,
-                                  //               imagePath:
-                                  //                   'assets/images/products/product_1.jpg',
-                                  //               boxfit: BoxFit.fitWidth)),
-                                  //       Product(
-                                  //           productData: ProductDataHolder(
-                                  //               title: 'Loose Knit 3/4 Sleeve',
-                                  //               price: 150,
-                                  //               imagePath:
-                                  //                   'assets/images/products/product_2.jpg',
-                                  //               boxfit: BoxFit.fitWidth)),
-                                  //       Product(
-                                  //           productData: ProductDataHolder(
-                                  //               title: 'Basic Slim Fit T-Shirt',
-                                  //               price: 799.99,
-                                  //               imagePath:
-                                  //                   'assets/images/products/product_3.jpg',
-                                  //               boxfit: BoxFit.fitWidth)),
-                                  //       Product(
-                                  //           productData: ProductDataHolder(
-                                  //               title: 'T-Shirt Summer Vibes',
-                                  //               price: 120,
-                                  //               imagePath:
-                                  //                   'assets/images/products/product_4.jpg',
-                                  //               boxfit: BoxFit.fitWidth)),
-                                  //       Product(
-                                  //           productData: ProductDataHolder(
-                                  //               title: 'Loose Textured T-Shirt',
-                                  //               price: 1150,
-                                  //               imagePath:
-                                  //                   'assets/images/products/product_5.jpg',
-                                  //               boxfit: BoxFit.fitWidth)),
-                                  //       Product(
-                                  //           productData: ProductDataHolder(
-                                  //               title: 'T-Shirt Summer Vibes',
-                                  //               price: 120,
-                                  //               imagePath:
-                                  //                   'assets/images/products/product_1.jpg',
-                                  //               boxfit: BoxFit.fitWidth)),
-                                  //     ],
-                                  //   ),
                                 ),
                               ),
                             ],
@@ -238,7 +177,7 @@ class _ProductsInTodayState extends State<ProductsInToday> {
 
   Future<List<ProductModel>> fetchProduct() async {
     final response = await http
-        .get(Uri.parse('http://127.0.0.1:8000/api/products/select/1/10'));
+        .get(Uri.parse('http://127.0.0.1:8000/api/products/select/1/7'));
 
     List<ProductModel> _postList = <ProductModel>[];
 

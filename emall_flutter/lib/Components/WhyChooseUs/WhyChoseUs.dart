@@ -154,6 +154,5 @@ class WhyChoseUsPanel extends StatelessWidget {
         ),
       ],
     );
-
   }
 }

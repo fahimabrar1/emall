@@ -9,6 +9,7 @@ import 'package:emall_proj/Components/MyColors.dart';
 import 'package:emall_proj/Components/MyGlobalVariables.dart';
 import 'package:emall_proj/Components/Navbar/Navbars.dart';
 import 'package:emall_proj/Components/Product/Product.dart';
+import 'package:emall_proj/Screens/HomeScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -589,15 +590,6 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
 
                                     fillorderList(address, state, email)
                                         .whenComplete(() => orderProducts());
-
-                                    showDialog(
-                                      context: context,
-                                      builder: (builder) {
-                                        return AlertDialog(
-                                            title: Text(
-                                                "Order Placed Successfully."));
-                                      },
-                                    );
                                   }
                                 },
                                 child: Text(
@@ -645,16 +637,52 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
   }
 
   Future orderProducts() async {
-    print(jsonEncode(orderList));
-    final response = await http.post(
-      Uri.parse('http://127.0.0.1:8000/api/post_orders'),
-      body: jsonEncode(orderList),
+    var body = jsonEncode(orderList);
+    print("Body: ${body}");
+    var url = Uri.parse('http://127.0.0.1:8000/api/post_orders');
+    var response = await http.post(
+      url,
+      headers: {'Content-Type': 'application/json'},
+      body: body,
     );
+    print('Response status: ${response.statusCode}');
 
-    if (response.statusCode == 201) {
+    // final response = await http.post(
+    //   "http://127.0.0.1:8000/api/post_orders",
+    //   headers: {'Content-Type': 'application/json'},
+    //   body: jsonEncode(orderList),
+    // );
+
+    if (response.statusCode == 200) {
       // If the server did return a 201 CREATED response,
       // then parse the JSON.
-      print(jsonEncode(orderList));
+      print('Response body: ${response.body}');
+      Map<String, dynamic> _body = jsonDecode(response.body);
+      String status = _body['status'];
+      print('Response body:' + status);
+
+      if (status == "success") {
+        showDialog(
+          context: context,
+          builder: (builder) {
+            return AlertDialog(title: Text("Order Placed Successfully."));
+          },
+        );
+        orderList = [];
+        await Future.delayed(const Duration(seconds: 3), () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => HomeScreen()),
+          );
+        });
+      } else {
+        showDialog(
+          context: context,
+          builder: (builder) {
+            return AlertDialog(title: Text("Failed To Place Order"));
+          },
+        );
+      }
 
       //return Album.fromJson(jsonDecode(response.body));
     } else {
@@ -666,6 +694,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
 
   Future fillorderList(TextEditingController address,
       TextEditingController state, TextEditingController email) async {
+    orderList.clear();
     await Future.forEach<Product>(
         globalproductList,
         (item) => orderList.add(

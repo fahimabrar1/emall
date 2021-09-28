@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:emall_proj/Components/CallBacks/Callbacks.dart';
 import 'package:emall_proj/Components/MyGlobalVariables.dart';
 import 'package:emall_proj/Components/Product/Product.dart';
+import 'package:emall_proj/Screens/CheckOutScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -59,42 +60,47 @@ class _CartState extends State<Cart> {
           (globalproductList.isEmpty)
               ? Container()
               : Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    //View All button
-                    ElevatedButton(
-                      child: Text(
-                        "View All",
-                        style: GoogleFonts.poppins(
-                            color: MyColor.Black,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500),
-                      ),
-                      style: ButtonStyle(
-                        shadowColor: MaterialStateProperty.all<Color>(
-                            MyColor.White.withOpacity(0)),
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.white),
-                        padding: MaterialStateProperty.all<EdgeInsets>(
-                            EdgeInsets.only(
-                                left: 35, right: 35, top: 25, bottom: 25)),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.circular(buttonBorderRadius),
-                            side: BorderSide(
-                                color: MyColor.lightGreyBorder, width: 1.5),
-                          ),
-                        ),
-                      ),
-                      onPressed: () {},
-                    ),
+                    // //View All button
+                    // ElevatedButton(
+                    //   child: Text(
+                    //     "View All",
+                    //     style: GoogleFonts.poppins(
+                    //         color: MyColor.Black,
+                    //         fontSize: 14,
+                    //         fontWeight: FontWeight.w500),
+                    //   ),
+                    //   style: ButtonStyle(
+                    //     shadowColor: MaterialStateProperty.all<Color>(
+                    //         MyColor.White.withOpacity(0)),
+                    //     backgroundColor:
+                    //         MaterialStateProperty.all<Color>(Colors.white),
+                    //     padding: MaterialStateProperty.all<EdgeInsets>(
+                    //         EdgeInsets.only(
+                    //             left: 35, right: 35, top: 25, bottom: 25)),
+                    //     shape:
+                    //         MaterialStateProperty.all<RoundedRectangleBorder>(
+                    //       RoundedRectangleBorder(
+                    //         borderRadius:
+                    //             BorderRadius.circular(buttonBorderRadius),
+                    //         side: BorderSide(
+                    //             color: MyColor.lightGreyBorder, width: 1.5),
+                    //       ),
+                    //     ),
+                    //   ),
+                    //   onPressed: () {},
+                    // ),
                     //Checkout button
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CheckOutScreen()));
+                      },
                       child: Text(
-                        "Checkout",
+                        "Go To Checkout",
                         style: GoogleFonts.poppins(
                           color: MyColor.Black,
                           fontWeight: FontWeight.w500,

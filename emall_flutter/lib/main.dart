@@ -163,8 +163,8 @@ class _MyeMallState extends State<MyeMall> {
     // return Scaffold(
     //   body: Cart(),
     // );
-    //return HomeScreen();
-    return CheckOutScreen();
+    return HomeScreen();
+    //return CheckOutScreen();
     //return ProductSearchPanel();
     // return Scaffold(
     //   body: Product(product: ProductDataHolder(
