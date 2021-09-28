@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 28, 2021 at 08:09 PM
+-- Generation Time: Sep 28, 2021 at 08:26 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -296,8 +296,8 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `name`, `description`, `price`, `product_category`, `image1`, `image2`, `image3`, `discount`, `shop_id_fk`, `date_added`) VALUES
-('a1', 'panjabi', 'Soft cotton panjabi', 1700, 'Clothing', '/images/a1.jpg', '', '', 0, 'shop2', '2021-08-16'),
-('a2', 'Salwar Kameez', 'white and orange shaded cotton Salwar Kameez', 2300, 'Clothing', '/images/a2.jpg', '', '', 300, 'shop2', '2021-08-16'),
+('a1', 'panjabi', 'Cotton panjabi', 1700, 'Clothing', '/images/a1.jpg', '', '', 0, 'shop2', '2021-08-16'),
+('a2', 'Salwar Kameez', 'white and orange shaded Salwar Kameez', 2300, 'Clothing', '/images/a2.jpg', '', '', 300, 'shop2', '2021-08-16'),
 ('a3', 'Panjani kameez set', 'White colored cotton cloths ', 6000, 'Clothing', '/images/a3.jpg', '', '', 500, 'shop2', '2021-08-16'),
 ('ap1', 'Macbook pro', 'MacBook Pro 13″· 13.3-inch Retina display· Apple M1 chip. Also available with. Intel Core i5 or i7 processor', 109000, 'Electronics', '/images/ap1.jpeg', '', '', 0, 'shop10', '2021-07-25'),
 ('ap2', 'Macbook Air', 'Macbook Air 13 M1 2021- 8GB|256GB|7-Core GPU', 105900, 'Electronics', '/images/ap2.jpeg', '', '', 0, 'shop10', '2021-07-25'),
@@ -306,10 +306,10 @@ INSERT INTO `product` (`product_id`, `name`, `description`, `price`, `product_ca
 ('ap5', 'iPhone 11', '128GB,12MP+12MP, Front(Dual): 12MPiOS 14.1, upgradable Li-Ion 2815 mAh, Non-removable', 93000, 'Electronics', '/images/ap5.jpeg', '', '', 0, 'shop10', '2021-07-25'),
 ('apx1', 'Air Boost Sneakers', 'Olive color, air boost durable unisex sneakers  ', 2400, 'Footwear', '/images/apx1.jpeg', '', '', 0, 'shop5', '2021-07-30'),
 ('apx2', 'Hills', 'Pink color 3-inch hills for women', 2800, 'Footwear', '/images/apx2.jpeg', '', '', 0, 'shop5', '2021-07-30'),
-('apx3', 'Shoes', 'Original black leather shoes foe men', 3500, 'Footwear', '/images/apx3.jpeg', '/images/apx4.jpg', '', 100, 'shop5', '2021-07-30'),
+('apx3', 'Shoes', 'Black leather shoes foe men', 3500, 'Footwear', '/images/apx3.jpeg', '/images/apx4.jpg', '', 100, 'shop5', '2021-07-30'),
 ('b1', 'Shoe', 'durable unique shoes ', 2900, 'Footwear', '/images/b1.jpg', '', '', 0, 'shop4', '2021-08-04'),
 ('b2', 'Kid\'s shoe', 'multi colored shoes for kids', 1450, 'Footwear', '/images/b2.jpeg', '/images/b3.jpg', '', 0, 'shop4', '2021-08-04'),
-('sa1', 'Saree', 'soft cotton black and white saree', 2000, 'Clothing', '/images/sa1.jpg', '', '', 0, 'shop3', '2021-08-04'),
+('sa1', 'Saree', 'Cotton black and white saree', 2000, 'Clothing', '/images/sa1.jpg', '', '', 0, 'shop3', '2021-08-04'),
 ('sa2', 'Men\'s Panjabi', 'Soft cotton full black Panjabi for men', 2000, 'Clothing', '/images/sa2.jpg', '', '', 0, 'shop3', '2021-08-04'),
 ('sa3', 'Kameez', 'Soft cotton black Kameez', 1700, 'Clothing', '/images/sa3.jpeg', '', '', 0, 'shop3', '2021-08-04'),
 ('ti1', 'Belt watch', 'Brown belted watch for men', 4000, 'Watches', '/images/ti1.jpg', '', '', 0, 'shop7', '2021-08-06'),
