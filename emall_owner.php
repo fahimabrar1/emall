@@ -18,7 +18,7 @@ if(isset($_GET['msg'])){
 
         $_SESSION["owner"] = "fahim@gmail.com";
 
-        // write a switching to the shop owner managing page code here
+        echo "<script>window.location.assign('read.php');</script>";
 
 
       }else{

@@ -27,4 +27,4 @@
 
 	echo "<p><a href=create_input.php>add a new Shop manager</a>";
 
-?>
+	echo "<p><a href=logout.php>Log Out</a>";

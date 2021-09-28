@@ -32,9 +32,8 @@ if(isset($_SESSION['owner'])){
         
 
         $_SESSION["owner"] = $var1;
-        echo "Sucessfully logged in! :)";
 
-        // write a switching to the stuff managing page code here
+        echo "<script>window.location.assign('owner_home.php');</script>";
 
 
     }else{

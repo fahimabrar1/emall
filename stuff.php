@@ -27,10 +27,9 @@ if(isset($_GET['msg'])){
 
     if(mysqli_num_rows($returnval)==1){
 
-        $_SESSION["staff"] = $var1;
-        echo "Successfully logged in! :)";
+        $_SESSION["stuff"] = $var1;
 
-        // write a switching to the stuff managing page code here
+        echo "<script>window.location.assign('stuff_home.php');</script>";
 
 
     }else{
