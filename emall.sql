@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 18, 2021 at 07:37 AM
--- Server version: 10.4.20-MariaDB
--- PHP Version: 8.0.9
+-- Generation Time: Sep 28, 2021 at 08:09 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -69,6 +69,7 @@ INSERT INTO `category` (`category_id`, `name`) VALUES
 ('bags090', 'Bags'),
 ('beauty050', 'Beauty Shop'),
 ('cloth010', 'Clothing'),
+('drug011', 'Drug Store'),
 ('elect030', 'Electronics '),
 ('foot020', 'Foot Wear'),
 ('jewel070', 'Jewelry Shop'),
