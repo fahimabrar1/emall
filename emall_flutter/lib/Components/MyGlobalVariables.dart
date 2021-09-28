@@ -23,7 +23,7 @@ late Future<List<CategoryModel>> categorymodel;
 List<Product> globalproductList = [
   Product(
     cartproductData: CartProductDataHolder(
-      product_id: "a1",
+      product_id: "1",
       shop_id: "shop1",
       title: 'T-Shirt Summer Vibes',
       price: 120,
@@ -34,7 +34,7 @@ List<Product> globalproductList = [
   ),
   Product(
     cartproductData: CartProductDataHolder(
-      product_id: "a2",
+      product_id: "2",
       shop_id: "shop2",
       title: 'Loose Knit 3/4 Sleeve',
       price: 150,

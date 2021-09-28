@@ -877,7 +877,7 @@ class _ProductPanalState extends State<ProductPanal> {
 
   Future<ProductModel> fetchProduct() async {
     final response = await http.get(Uri.parse(
-        'http://127.0.0.1:8000/api/products/select/$productId/$productId'));
+        'http://127.0.0.1:8000/api/products/select/${productId}/${productId}'));
 
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,

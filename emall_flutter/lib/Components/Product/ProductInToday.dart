@@ -122,7 +122,7 @@ class _ProductsInTodayState extends State<ProductsInToday> {
                                                       .data![index].price
                                                       .toDouble(),
                                                   discount: snapshot
-                                                      .data![index].price
+                                                      .data![index].discount
                                                       .toDouble(),
                                                   imagePath:
                                                       hhtpGetProductImageUrl +
@@ -177,7 +177,7 @@ class _ProductsInTodayState extends State<ProductsInToday> {
 
   Future<List<ProductModel>> fetchProduct() async {
     final response = await http
-        .get(Uri.parse('http://127.0.0.1:8000/api/products/select/1/7'));
+        .get(Uri.parse('http://127.0.0.1:8000/api/products/recent/10'));
 
     List<ProductModel> _postList = <ProductModel>[];
 
