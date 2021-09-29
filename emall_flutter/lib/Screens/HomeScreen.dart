@@ -84,7 +84,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ProductViewPanel(),
                 WhyChoseUsPanel(),
                 ProductsInToday(),
-                ProductViewPanel(),
                 FooterPanel()
               ],
             ),
