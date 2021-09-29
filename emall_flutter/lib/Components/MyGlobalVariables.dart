@@ -21,28 +21,28 @@ String hhtpGetShopLogoUrl = "http://127.0.0.1:8000/api/logos/";
 late Future<List<CategoryModel>> categorymodel;
 
 List<Product> globalproductList = [
-  Product(
-    cartproductData: CartProductDataHolder(
-      product_id: "1",
-      shop_id: "shop1",
-      title: 'T-Shirt Summer Vibes',
-      price: 120,
-      imagePath: 'assets/images/products/product_1.jpg',
-      boxfit: BoxFit.fitWidth,
-      quantity: 1,
-    ),
-  ),
-  Product(
-    cartproductData: CartProductDataHolder(
-      product_id: "2",
-      shop_id: "shop2",
-      title: 'Loose Knit 3/4 Sleeve',
-      price: 150,
-      imagePath: 'assets/images/products/product_2.jpg',
-      boxfit: BoxFit.fitWidth,
-      quantity: 1,
-    ),
-  ),
+  // Product(
+  //   cartproductData: CartProductDataHolder(
+  //     product_id: "1",
+  //     shop_id: "shop1",
+  //     title: 'T-Shirt Summer Vibes',
+  //     price: 120,
+  //     imagePath: 'assets/images/products/product_1.jpg',
+  //     boxfit: BoxFit.fitWidth,
+  //     quantity: 1,
+  //   ),
+  // ),
+  // Product(
+  //   cartproductData: CartProductDataHolder(
+  //     product_id: "2",
+  //     shop_id: "shop2",
+  //     title: 'Loose Knit 3/4 Sleeve',
+  //     price: 150,
+  //     imagePath: 'assets/images/products/product_2.jpg',
+  //     boxfit: BoxFit.fitWidth,
+  //     quantity: 1,
+  //   ),
+  // ),
 ];
 
 List<orderModel> orderList = [];

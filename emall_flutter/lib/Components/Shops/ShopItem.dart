@@ -19,7 +19,7 @@ class ShopItem extends StatefulWidget {
   ShopItem({Key? key, required this.shopItemDataHolder}) : super(key: key);
 
   @override
-  _ShopItemState createState() => _ShopItemState(shopItemDataHolder.shop_id);
+  _ShopItemState createState() => _ShopItemState(shopItemDataHolder.title);
 }
 
 class _ShopItemState extends State<ShopItem> {

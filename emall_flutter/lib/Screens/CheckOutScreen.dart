@@ -579,7 +579,12 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                     ),
                                   ),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => HomeScreen()));
+                                },
                               ),
                               //Checkout button
                               ElevatedButton(
@@ -669,6 +674,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
           },
         );
         orderList = [];
+        globalproductList = [];
         await Future.delayed(const Duration(seconds: 3), () {
           Navigator.push(
             context,
